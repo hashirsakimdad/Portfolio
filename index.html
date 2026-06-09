@@ -15,11 +15,12 @@
   --sky:#2563EB;--sky-soft:rgba(37,99,235,.1);
   --clip:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
   --font-d:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'JetBrains Mono',monospace;
-  --ease-luxury:cubic-bezier(.16,1,.3,1);--motion-dur:.6s;
+  --ease-luxury:cubic-bezier(.16,1,.3,1);--motion-dur:.6s;--spatial-dur:.7s;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:auto;}
 body{background:var(--bg);color:var(--ink);font-family:var(--font-b);overflow-x:hidden;line-height:1.65;}
+body.spatial-lock{overflow:hidden;}
 a{color:inherit;text-decoration:none;}
 img,svg{display:block;max-width:100%;}
 
@@ -55,7 +56,7 @@ body.hc{cursor:none;}
 .nbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .nbg.open span:nth-child(2){opacity:0;}
 .nbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-#mnav{position:fixed;inset:0;background:rgba(26,22,18,.97);z-index:899;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;visibility:hidden;transition:opacity .45s var(--ease-luxury),visibility .45s;}
+#mnav{position:fixed;inset:0;background:rgba(26,22,18,.97);z-index:899;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;visibility:hidden;transition:opacity var(--motion-dur) var(--ease-luxury),visibility var(--motion-dur);}
 #mnav:not(.open){pointer-events:none;}
 #mnav.open{opacity:1;visibility:visible;pointer-events:auto;}
 .ml{font-family:var(--font-d);font-size:1.8rem;font-weight:700;color:#F5F3EE;letter-spacing:2px;opacity:0;transform:translate3d(40px,0,0);transition:opacity var(--motion-dur) var(--ease-luxury),transform var(--motion-dur) var(--ease-luxury),color .2s;}
@@ -66,6 +67,29 @@ body.hc{cursor:none;}
 #mnav.open .ml:nth-child(4){transition-delay:.24s;}
 #mnav.open .ml:nth-child(5){transition-delay:.30s;}
 .ml:hover{color:#C84B31;}
+
+/* ══ 3D SPATIAL CANVAS ══ */
+#spatial-world{perspective:1000px;transform-style:preserve-3d;opacity:0;transform:translate3d(0,48px,140px) scale(.94);will-change:transform,opacity;}
+#spatial-world.world-ready{opacity:1;transform:translate3d(0,0,0) scale(1);transition:transform var(--spatial-dur) var(--ease-luxury),opacity var(--spatial-dur) var(--ease-luxury);}
+#spatial-stage{transform-style:preserve-3d;position:relative;z-index:3;}
+#spatial-layers{position:fixed;inset:0;pointer-events:none;z-index:2;perspective:1000px;overflow:hidden;}
+.spatial-3d-scene{position:absolute;inset:-10%;transform-style:preserve-3d;will-change:transform;}
+.f3d-layer{position:absolute;transform-style:preserve-3d;will-change:transform;backface-visibility:hidden;}
+.f3d-glass{width:clamp(100px,12vw,150px);height:clamp(64px,8vw,96px);border-radius:18px;background:rgba(255,255,255,.12);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.35);box-shadow:0 24px 60px rgba(200,75,49,.08),inset 0 1px 0 rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;}
+.f3d-glass-inner{font-family:var(--font-m);font-size:.58rem;letter-spacing:2px;color:var(--rust);opacity:.75;text-transform:uppercase;}
+.f3d-1{top:14%;left:8%;}
+.f3d-2{top:58%;right:10%;}
+.f3d-3{top:32%;right:22%;width:clamp(120px,14vw,180px);height:clamp(120px,14vw,180px);border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(200,75,49,.22),rgba(184,134,11,.08) 55%,transparent 72%);filter:blur(1px);}
+.f3d-4{bottom:18%;left:16%;width:clamp(160px,20vw,240px);height:clamp(100px,12vw,140px);border-radius:42% 58% 52% 48%/48% 42% 58% 52%;background:linear-gradient(135deg,rgba(200,75,49,.14),rgba(184,134,11,.1));filter:blur(2px);}
+.f3d-5{top:22%;left:42%;width:clamp(80px,10vw,120px);height:clamp(80px,10vw,120px);border-radius:50%;border:1.5px solid rgba(200,75,49,.18);background:transparent;box-shadow:0 0 40px rgba(184,134,11,.06);}
+.f3d-6{bottom:32%;right:32%;width:clamp(90px,11vw,130px);height:clamp(56px,7vw,80px);border-radius:14px;background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);transform:rotate(-12deg);}
+/* 3D spatial page transitions */
+section[data-spatial-page]{transform-style:preserve-3d;backface-visibility:hidden;}
+section[data-spatial-page].spatial-pin{position:fixed;left:0;right:0;width:100%;min-height:100vh;z-index:200;pointer-events:none;transform-origin:center top;will-change:transform,opacity;}
+section[data-spatial-page].spatial-exit{transform:translate3d(0,0,-220px) scale(.86);opacity:0;transition:transform var(--spatial-dur) var(--ease-luxury),opacity var(--spatial-dur) var(--ease-luxury);}
+section[data-spatial-page].spatial-enter-from{transform:translate3d(0,72px,90px) scale(.9);opacity:0;}
+section[data-spatial-page].spatial-enter-to{transform:translate3d(0,0,0) scale(1);opacity:1;transition:transform var(--spatial-dur) var(--ease-luxury),opacity var(--spatial-dur) var(--ease-luxury);}
+.spatial-spacer{pointer-events:none;visibility:hidden;}
 
 /* SCROLL PROGRESS */
 #scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;background:linear-gradient(90deg,var(--rust),var(--gold),var(--rust));z-index:10002;transform-origin:0 50%;transform:scaleX(0);will-change:transform;pointer-events:none;}
@@ -100,10 +124,13 @@ body.hc{cursor:none;}
 .rv-blur{filter:blur(12px);}
 .rv-l.vis,.rv-r.vis,.rv-scale.vis{transform:translate3d(0,0,0) scale(1);}
 
-/* Hero stagger children */
+/* Hero entrance choreography — Badge → Title → Role → Bio → Buttons → Socials */
 .hs{opacity:0;transform:translate3d(0,28px,0);filter:blur(6px);will-change:transform,opacity,filter;
   transition:opacity var(--motion-dur) var(--ease-luxury) var(--d,0s),transform var(--motion-dur) var(--ease-luxury) var(--d,0s),filter .5s var(--ease-luxury) var(--d,0s);}
-.hero-ready .hs{opacity:1;transform:translate3d(0,0,0);filter:blur(0);will-change:auto;}
+.ha{opacity:0;transform:translate3d(-48px,0,0) scale(.94);filter:blur(10px);will-change:transform,opacity,filter;
+  transition:opacity var(--motion-dur) var(--ease-luxury),transform var(--motion-dur) var(--ease-luxury) .08s,filter .5s var(--ease-luxury) .08s;}
+#hero.hero-ready .hs{opacity:1;transform:translate3d(0,0,0);filter:blur(0);will-change:auto;}
+#hero.hero-ready .ha{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);will-change:auto;}
 
 /* Section ambient parallax layers */
 .sec-parallax{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
@@ -243,7 +270,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 .pcard:hover::after{opacity:1;}
 
 /* PROJECT MODAL */
-#modal-overlay{position:fixed;inset:0;background:rgba(26,22,18,.5);z-index:8000;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease-luxury),visibility .45s;}
+#modal-overlay{position:fixed;inset:0;background:rgba(26,22,18,.5);z-index:8000;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity var(--motion-dur) var(--ease-luxury),visibility var(--motion-dur);}
 #modal-overlay.open{opacity:1;visibility:visible;}
 #modal{background:var(--card);max-width:620px;width:100%;max-height:90vh;overflow-y:auto;border:1px solid rgba(26,22,18,.1);box-shadow:0 40px 100px rgba(0,0,0,.15);position:relative;clip-path:var(--clip);opacity:0;transform:translate3d(0,28px,0) scale(.96);transition:opacity var(--motion-dur) var(--ease-luxury),transform var(--motion-dur) var(--ease-luxury);will-change:transform,opacity;}
 #modal-overlay.open #modal{opacity:1;transform:translate3d(0,0,0) scale(1);will-change:auto;}
@@ -334,9 +361,13 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 @media(max-width:480px){.hero-btns{flex-direction:column;align-items:flex-start;}.stats-row{grid-template-columns:1fr 1fr;}}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
-  .rv,.hs,.tli,.stat-item,.sec-divider{opacity:1;transform:none;filter:none;}
+  .rv,.hs,.ha,.tli,.stat-item,.sec-divider{opacity:1;transform:none;filter:none;}
+  #hero.hero-ready .hs,#hero.hero-ready .ha{opacity:1;transform:none;filter:none;}
   .tl::before{transform:scaleX(1);}
   #scroll-progress{display:none;}
+  #spatial-world{opacity:1;transform:none;}
+  #spatial-layers{display:none;}
+  section[data-spatial-page].spatial-exit,section[data-spatial-page].spatial-enter-from{transform:none;opacity:1;}
 }
 </style>
 </head>
@@ -374,16 +405,29 @@ section{padding:110px 0;position:relative;overflow:hidden;}
   <a href="#contact" class="ml">Contact</a>
 </div>
 
+<div id="spatial-world">
+<div id="spatial-layers" aria-hidden="true">
+  <div class="spatial-3d-scene" id="spatialScene">
+    <div class="f3d-layer f3d-glass f3d-1" data-tilt="1.2" data-z="-90" data-parallax="0.025"><div class="f3d-glass-inner">Python</div></div>
+    <div class="f3d-layer f3d-glass f3d-2" data-tilt="0.85" data-z="-50" data-parallax="0.04"><div class="f3d-glass-inner">LangGraph</div></div>
+    <div class="f3d-layer f3d-mesh f3d-3" data-tilt="1.35" data-z="-130" data-parallax="0.018"></div>
+    <div class="f3d-layer f3d-blob f3d-4" data-tilt="0.75" data-z="-70" data-parallax="0.032"></div>
+    <div class="f3d-layer f3d-ring f3d-5" data-tilt="1.05" data-z="-110" data-parallax="0.022"></div>
+    <div class="f3d-layer f3d-glass f3d-6" data-tilt="0.95" data-z="-60" data-parallax="0.038"><div class="f3d-glass-inner">Vision</div></div>
+  </div>
+</div>
+<div id="spatial-stage">
+
 <!-- HERO -->
-<section id="hero">
+<section id="hero" data-spatial-page="hero">
   <canvas id="sc"></canvas>
-  <div class="hgl l"></div>
-  <div class="hgl r"></div>
+  <div class="hgl l" data-parallax="0.035"></div>
+  <div class="hgl r" data-parallax="0.055"></div>
   <div class="hero-grain"></div>
   <div class="hc-wrap">
 
     <!-- ILLUSTRATED AVATAR -->
-    <div class="hero-avatar-area rv rv-l">
+    <div class="hero-avatar-area ha">
       <div class="avatar-blob"></div>
       <!-- Orbit rings -->
       <svg class="avatar-rings" viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -528,7 +572,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
     </div>
 
     <!-- HERO TEXT -->
-    <div class="hero-text-area rv rv-r" id="heroText">
+    <div class="hero-text-area" id="heroText">
       <span class="hero-badge hs" style="--d:.1s"><span class="hbadge-dot"></span>AVAILABLE FOR HIRE</span>
       <h1 class="hero-title hs" style="--d:.18s">Hashir<br><span class="shine">Sakimdad</span></h1>
       <div class="hero-role hs" id="heroRole" style="--d:.26s"></div>
@@ -547,13 +591,13 @@ section{padding:110px 0;position:relative;overflow:hidden;}
   </div>
 </section>
 
-<div class="sec-divider sec-div-rust rv" aria-hidden="true">
+<div class="sec-divider sec-div-rust" aria-hidden="true">
   <svg viewBox="0 0 1440 72" preserveAspectRatio="none"><path class="div-fill" d="M0,36 L1440,36 L1440,72 L0,72 Z"/><path class="div-wave" fill="rgba(200,75,49,.08)" d="M0,36 C320,72 640,8 960,40 S1280,64 1440,32 L1440,72 L0,72 Z"/></svg>
 </div>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" style="width:400px;height:400px;background:var(--rust);top:-10%;right:-5%"></div></div>
+<section id="about" data-spatial-page="about">
+  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" data-parallax="0.07" style="width:400px;height:400px;background:var(--rust);top:-10%;right:-5%"></div><div class="sec-blob" data-parallax="0.045" style="width:280px;height:280px;background:var(--gold);bottom:5%;left:-6%"></div></div>
 <div class="inner">
   <div class="about-grid">
     <!-- ABOUT SCENE ILLUSTRATION -->
@@ -704,8 +748,8 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 </div>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" style="width:350px;height:350px;background:var(--gold);bottom:-5%;left:-8%"></div></div>
+<section id="skills" data-spatial-page="skills">
+  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" data-parallax="0.065" style="width:350px;height:350px;background:var(--gold);bottom:-5%;left:-8%"></div><div class="sec-blob" data-parallax="0.04" style="width:300px;height:300px;background:var(--rust);top:10%;right:-10%"></div></div>
 <div class="inner">
   <span class="sec-tag rv">// THE ARSENAL</span>
   <h2 class="sec-title rv">Skills &amp; Expertise</h2>
@@ -731,7 +775,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 </div>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" data-spatial-page="projects">
 <div class="inner">
   <span class="sec-tag rv">// BATTLE LOG</span>
   <h2 class="sec-title rv">Featured Projects</h2>
@@ -751,7 +795,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
       <div class="plink">View Project →</div>
     </div>
 
-    <div class="pcard rv ht" style="--d:.08s"
+    <div class="pcard rv rv-scale ht" style="--d:.08s"
       data-name="Sukoon AI"
       data-emoji="💚"
       data-badge="DEPLOYED"
@@ -766,7 +810,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
       <div class="plink">View Project →</div>
     </div>
 
-    <div class="pcard rv ht" style="--d:.12s"
+    <div class="pcard rv rv-scale ht" style="--d:.12s"
       data-name="Saath AI"
       data-emoji="👷"
       data-badge="MULTI-AGENT"
@@ -781,7 +825,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
       <div class="plink">View Project →</div>
     </div>
 
-    <div class="pcard rv ht" style="--d:.16s"
+    <div class="pcard rv rv-scale ht" style="--d:.16s"
       data-name="Microscopic Fiber Counter"
       data-emoji="🔬"
       data-badge="COMPUTER VISION"
@@ -796,7 +840,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
       <div class="plink">View Project →</div>
     </div>
 
-    <div class="pcard rv ht" style="--d:.20s"
+    <div class="pcard rv rv-scale ht" style="--d:.20s"
       data-name="Bank Statement OCR"
       data-emoji="🏦"
       data-badge="OCR · FINTECH"
@@ -811,7 +855,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
       <div class="plink">View Project →</div>
     </div>
 
-    <div class="pcard rv ht" style="--d:.24s"
+    <div class="pcard rv rv-scale ht" style="--d:.24s"
       data-name="AI Recruitment Assistant"
       data-emoji="🎓"
       data-badge="LLM · FLASK"
@@ -856,8 +900,8 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 </div>
 
 <!-- HOLOHOME -->
-<section id="holo">
-  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" style="width:420px;height:420px;background:var(--rust);top:20%;left:calc(50% - 210px)"></div></div>
+<section id="holo" data-spatial-page="holo">
+  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" data-parallax="0.05" style="width:420px;height:420px;background:var(--rust);top:20%;left:calc(50% - 210px)"></div><div class="sec-blob" data-parallax="0.08" style="width:320px;height:320px;background:var(--gold);bottom:0;right:-6%"></div></div>
 <div class="inner sec-inner">
   <div class="holo-grid">
     <div class="tw rv rv-l">
@@ -901,7 +945,7 @@ section{padding:110px 0;position:relative;overflow:hidden;}
 </div>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" data-spatial-page="contact">
 <div class="ct-glow"></div>
 <div class="inner ct-wrap">
   <span class="sec-tag rv">// LET'S BUILD</span>
@@ -916,6 +960,9 @@ section{padding:110px 0;position:relative;overflow:hidden;}
   <p class="ct-note rv">Currently available for freelance &amp; internships · Islamabad, Pakistan · Remote worldwide</p>
 </div>
 </section>
+
+</div><!-- /spatial-stage -->
+</div><!-- /spatial-world -->
 
 <div class="sec-divider sec-div-gold" aria-hidden="true">
   <svg viewBox="0 0 1440 72" preserveAspectRatio="none"><path class="div-fill" d="M0,36 L1440,36 L1440,72 L0,72 Z"/><path class="div-wave" fill="rgba(184,134,11,.08)" d="M0,52 C400,28 800,60 1440,20 L1440,72 L0,72 Z"/></svg>
@@ -977,8 +1024,8 @@ if(!mob&&cd&&cr){
   const start=performance.now(),dur=rm?100:2500;
   function draw(){ctx.clearRect(0,0,lc.width,lc.height);const e=1-Math.pow(1-Math.min(prog/100,1),3);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp*(1+e*2);p.y+=(p.ty-p.y)*p.sp*(1+e*2);ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=.3+e*.7;ctx.fill();});ctx.globalAlpha=1;}
   function tick(now){if(exiting)return;const t=Math.min((now-start)/dur,1);prog=t===1?100:Math.floor((1-Math.pow(2,-10*t))*100);val.textContent=String(prog).padStart(3,'0');draw();if(t<1)aid=requestAnimationFrame(tick);else setTimeout(exit,400);}
-  function exit(){if(exiting)return;exiting=true;cancelAnimationFrame(aid);val.textContent='100';pts.forEach(p=>{const a=Math.atan2(p.y-lc.height/2,p.x-lc.width/2),d=Math.random()*250+80;p.tx=p.x+Math.cos(a)*d;p.ty=p.y+Math.sin(a)*d;p.sp=.15;});let f=0;function sc(){ctx.clearRect(0,0,lc.width,lc.height);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp;p.y+=(p.ty-p.y)*p.sp;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/28);ctx.fill();});ctx.globalAlpha=1;if(++f<28)requestAnimationFrame(sc);else{pre.classList.add('exit');setTimeout(()=>{pre.remove();document.getElementById('hero')?.classList.add('hero-ready');},1000);}}sc();}
-  if(rm){val.textContent='100';setTimeout(()=>{exit();document.getElementById('hero')?.classList.add('hero-ready');},200);}else{aid=requestAnimationFrame(tick);}
+  function exit(){if(exiting)return;exiting=true;cancelAnimationFrame(aid);val.textContent='100';pts.forEach(p=>{const a=Math.atan2(p.y-lc.height/2,p.x-lc.width/2),d=Math.random()*250+80;p.tx=p.x+Math.cos(a)*d;p.ty=p.y+Math.sin(a)*d;p.sp=.15;});let f=0;function sc(){ctx.clearRect(0,0,lc.width,lc.height);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp;p.y+=(p.ty-p.y)*p.sp;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/28);ctx.fill();});ctx.globalAlpha=1;if(++f<28)requestAnimationFrame(sc);else{pre.classList.add('exit');setTimeout(()=>{pre.remove();triggerWorldEntrance();},1000);}}sc();}
+  if(rm){val.textContent='100';setTimeout(()=>{exit();triggerWorldEntrance();},200);}else{aid=requestAnimationFrame(tick);}
   addEventListener('click',exit,{once:true});
 })();
 
@@ -1071,7 +1118,12 @@ function startTerm(){
   termLines.forEach(({t,c,d,cur})=>{setTimeout(()=>{const div=document.createElement('div');div.className='tl2 '+(c||'');div.textContent=t;if(cur){const sp=document.createElement('span');sp.className='tcur';div.appendChild(sp);}body.appendChild(div);body.scrollTop=body.scrollHeight;},rm?0:d);});
 }
 
-/* SCROLL PROGRESS */
+/* ═══ MOTION SYSTEM — spatial 3D + scroll engines ═══ */
+const SPATIAL_DUR=700;
+const SPATIAL_PAGES=['hero','about','skills','projects','holo','contact'];
+let activePage='hero',spatialBusy=false;
+
+/* [1] Scroll Progress Bar — rust → gold gradient, real-time depth */
 const scrollBar=document.getElementById('scroll-progress');
 function updateScrollProgress(){
   if(!scrollBar)return;
@@ -1081,34 +1133,119 @@ function updateScrollProgress(){
 addEventListener('scroll',updateScrollProgress,{passive:true});
 updateScrollProgress();
 
-/* PARALLAX — hero glows + section blobs */
+/* 3D Entrance Canvas + Hero Cascade — fires after preloader exits */
+function triggerHeroEntrance(){
+  document.getElementById('hero')?.classList.add('hero-ready');
+}
+function triggerWorldEntrance(){
+  document.getElementById('spatial-world')?.classList.add('world-ready');
+  triggerHeroEntrance();
+}
+
+/* [2] 3D Illustrated Floating Layers — mouse-tracking parallax */
+const spatialScene=document.getElementById('spatialScene');
+const f3dLayers=[...document.querySelectorAll('.f3d-layer')];
+let m3x=0,m3y=0,t3x=0,t3y=0;
+if(!rm&&!mob&&spatialScene){
+  document.addEventListener('mousemove',e=>{
+    m3x=(e.clientX/innerWidth-.5)*2;
+    m3y=(e.clientY/innerHeight-.5)*2;
+  },{passive:true});
+  (function anim3d(){
+    t3x+=(m3x-t3x)*.06;t3y+=(m3y-t3y)*.06;
+    const sy=scrollY;
+    spatialScene.style.transform='rotateX('+(-t3y*3.5)+'deg) rotateY('+(t3x*4.5)+'deg)';
+    f3dLayers.forEach(el=>{
+      const tilt=parseFloat(el.dataset.tilt)||1;
+      const z=parseFloat(el.dataset.z)||-60;
+      const spd=parseFloat(el.dataset.parallax)||.025;
+      el.style.transform='translate3d('+(-t3x*20*tilt)+'px,'+(sy*spd+t3y*14*tilt)+'px,'+z+'px) rotateY('+(-t3x*12*tilt)+'deg) rotateX('+(t3y*9*tilt)+'deg)';
+    });
+    requestAnimationFrame(anim3d);
+  })();
+}
+
+/* [3] Parallax Depth — hero glows + section blobs drift on scroll */
 const parallaxEls=[...document.querySelectorAll('.hgl,.sec-blob')];
 function updateParallax(){
   const sy=scrollY;
   parallaxEls.forEach((el,i)=>{
-    const speed=.04+(i%3)*.02;
+    const speed=parseFloat(el.dataset.parallax)||(.03+(i%4)*.015);
     el.style.transform='translate3d(0,'+(sy*speed)+'px,0)';
   });
 }
 if(!rm){addEventListener('scroll',updateParallax,{passive:true});updateParallax();}
 
-/* INTERSECTION OBSERVERS */
+/* [4] 3D Spatial Page Transitions */
+function spatialNavigate(id){
+  if(!SPATIAL_PAGES.includes(id))return;
+  if(rm||mob){document.getElementById(id)?.scrollIntoView({block:'start'});activePage=id;history.replaceState(null,'','#'+id);return;}
+  if(spatialBusy||id===activePage)return;
+  const from=document.getElementById(activePage);
+  const to=document.getElementById(id);
+  if(!from||!to)return;
+  spatialBusy=true;
+  document.body.classList.add('spatial-lock');
+  const spacer=document.createElement('div');
+  spacer.className='spatial-spacer';
+  spacer.style.height=from.offsetHeight+'px';
+  from.parentNode.insertBefore(spacer,from);
+  from.classList.add('spatial-pin');
+  to.classList.add('spatial-enter-from');
+  window.scrollTo(0,to.offsetTop);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    from.classList.add('spatial-exit');
+    to.classList.remove('spatial-enter-from');
+    to.classList.add('spatial-enter-to');
+  }));
+  setTimeout(()=>{
+    from.classList.remove('spatial-pin','spatial-exit');
+    to.classList.remove('spatial-enter-from','spatial-enter-to');
+    spacer.remove();
+    activePage=id;
+    spatialBusy=false;
+    document.body.classList.remove('spatial-lock');
+    history.replaceState(null,'','#'+id);
+  },SPATIAL_DUR);
+}
+function bindSpatialNav(){
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(href==='#'){a.addEventListener('click',e=>{e.preventDefault();spatialNavigate('hero');});return;}
+    const id=href.slice(1);
+    if(!SPATIAL_PAGES.includes(id))return;
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      spatialNavigate(id);
+      document.getElementById('nbg')?.classList.remove('open');
+      document.getElementById('mnav')?.classList.remove('open');
+    });
+  });
+}
+
+/* [3] Upgraded Reveal Engine — .rv / .rv-l / .rv-r / .rv-scale */
 const rvObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');rvObs.unobserve(e.target);if(e.target.closest('#holo'))startTerm();});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
-if(rm){document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));document.getElementById('hero')?.classList.add('hero-ready');}
 
-/* Section divider reveal */
-const divObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('div-vis');divObs.unobserve(e.target);}});},{threshold:.2});
+/* [2] Morphing Section Dividers — fade + slide in on viewport entry */
+const divObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('div-vis');divObs.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.sec-divider').forEach(el=>divObs.observe(el));
-if(rm)document.querySelectorAll('.sec-divider').forEach(el=>el.classList.add('div-vis'));
 
-/* Timeline + stats stagger */
+/* [5] Timeline Draw-In + [6] Stats Pop-In */
 const tlEl=document.getElementById('aboutTl');
 const statsEl=document.getElementById('statsRow');
-const extraObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;if(e.target===tlEl)e.target.classList.add('tl-vis');if(e.target===statsEl)e.target.classList.add('stats-vis');extraObs.unobserve(e.target);});},{threshold:.35});
+const extraObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;if(e.target===tlEl)e.target.classList.add('tl-vis');if(e.target===statsEl)e.target.classList.add('stats-vis');extraObs.unobserve(e.target);});},{threshold:.3,rootMargin:'0px 0px -40px 0px'});
 if(tlEl)extraObs.observe(tlEl);
 if(statsEl)extraObs.observe(statsEl);
-if(rm){tlEl?.classList.add('tl-vis');statsEl?.classList.add('stats-vis');}
+
+/* Reduced-motion: skip all entrance animations */
+if(rm){
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));
+  document.querySelectorAll('.sec-divider').forEach(el=>el.classList.add('div-vis'));
+  tlEl?.classList.add('tl-vis');
+  statsEl?.classList.add('stats-vis');
+  triggerWorldEntrance();
+}
 
 const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,tgt=parseFloat(el.dataset.t),dec=parseInt(el.dataset.d)||0;if(rm){el.textContent=tgt.toFixed(dec);return;}const s=performance.now();function up(now){const t=Math.min((now-s)/1800,1),ev=1-Math.pow(1-t,3);el.textContent=(ev*tgt).toFixed(dec);if(t<1)requestAnimationFrame(up);else el.textContent=tgt.toFixed(dec);}requestAnimationFrame(up);cntObs.unobserve(el);});},{threshold:.5});
 document.querySelectorAll('.stat-num').forEach(el=>cntObs.observe(el));
@@ -1116,11 +1253,19 @@ document.querySelectorAll('.stat-num').forEach(el=>cntObs.observe(el));
 /* NAV */
 const nav=document.getElementById('nav');
 const nlinks=document.querySelectorAll('.nls a');
-const secs=['about','skills','projects','holo','contact'];
-addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50);let cur='';secs.forEach(id=>{const s=document.getElementById(id);if(s&&s.offsetTop<=scrollY+140)cur=id;});nlinks.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+cur));},{passive:true});
 const nbg=document.getElementById('nbg'),mnav=document.getElementById('mnav');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>50);
+  if(spatialBusy)return;
+  let cur='';
+  SPATIAL_PAGES.forEach(id=>{if(id==='hero')return;const s=document.getElementById(id);if(s&&s.offsetTop<=scrollY+140)cur=id;});
+  if(!cur&&scrollY<120)activePage='hero';
+  else if(cur)activePage=cur;
+  nlinks.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+cur));
+},{passive:true});
 nbg?.addEventListener('click',()=>{nbg.classList.toggle('open');mnav.classList.toggle('open');});
-mnav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nbg.classList.remove('open');mnav.classList.remove('open');}));
+bindSpatialNav();
+if(location.hash){const h=location.hash.slice(1);if(SPATIAL_PAGES.includes(h))activePage=h;}
 })();
 </script>
 </body>
