@@ -56,7 +56,8 @@ body.hc{cursor:none;}
 .nbg.open span:nth-child(2){opacity:0;}
 .nbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
 #mnav{position:fixed;inset:0;background:rgba(26,22,18,.97);z-index:899;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;visibility:hidden;transition:opacity .45s var(--ease-luxury),visibility .45s;}
-#mnav.open{opacity:1;visibility:visible;}
+#mnav:not(.open){pointer-events:none;}
+#mnav.open{opacity:1;visibility:visible;pointer-events:auto;}
 .ml{font-family:var(--font-d);font-size:1.8rem;font-weight:700;color:#F5F3EE;letter-spacing:2px;opacity:0;transform:translate3d(40px,0,0);transition:opacity var(--motion-dur) var(--ease-luxury),transform var(--motion-dur) var(--ease-luxury),color .2s;}
 #mnav.open .ml{opacity:1;transform:translate3d(0,0,0);}
 #mnav.open .ml:nth-child(1){transition-delay:.06s;}
@@ -129,8 +130,8 @@ body.hc{cursor:none;}
 /* COMMON */
 .sec-tag{font-family:var(--font-m);font-size:.68rem;color:var(--rust);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:block;opacity:.8;}
 .sec-title{font-family:var(--font-d);font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:20px;color:var(--ink);}
-.inner{max-width:1200px;margin:0 auto;padding:0 56px;}
-section{padding:110px 0;position:relative;}
+.inner{max-width:1200px;margin:0 auto;padding:0 56px;position:relative;z-index:1;}
+section{padding:110px 0;position:relative;overflow:hidden;}
 
 /* ══ HERO ══ */
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:130px 56px 80px;overflow:hidden;background:var(--bg);}
@@ -199,14 +200,15 @@ section{padding:110px 0;position:relative;}
 .tli:hover .tld{background:var(--rust);box-shadow:0 0 16px var(--rust-glow);}
 .tly{font-family:var(--font-m);font-size:.72rem;color:var(--rust);font-weight:600;}
 .tldesc{font-size:.68rem;color:var(--ink3);margin-top:4px;}
-.qb{margin-top:28px;padding:22px 22px 22px 48px;border-left:3px solid var(--rust);position:relative;background:var(--rust-soft);border-radius:0 8px 8px 0;}
+.qb{margin-top:28px;padding:22px 22px 22px 48px;border-left:3px solid var(--rust);position:relative;background:var(--rust-soft);border-radius:0 8px 8px 0;opacity:0;transform:translate3d(0,16px,0);transition:opacity var(--motion-dur) var(--ease-luxury) .7s,transform var(--motion-dur) var(--ease-luxury) .7s;}
+.tl.tl-vis+.qb{opacity:1;transform:translate3d(0,0,0);}
 .qb::before{content:'"';position:absolute;left:10px;top:4px;font-family:var(--font-d);font-size:3.5rem;color:var(--rust);opacity:.35;line-height:1;}
 .qb p{font-family:var(--font-d);font-size:1.05rem;font-weight:700;font-style:italic;color:var(--ink);}
 
 /* ══ SKILLS ══ */
 #skills{background:var(--bg);}
 .sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:52px;}
-.sk-card{background:var(--card);border:1px solid rgba(26,22,18,.07);padding:28px 24px;clip-path:var(--clip);transition:border-color .3s,box-shadow .3s,transform .2s;transform-style:preserve-3d;cursor:default;}
+.sk-card{background:var(--card);border:1px solid rgba(26,22,18,.07);padding:28px 24px;clip-path:var(--clip);transition:border-color .3s,box-shadow .3s,transform var(--motion-dur) var(--ease-luxury);transform-style:preserve-3d;cursor:default;will-change:transform;}
 .sk-card:hover{border-color:rgba(200,75,49,.25);box-shadow:0 20px 50px rgba(200,75,49,.08);transform:translateY(-4px);}
 .sk-icon{font-size:1.9rem;margin-bottom:12px;}
 .sk-card h3{font-family:var(--font-d);font-size:.95rem;font-weight:700;margin-bottom:8px;color:var(--ink);}
@@ -222,7 +224,7 @@ section{padding:110px 0;position:relative;}
 /* ══ PROJECTS ══ */
 #projects{background:var(--bg2);}
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.pcard{background:var(--card);border:1px solid rgba(26,22,18,.08);clip-path:var(--clip);display:flex;flex-direction:column;cursor:pointer;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;}
+.pcard{background:var(--card);border:1px solid rgba(26,22,18,.08);clip-path:var(--clip);display:flex;flex-direction:column;cursor:pointer;transition:transform var(--motion-dur) var(--ease-luxury),box-shadow var(--motion-dur) var(--ease-luxury),border-color .25s;position:relative;will-change:transform;}
 .pcard:hover{transform:translateY(-6px);border-color:rgba(200,75,49,.3);box-shadow:0 20px 50px rgba(200,75,49,.1);}
 .ph{padding:20px 20px 0;display:flex;justify-content:space-between;align-items:center;}
 .pe{font-size:1.8rem;}.pb{font-family:var(--font-m);font-size:.56rem;padding:4px 10px;background:var(--rust-soft);color:var(--rust);border:1px solid rgba(200,75,49,.2);letter-spacing:1px;}
@@ -734,7 +736,7 @@ section{padding:110px 0;position:relative;}
   <span class="sec-tag rv">// BATTLE LOG</span>
   <h2 class="sec-title rv">Featured Projects</h2>
   <div class="proj-grid">
-    <div class="pcard rv ht" style="--d:.04s"
+    <div class="pcard rv rv-scale ht" style="--d:.04s"
       data-name="DiscoveryOS"
       data-emoji="🔭"
       data-badge="ML PLATFORM"
@@ -855,14 +857,14 @@ section{padding:110px 0;position:relative;}
 
 <!-- HOLOHOME -->
 <section id="holo">
-  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" style="width:420px;height:420px;background:var(--rust);top:20%;left:50%;transform:translateX(-50%)"></div></div>
+  <div class="sec-parallax" aria-hidden="true"><div class="sec-blob" style="width:420px;height:420px;background:var(--rust);top:20%;left:calc(50% - 210px)"></div></div>
 <div class="inner sec-inner">
   <div class="holo-grid">
-    <div class="tw rv">
+    <div class="tw rv rv-l">
       <div class="twb"><span class="twd r"></span><span class="twd y"></span><span class="twd g"></span><span class="twt">holohome ~ main.py</span></div>
       <div class="twbody" id="termBody"></div>
     </div>
-    <div class="hi-info rv" style="--d:.12s">
+    <div class="hi-info rv rv-r" style="--d:.12s">
       <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:4px;">
         <polygon points="180,20 310,90 310,190 180,260 50,190 50,90" fill="rgba(200,75,49,.06)" stroke="#C84B31" stroke-width="1.5" opacity=".7"/>
         <polygon points="180,55 270,105 270,175 180,225 90,175 90,105" fill="none" stroke="#B8860B" stroke-width="1" stroke-dasharray="5 4" opacity=".5"/>
@@ -975,7 +977,7 @@ if(!mob&&cd&&cr){
   const start=performance.now(),dur=rm?100:2500;
   function draw(){ctx.clearRect(0,0,lc.width,lc.height);const e=1-Math.pow(1-Math.min(prog/100,1),3);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp*(1+e*2);p.y+=(p.ty-p.y)*p.sp*(1+e*2);ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=.3+e*.7;ctx.fill();});ctx.globalAlpha=1;}
   function tick(now){if(exiting)return;const t=Math.min((now-start)/dur,1);prog=t===1?100:Math.floor((1-Math.pow(2,-10*t))*100);val.textContent=String(prog).padStart(3,'0');draw();if(t<1)aid=requestAnimationFrame(tick);else setTimeout(exit,400);}
-  function exit(){if(exiting)return;exiting=true;cancelAnimationFrame(aid);val.textContent='100';pts.forEach(p=>{const a=Math.atan2(p.y-lc.height/2,p.x-lc.width/2),d=Math.random()*250+80;p.tx=p.x+Math.cos(a)*d;p.ty=p.y+Math.sin(a)*d;p.sp=.15;});let f=0;function sc(){ctx.clearRect(0,0,lc.width,lc.height);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp;p.y+=(p.ty-p.y)*p.sp;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/28);ctx.fill();});ctx.globalAlpha=1;if(++f<28)requestAnimationFrame(sc);else{pre.classList.add('exit');setTimeout(()=>pre.remove(),1000);}}sc();}
+  function exit(){if(exiting)return;exiting=true;cancelAnimationFrame(aid);val.textContent='100';pts.forEach(p=>{const a=Math.atan2(p.y-lc.height/2,p.x-lc.width/2),d=Math.random()*250+80;p.tx=p.x+Math.cos(a)*d;p.ty=p.y+Math.sin(a)*d;p.sp=.15;});let f=0;function sc(){ctx.clearRect(0,0,lc.width,lc.height);pts.forEach(p=>{p.x+=(p.tx-p.x)*p.sp;p.y+=(p.ty-p.y)*p.sp;ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,Math.PI*2);ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-f/28);ctx.fill();});ctx.globalAlpha=1;if(++f<28)requestAnimationFrame(sc);else{pre.classList.add('exit');setTimeout(()=>{pre.remove();document.getElementById('hero')?.classList.add('hero-ready');},1000);}}sc();}
   if(rm){val.textContent='100';setTimeout(()=>{exit();document.getElementById('hero')?.classList.add('hero-ready');},200);}else{aid=requestAnimationFrame(tick);}
   addEventListener('click',exit,{once:true});
 })();
@@ -1069,10 +1071,44 @@ function startTerm(){
   termLines.forEach(({t,c,d,cur})=>{setTimeout(()=>{const div=document.createElement('div');div.className='tl2 '+(c||'');div.textContent=t;if(cur){const sp=document.createElement('span');sp.className='tcur';div.appendChild(sp);}body.appendChild(div);body.scrollTop=body.scrollHeight;},rm?0:d);});
 }
 
+/* SCROLL PROGRESS */
+const scrollBar=document.getElementById('scroll-progress');
+function updateScrollProgress(){
+  if(!scrollBar)return;
+  const h=document.documentElement.scrollHeight-innerHeight;
+  scrollBar.style.transform='scaleX('+(h>0?scrollY/h:0)+')';
+}
+addEventListener('scroll',updateScrollProgress,{passive:true});
+updateScrollProgress();
+
+/* PARALLAX — hero glows + section blobs */
+const parallaxEls=[...document.querySelectorAll('.hgl,.sec-blob')];
+function updateParallax(){
+  const sy=scrollY;
+  parallaxEls.forEach((el,i)=>{
+    const speed=.04+(i%3)*.02;
+    el.style.transform='translate3d(0,'+(sy*speed)+'px,0)';
+  });
+}
+if(!rm){addEventListener('scroll',updateParallax,{passive:true});updateParallax();}
+
 /* INTERSECTION OBSERVERS */
 const rvObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vis');rvObs.unobserve(e.target);if(e.target.closest('#holo'))startTerm();});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
-if(rm)document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));
+if(rm){document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis'));document.getElementById('hero')?.classList.add('hero-ready');}
+
+/* Section divider reveal */
+const divObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('div-vis');divObs.unobserve(e.target);}});},{threshold:.2});
+document.querySelectorAll('.sec-divider').forEach(el=>divObs.observe(el));
+if(rm)document.querySelectorAll('.sec-divider').forEach(el=>el.classList.add('div-vis'));
+
+/* Timeline + stats stagger */
+const tlEl=document.getElementById('aboutTl');
+const statsEl=document.getElementById('statsRow');
+const extraObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;if(e.target===tlEl)e.target.classList.add('tl-vis');if(e.target===statsEl)e.target.classList.add('stats-vis');extraObs.unobserve(e.target);});},{threshold:.35});
+if(tlEl)extraObs.observe(tlEl);
+if(statsEl)extraObs.observe(statsEl);
+if(rm){tlEl?.classList.add('tl-vis');statsEl?.classList.add('stats-vis');}
 
 const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,tgt=parseFloat(el.dataset.t),dec=parseInt(el.dataset.d)||0;if(rm){el.textContent=tgt.toFixed(dec);return;}const s=performance.now();function up(now){const t=Math.min((now-s)/1800,1),ev=1-Math.pow(1-t,3);el.textContent=(ev*tgt).toFixed(dec);if(t<1)requestAnimationFrame(up);else el.textContent=tgt.toFixed(dec);}requestAnimationFrame(up);cntObs.unobserve(el);});},{threshold:.5});
 document.querySelectorAll('.stat-num').forEach(el=>cntObs.observe(el));
