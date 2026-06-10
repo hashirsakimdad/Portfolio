@@ -3,34 +3,34 @@ import type { Experience } from "@/types";
 export const experiences: Experience[] = [
   {
     year: "2022",
-    title: "First Code, First Spark",
+    title: "Lab founded",
     org: "PAF-IAST",
     description:
-      "Discovered the magic of programming. Built first projects and realized AI was the future.",
-    highlight: "Hello World → Obsession",
+      "First principles of computation met curiosity. The studio began as a research obsession inside university walls.",
+    highlight: "Genesis",
   },
   {
     year: "2023",
-    title: "Level 1 Fiverr Seller",
-    org: "Fiverr",
+    title: "First deployments",
+    org: "Client systems",
     description:
-      "Started freelancing. Delivered ML and CV projects to international clients while studying.",
-    highlight: "★ Level 1 Seller",
+      "Shipped ML and computer vision systems for international clients — validating the lab's production methodology.",
+    highlight: "40+ systems",
   },
   {
     year: "2024",
-    title: "Production AI Systems",
+    title: "Platform era",
     org: "DiscoveryOS · Sukoon · Saath",
     description:
-      "Shipped career counseling ML platform (99.8% accuracy), mental health chatbot, and 9-agent labour marketplace.",
-    highlight: "99.8% ML Accuracy",
+      "Three production platforms: 99.8% accuracy career engine, Roman Urdu mental health AI, and 9-agent labour marketplace.",
+    highlight: "99.8% accuracy",
   },
   {
     year: "2025",
-    title: "HoloHome AI · The Lab",
-    org: "Personal R&D",
+    title: "HoloHome AI",
+    org: "Sakimdad Labs R&D",
     description:
-      "Building a 100% local holographic home assistant. LangGraph, Ollama, Whisper, XTTS-v2 — no cloud required.",
-    highlight: "Phase 1 Active",
+      "Flagship product: a fully local holographic assistant. LangGraph, Ollama, Whisper, XTTS-v2 — intelligence without the cloud.",
+    highlight: "Phase 1 live",
   },
 ];

@@ -1,19 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #05080f;
-  --bg-2: #080c18;
-  --cyan: #00d4ff;
-  --purple: #a855f7;
-  --foreground: #f0f4ff;
+  --bg: #09090b;
+  --bg-elevated: #111113;
+  --bg-subtle: #18181b;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.14);
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --subtle: #71717a;
+  --accent: #5e6ad2;
+  --accent-soft: rgba(94, 106, 210, 0.12);
+  --accent-glow: rgba(94, 106, 210, 0.35);
+  --violet: #8b5cf6;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
-  --font-display: var(--font-orbitron);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-inter);
 }
 
 * {
@@ -27,53 +37,84 @@ html {
 body {
   background: var(--bg);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.25);
+  background: rgba(94, 106, 210, 0.28);
   color: #fff;
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--cyan);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+/* Subtle film grain */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@keyframes gridDrift {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 0 64px;
-  }
+/* Linear-style hairline grid */
+.grid-fine {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
 }
 
-.grid-bg {
-  background-image: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
-  animation: gridDrift 20s linear infinite;
+.section-pad {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+}
+
+.text-balance {
+  text-wrap: balance;
 }
 
 .perspective-\[1000px\] {
   perspective: 1000px;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    110deg,
+    #fafafa 0%,
+    #a1a1aa 45%,
+    #fafafa 55%,
+    #a1a1aa 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -82,5 +123,9 @@ body {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+  .text-shimmer {
+    animation: none;
+    -webkit-text-fill-color: #fafafa;
   }
 }

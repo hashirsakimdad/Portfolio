@@ -1,90 +1,110 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#fiverr", label: "Fiverr" },
-  { href: "#experience", label: "Experience" },
-  { href: "#terminal", label: "Terminal" },
-  { href: "#contact", label: "Contact" },
+  { href: "#mission", label: "Mission" },
+  { href: "#capabilities", label: "Capabilities" },
+  { href: "#products", label: "Products" },
+  { href: "#chronicle", label: "Chronicle" },
+  { href: "#interface", label: "Interface" },
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { scrollY } = useScroll();
+  const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const borderOpacity = useTransform(scrollY, [0, 80], [0, 1]);
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={cn(
-          "fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-6 py-5 transition-all duration-300 md:px-12",
-          scrolled && "border-b border-white/[0.06] bg-[#05080F]/80 py-3.5 backdrop-blur-2xl"
-        )}
-      >
-        <a
-          href="#hero"
-          className="font-display text-sm font-bold tracking-[0.25em] text-cyan-400"
-        >
-          H_SAKIMDAD
-        </a>
+      <motion.header className="fixed top-0 right-0 left-0 z-50">
+        <motion.div
+          style={{ opacity: bgOpacity }}
+          className="absolute inset-0 bg-[#09090B]/80 backdrop-blur-xl"
+        />
+        <motion.div
+          style={{ opacity: borderOpacity }}
+          className="absolute inset-x-0 bottom-0 h-px bg-white/[0.06]"
+        />
+        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8">
+          <a
+            href="#hero"
+            className="flex items-center gap-2.5 text-sm font-medium tracking-[-0.02em] text-[#FAFAFA]"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] text-[10px] font-mono text-[#5E6AD2]">
+              SL
+            </span>
+            Sakimdad Labs
+          </a>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="group relative font-mono text-[11px] tracking-widest text-zinc-500 uppercase transition-colors hover:text-cyan-400"
-            >
-              {l.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-cyan-400 transition-all group-hover:w-full" />
-            </a>
-          ))}
-        </div>
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-[13px] text-[#A1A1AA] transition-colors hover:text-[#FAFAFA]"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
 
-        <button
-          type="button"
-          aria-label="Menu"
-          onClick={() => setOpen(!open)}
-          className="flex flex-col gap-1.5 lg:hidden"
-        >
-          <span className={cn("block h-px w-6 bg-cyan-400 transition-all", open && "translate-y-[7px] rotate-45")} />
-          <span className={cn("block h-px w-6 bg-cyan-400 transition-all", open && "opacity-0")} />
-          <span className={cn("block h-px w-6 bg-cyan-400 transition-all", open && "-translate-y-[7px] -rotate-45")} />
-        </button>
-      </motion.nav>
+          <div className="hidden md:block">
+            <Button href="#connect" size="sm">
+              Connect
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            aria-label="Menu"
+            onClick={() => setOpen(!open)}
+            className="relative flex h-8 w-8 flex-col items-center justify-center gap-1 md:hidden"
+          >
+            <span
+              className={cn(
+                "block h-px w-5 bg-[#FAFAFA] transition-all",
+                open && "translate-y-[5px] rotate-45"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-px w-5 bg-[#FAFAFA] transition-all",
+                open && "opacity-0"
+              )}
+            />
+            <span
+              className={cn(
+                "block h-px w-5 bg-[#FAFAFA] transition-all",
+                open && "-translate-y-[5px] -rotate-45"
+              )}
+            />
+          </button>
+        </nav>
+      </motion.header>
 
       <motion.div
         initial={false}
         animate={{ opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none" }}
-        className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[#05080F]/98 backdrop-blur-xl lg:hidden"
+        className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-[#09090B]/95 backdrop-blur-2xl md:hidden"
       >
-        {links.map((l, i) => (
-          <motion.a
+        {links.map((l) => (
+          <a
             key={l.href}
             href={l.href}
             onClick={() => setOpen(false)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: open ? 1 : 0, y: open ? 0 : 20 }}
-            transition={{ delay: i * 0.05 }}
-            className="font-display text-2xl font-bold tracking-wider text-white hover:text-cyan-400"
+            className="text-2xl font-medium tracking-[-0.02em] text-[#FAFAFA]"
           >
             {l.label}
-          </motion.a>
+          </a>
         ))}
+        <div onClick={() => setOpen(false)}>
+          <Button href="#connect">Connect</Button>
+        </div>
       </motion.div>
     </>
   );

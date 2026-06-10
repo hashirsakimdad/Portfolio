@@ -5,24 +5,17 @@ import type { Project } from "@/types";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const accentMap = {
-  cyan: "border-cyan-500/30 shadow-cyan-500/10 text-cyan-400",
-  purple: "border-purple-500/30 shadow-purple-500/10 text-purple-400",
-  magenta: "border-fuchsia-500/30 shadow-fuchsia-500/10 text-fuchsia-400",
-  amber: "border-amber-500/30 shadow-amber-500/10 text-amber-400",
-};
-
 export function ProjectCard3D({ project }: { project: Project }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), {
-    stiffness: 300,
-    damping: 30,
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), {
+    stiffness: 400,
+    damping: 35,
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 300,
-    damping: 30,
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), {
+    stiffness: 400,
+    damping: 35,
   });
 
   const handleMove = (e: React.MouseEvent) => {
@@ -45,77 +38,59 @@ export function ProjectCard3D({ project }: { project: Project }) {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className={cn(
-        "group relative block h-full perspective-[1000px]",
-        "rounded-2xl border bg-white/[0.02] p-px backdrop-blur-xl",
-        accentMap[project.accent]
-      )}
+      className="group relative block h-full perspective-[1000px]"
     >
-      <div
-        className={cn(
-          "relative flex h-full flex-col overflow-hidden rounded-2xl p-6 md:p-8",
-          `bg-gradient-to-br ${project.gradient}`
-        )}
-      >
-        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-          <div className="absolute -top-20 -right-20 h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl" />
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111113] p-6 transition-colors duration-500 group-hover:border-white/[0.14] md:p-8">
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+          <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-[#5E6AD2]/10 blur-3xl" />
         </div>
 
-        <div className="relative z-10 mb-4 flex items-start justify-between">
-          <span className="text-4xl">{project.emoji}</span>
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[10px] tracking-wider text-zinc-400 uppercase">
+        <div className="relative z-10 mb-6 flex items-center justify-between">
+          <span className="font-mono text-[10px] tracking-[0.15em] text-[#71717A] uppercase">
             {project.category}
+          </span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#A1A1AA] transition-all group-hover:border-[#5E6AD2]/40 group-hover:text-[#5E6AD2]">
+            ↗
           </span>
         </div>
 
-        <h3 className="relative z-10 font-display text-xl font-bold text-white md:text-2xl">
+        <h3 className="relative z-10 text-xl font-semibold tracking-[-0.02em] text-[#FAFAFA] md:text-2xl">
           {project.title}
         </h3>
-        <p className="relative z-10 mt-1 font-mono text-xs text-cyan-400/80">
+        <p className="relative z-10 mt-2 text-sm text-[#71717A]">
           {project.tagline}
         </p>
-        <p className="relative z-10 mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+        <p className="relative z-10 mt-4 flex-1 text-sm leading-relaxed text-[#A1A1AA]">
           {project.description}
         </p>
 
-        <div className="relative z-10 mt-6 grid grid-cols-3 gap-3">
+        <div className="relative z-10 mt-8 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.06]">
           {project.metrics.map((m) => (
-            <div
-              key={m.label}
-              className="rounded-lg border border-white/[0.06] bg-black/30 px-3 py-2 text-center"
-            >
-              <div className="font-display text-lg font-bold text-white">
+            <div key={m.label} className="bg-[#111113] px-3 py-3 text-center">
+              <div className="text-base font-semibold tracking-tight text-[#FAFAFA]">
                 {m.value}
               </div>
-              <div className="font-mono text-[9px] tracking-wider text-zinc-500 uppercase">
+              <div className="mt-0.5 font-mono text-[9px] tracking-wider text-[#71717A] uppercase">
                 {m.label}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="relative z-10 mt-5 flex flex-wrap gap-2">
+        <div className="relative z-10 mt-5 flex flex-wrap gap-1.5">
           {project.stack.map((s) => (
             <span
               key={s}
-              className="rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px] text-zinc-400"
+              className="rounded-md bg-white/[0.04] px-2 py-1 font-mono text-[10px] text-[#71717A]"
             >
               {s}
             </span>
           ))}
-        </div>
-
-        <div className="relative z-10 mt-6 flex items-center gap-2 font-mono text-xs text-cyan-400 opacity-0 transition-opacity group-hover:opacity-100">
-          <span>Explore Project</span>
-          <motion.span animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-            →
-          </motion.span>
         </div>
       </div>
     </motion.a>

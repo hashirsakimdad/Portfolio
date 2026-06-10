@@ -6,24 +6,19 @@ import { projects } from "@/lib/data/projects";
 
 export function ProjectsShowcase() {
   return (
-    <section
-      id="projects"
-      className="relative px-6 py-28 md:px-12 md:py-36"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(168,85,247,0.05)_0%,transparent_50%)]" />
-
-      <div className="relative mx-auto max-w-7xl">
+    <section id="products" className="section-pad relative border-t border-white/[0.06]">
+      <div className="mx-auto max-w-6xl">
         <SectionHeader
-          eyebrow="// Experiment Archive"
-          title="AI Projects Showcase"
-          subtitle="Production systems deployed in the real world — not tutorials."
+          label="Products"
+          title="Shipped intelligence"
+          subtitle="Production systems deployed across computer vision, fintech, robotics, and surveillance — each engineered for measurable outcomes."
         />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, i) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project) => (
             <div
               key={project.id}
-              className={i === 0 ? "md:col-span-2 lg:col-span-1" : ""}
+              className={project.id === "proctor-ai" ? "lg:col-span-2" : ""}
             >
               <ProjectCard3D project={project} />
             </div>

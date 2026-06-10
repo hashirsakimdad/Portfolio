@@ -1,92 +1,77 @@
 "use client";
 
-import { GlassCard } from "@/components/ui/GlassCard";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { motion } from "framer-motion";
 
-const contacts = [
+const channels = [
   {
-    icon: "✉️",
-    label: "hashirsakimdad@gmail.com",
+    label: "Email",
+    value: "hashirsakimdad@gmail.com",
     href: "mailto:hashirsakimdad@gmail.com",
   },
   {
-    icon: "💼",
-    label: "LinkedIn — Hashir Sakimdad",
+    label: "LinkedIn",
+    value: "Hashir Sakimdad",
     href: "https://www.linkedin.com/in/hashir-sakimdad-8bbb22299/",
   },
   {
-    icon: "💻",
-    label: "GitHub — hashirsakimdad",
+    label: "GitHub",
+    value: "hashirsakimdad",
     href: "https://github.com/hashirsakimdad",
-  },
-  {
-    icon: "🚀",
-    label: "Fiverr — hashirsakimdad",
-    href: "https://www.fiverr.com/hashirsakimdad",
   },
 ];
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden px-6 py-28 md:px-12 md:py-36"
-    >
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.06)_0%,rgba(168,85,247,0.04)_40%,transparent_70%)]" />
+    <section id="connect" className="section-pad relative border-t border-white/[0.06]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(94,106,210,0.08)_0%,transparent_50%)]" />
 
-      <div className="relative mx-auto max-w-2xl">
+      <div className="relative mx-auto max-w-2xl text-center">
         <SectionHeader
-          eyebrow="// Open Channel"
-          title="Let's Build Together"
+          label="Connect"
+          title="Start a conversation"
+          subtitle="Partnerships, research collaborations, and ambitious AI projects — the lab is open."
           align="center"
         />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-center text-xl leading-relaxed text-zinc-300 md:text-2xl"
-        >
-          Got an idea that needs AI?
-          <br />
-          <span className="text-cyan-400">I don&apos;t just consult. I ship.</span>
-        </motion.p>
+        <Reveal>
+          <p className="mb-12 text-2xl font-medium tracking-[-0.03em] text-[#FAFAFA] md:text-3xl">
+            Let&apos;s build something
+            <br />
+            <span className="text-[#A1A1AA]">that thinks.</span>
+          </p>
+        </Reveal>
 
-        <div className="space-y-3">
-          {contacts.map((c, i) => (
-            <motion.a
-              key={c.label}
-              href={c.href}
-              target={c.href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              whileHover={{ x: 6 }}
-            >
-              <GlassCard className="flex items-center gap-4 p-5 transition-colors hover:border-cyan-400/30">
-                <span className="text-xl">{c.icon}</span>
-                <span className="flex-1 font-mono text-sm text-white">
-                  {c.label}
+        <div className="space-y-2">
+          {channels.map((c, i) => (
+            <Reveal key={c.label} delay={i * 0.06}>
+              <a
+                href={c.href}
+                target={c.href.startsWith("mailto") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-[#111113] px-6 py-4 transition-colors hover:border-white/[0.14] hover:bg-[#18181B]"
+              >
+                <div className="text-left">
+                  <div className="font-mono text-[10px] tracking-wider text-[#71717A] uppercase">
+                    {c.label}
+                  </div>
+                  <div className="mt-0.5 text-sm text-[#FAFAFA]">{c.value}</div>
+                </div>
+                <span className="text-[#71717A] transition-transform group-hover:translate-x-0.5 group-hover:text-[#5E6AD2]">
+                  ↗
                 </span>
-                <span className="text-cyan-400">→</span>
-              </GlassCard>
-            </motion.a>
+              </a>
+            </Reveal>
           ))}
         </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-10 text-center font-mono text-xs leading-loose tracking-wide text-zinc-600"
-        >
-          Currently available for freelance projects &amp; internships
-          <br />
-          Based in Islamabad, Pakistan · Open to remote worldwide
-        </motion.p>
+        <Reveal className="mt-10" delay={0.2}>
+          <Button href="mailto:hashirsakimdad@gmail.com">Send a message</Button>
+          <p className="mt-6 font-mono text-[11px] tracking-wide text-[#52525B]">
+            Islamabad, Pakistan · Remote worldwide
+          </p>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,35 +8,28 @@ const inter = Inter({
   display: "swap",
 });
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Hashir Sakimdad — AI Engineer Laboratory",
+  title: "Sakimdad Labs — Intelligence, Engineered",
   description:
-    "Futuristic AI Engineer portfolio. LLM systems, computer vision, multi-agent pipelines, and holographic AI — built by Hashir Sakimdad in Islamabad, Pakistan.",
+    "The digital headquarters of Hashir Sakimdad. Research and production systems in LLMs, computer vision, and autonomous AI — built with precision.",
   keywords: [
+    "Sakimdad Labs",
     "AI Engineer",
-    "LLM",
+    "LLM Systems",
     "Computer Vision",
-    "LangGraph",
     "Hashir Sakimdad",
-    "FastAPI",
     "HoloHome AI",
   ],
   openGraph: {
-    title: "Hashir Sakimdad — AI Engineer Laboratory",
-    description: "Enter the personal AI laboratory of Hashir Sakimdad.",
+    title: "Sakimdad Labs — Intelligence, Engineered",
+    description:
+      "Explore the digital headquarters of an AI engineer building production intelligence systems.",
     type: "website",
   },
 };
@@ -49,9 +42,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${orbitron.variable} ${jetbrains.variable} h-full`}
+      className={`${inter.variable} ${geistMono.variable} h-full`}
     >
-      <body className="min-h-full bg-[#05080F] font-sans text-[#F0F4FF] antialiased">
+      <body className="grain min-h-full bg-[#09090B] font-sans text-[#FAFAFA] antialiased">
         {children}
       </body>
     </html>
