@@ -58,7 +58,7 @@
         if (window.scrollY >= section.offsetTop - 130) current = section.id;
       });
       navLinks.forEach((link) => {
-        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--cyan)' : '';
+        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
       });
 
       if (progressBar) {
@@ -72,33 +72,8 @@
     updateActiveLink();
   }
 
-  // Retype the terminal status line for a boot-sequence feel.
-  // The element already holds the full text as a no-JS-safe fallback.
-  function initTypewriter() {
-    if (prefersReducedMotion) return;
-
-    const el = document.getElementById('typedStatus');
-    if (!el) return;
-    const full = el.textContent;
-    el.textContent = '';
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        let i = 0;
-        const speed = 22;
-        const tick = () => {
-          el.textContent = full.slice(0, i);
-          i++;
-          if (i <= full.length) setTimeout(tick, speed);
-        };
-        tick();
-      }, 500);
-    });
-  }
-
   initPageTransition();
   initScrollReveals();
   initHeroReveal();
   initNavActiveState();
-  initTypewriter();
 })();
