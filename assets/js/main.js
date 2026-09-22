@@ -58,7 +58,7 @@
         if (window.scrollY >= section.offsetTop - 130) current = section.id;
       });
       navLinks.forEach((link) => {
-        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--text)' : '';
+        link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--indigo)' : '';
       });
 
       if (progressBar) {
