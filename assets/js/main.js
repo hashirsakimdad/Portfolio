@@ -26,6 +26,8 @@
     const links = $$('.nav-links a');
     const sections = $$('section[id]');
     const progress = $('#scrollProgress');
+    const toTop = $('#toTop');
+    const toTopRing = $('#toTopRing');
     let lastY = 0;
 
     const setOpen = (open) => {
@@ -58,7 +60,12 @@
       links.forEach((l) => l.classList.toggle('active', l.getAttribute('href') === `#${current}`));
 
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+      const ratio = max > 0 ? y / max : 0;
+      progress.style.transform = `scaleX(${ratio})`;
+      if (toTop) {
+        toTop.classList.toggle('show', y > 700);
+        toTopRing.style.strokeDashoffset = String(132 * (1 - ratio));
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -132,8 +139,122 @@
     });
   }
 
+  /* ---------- Neural-network canvas behind the hero ---------- */
+  function initNeural() {
+    const canvas = $('#neural');
+    if (!canvas || reduceMotion) return;
+    const ctx = canvas.getContext('2d');
+    const hero = $('#hero');
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const mouse = { x: -9999, y: -9999 };
+    let w = 0, h = 0, nodes = [], running = false, raf = 0;
+
+    const resize = () => {
+      w = hero.clientWidth; h = hero.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(90, (w * h) / 16000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.6 + 0.6,
+      }));
+    };
+    const LINK = 130;
+    const frame = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (const n of nodes) {
+        const dx = n.x - mouse.x, dy = n.y - mouse.y, d = Math.hypot(dx, dy);
+        if (d < 160 && d > 0) { n.vx += (dx / d) * 0.03; n.vy += (dy / d) * 0.03; }
+        n.vx *= 0.99; n.vy *= 0.99;
+        n.vx += (Math.random() - 0.5) * 0.01; n.vy += (Math.random() - 0.5) * 0.01;
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < LINK) {
+            ctx.strokeStyle = `rgba(167,139,250,${(1 - d / LINK) * 0.35})`;
+            ctx.lineWidth = 0.7;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (md < 180) {
+          ctx.strokeStyle = `rgba(34,211,238,${(1 - md / 180) * 0.5})`;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+        }
+        ctx.fillStyle = 'rgba(244,244,245,0.75)';
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+      }
+      raf = requestAnimationFrame(frame);
+    };
+    hero.addEventListener('pointermove', (e) => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+    window.addEventListener('resize', resize);
+    resize();
+    // Only animate while the hero is on screen.
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !running) { running = true; raf = requestAnimationFrame(frame); }
+      else if (!entry.isIntersecting && running) { running = false; cancelAnimationFrame(raf); }
+    }).observe(hero);
+  }
+
+  /* ---------- Section labels decode like a terminal when they appear ---------- */
+  function initScramble() {
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    const glyphs = '!<>-_\\/[]{}=+*^?#01';
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        const node = [...entry.target.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim());
+        if (!node) return;
+        const final = node.textContent;
+        let frame = 0;
+        const total = 26;
+        const tick = () => {
+          const reveal = Math.floor((frame / total) * final.length);
+          node.textContent = final.split('').map((ch, i) => (i < reveal || ch === ' ' ? ch : glyphs[Math.floor(Math.random() * glyphs.length)])).join('');
+          if (frame++ < total) requestAnimationFrame(tick); else node.textContent = final;
+        };
+        tick();
+      });
+    }, { threshold: 0.6 });
+    $$('.sec-label').forEach((el) => io.observe(el));
+  }
+
+  /* ---------- Experience timeline dots ---------- */
+  function initXpLine() {
+    const line = $('.xp-line');
+    if (!line) return;
+    const cards = $$('.xp-card');
+    const dots = cards.map(() => { const d = document.createElement('span'); d.className = 'xp-dot'; line.appendChild(d); return d; });
+    const place = () => {
+      const top = line.getBoundingClientRect().top + window.scrollY;
+      cards.forEach((c, i) => { dots[i].style.top = `${c.getBoundingClientRect().top + window.scrollY - top + 20}px`; });
+    };
+    const light = () => {
+      const mark = window.innerHeight * 0.6;
+      dots.forEach((d) => d.classList.toggle('lit', d.getBoundingClientRect().top < mark));
+    };
+    place(); light();
+    window.addEventListener('resize', place);
+    window.addEventListener('load', place);
+    window.addEventListener('scroll', light, { passive: true });
+    if (!hasGsap || reduceMotion) $('#xpLineFill').style.transform = 'none';
+  }
+
   initNav();
   initCases();
+  initNeural();
+  initScramble();
+  initXpLine();
+  $$('.service, .ach-card, .pcard').forEach((el) => el.classList.add('glow-border'));
 
   // No animation library or reduced motion: show everything immediately.
   if (!hasGsap || reduceMotion) {
@@ -171,6 +292,7 @@
   gsap.set(nameChars.flat(), { yPercent: 110 });
   gsap.set('.line-mask > span', { yPercent: 110 });
   gsap.set(['.pill', '.hero-stats > div', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 0, y: 20 });
+  gsap.set('.spin-badge', { autoAlpha: 0, scale: 0, rotate: -120 });
   gsap.set('#nav', { autoAlpha: 0, y: -20 });
 
   /* ---------- Loader ---------- */
@@ -229,6 +351,7 @@
       .to('.line-mask > span', { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08 }, 1.3)
       .to(['.pill', '.hero-stats > div', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06 }, 1.35)
       .to('#nav', { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform' }, 1.5)
+      .to('.spin-badge', { autoAlpha: 1, scale: 1, rotate: 0, duration: 1.2, ease: 'back.out(1.6)' }, 1.45)
       .add(() => countUp($$('.hero-stats b[data-count]')), 1.4);
     return tl;
   }
@@ -253,6 +376,7 @@
       .to('.hn-2', { xPercent: 18 }, 0)
       .to(avatar, { yPercent: 30, rotate: -6, scale: 0.85 }, 0)
       .to('.hero-meta', { autoAlpha: 0, y: -40 }, 0)
+      .to('.spin-badge', { y: -120, rotate: 90 }, 0)
       .to('.hero-orb', { scale: 1.4, opacity: 0.12 }, 0);
 
     // Aurora orbs drift slowly on their own.
@@ -363,6 +487,22 @@
     gsap.from('.device-phone', { autoAlpha: 0, y: 140, rotate: 8, duration: 1.4, delay: 0.2, scrollTrigger: { trigger: '#saath .case-body', start: 'top 80%' } });
     gsap.to('.device-phone', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#saath .case-body', start: 'top top', end: 'bottom bottom', scrub: 1 } });
     gsap.from('.pipeline', { autoAlpha: 0, scale: 0.92, duration: 1.2, scrollTrigger: { trigger: '#research .case-body', start: 'top 80%' } });
+
+    // Experience line fills as you read down the timeline.
+    gsap.to('#xpLineFill', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.xp-list', start: 'top 60%', end: 'bottom 60%', scrub: 0.6 } });
+
+    // Big footer name: letters rise in, then drift apart as you reach the end.
+    const bigChars = $$('.big-name .split-chars').map(splitChars);
+    gsap.from(bigChars.flat(), { yPercent: 110, rotate: 8, duration: 1.2, stagger: 0.035, scrollTrigger: { trigger: '.big-name', start: 'top 85%' } });
+    gsap.fromTo('.big-name .outline', { xPercent: 8 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '.big-name', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
+
+    // Skill cards pop in one by one.
+    gsap.from('.skill-card', { autoAlpha: 0, y: 30, scale: 0.92, stagger: 0.06, duration: 0.9, scrollTrigger: { trigger: '.skills-grid', start: 'top 85%' } });
+
+    // Services fan in from alternating sides.
+    $$('.service').forEach((el, i) => {
+      gsap.fromTo(el, { autoAlpha: 0, y: 80, rotate: i % 2 ? 3 : -3 }, { autoAlpha: 1, y: 0, rotate: 0, duration: 1.2, delay: i * 0.08, scrollTrigger: { trigger: '.services', start: 'top 85%' } });
+    });
 
     // Achievement counters.
     $$('.ach-num[data-count]').forEach((el) => {

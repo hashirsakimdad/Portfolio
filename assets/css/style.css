@@ -555,3 +555,99 @@ footer { width: min(var(--max), calc(100% - 32px)); margin: 40px auto 0; padding
 }
 @media (prefers-reduced-motion: reduce) { .case-step { opacity: 1; transform: none; } }
 @media (min-width: 861px) and (max-width: 1140px) { .nav-links a[href="#services"], .nav-links a[href="#about"] { display: none; } }
+
+/* ======================================================
+   v5: neural canvas, spin badge, xp progress line,
+   big footer name, back-to-top ring, scramble labels
+   ====================================================== */
+.neural { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.55; }
+
+.spin-badge {
+  position: absolute; z-index: 4; width: 120px; height: 120px;
+  left: calc(50% - clamp(200px, 23vw, 340px) / 2 - 70px); top: calc(50% + clamp(200px, 23vw, 340px) * 0.38);
+  display: grid; place-items: center; border-radius: 50%;
+  background: rgba(16, 16, 19, 0.7); border: 1px solid var(--border-strong);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.spin-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: spinSlow 14s linear infinite; }
+.spin-badge text { font: 500 10.5px var(--font-mono); letter-spacing: 0.12em; fill: var(--text); }
+.sb-core { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--bg); font-size: 20px; font-weight: 600; transition: transform 0.5s var(--ease); }
+.spin-badge:hover .sb-core { transform: rotate(45deg) scale(1.1); }
+.spin-badge:hover svg { animation-duration: 4s; }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+
+/* Experience progress line */
+.xp-list { position: relative; padding-left: 44px; }
+.xp-line { position: absolute; left: 12px; top: 24px; bottom: 24px; width: 2px; background: var(--border); border-radius: 2px; }
+.xp-line i { position: absolute; inset: 0; background: linear-gradient(var(--accent), var(--accent-2)); transform-origin: top; transform: scaleY(0); border-radius: 2px; box-shadow: 0 0 14px rgba(167, 139, 250, 0.6); }
+.xp-dot { position: absolute; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border-strong); transition: background 0.5s, border-color 0.5s, box-shadow 0.5s, transform 0.5s var(--ease); }
+.xp-dot.lit { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 6px rgba(167, 139, 250, 0.18); transform: scale(1.15); }
+
+/* Big footer name */
+.big-name { width: min(var(--max), calc(100% - 32px)); margin: 120px auto 0; display: flex; flex-direction: column; line-height: 0.82; font-family: var(--font-display); font-weight: 700; letter-spacing: -0.055em; font-size: clamp(64px, 15.5vw, 230px); overflow: hidden; user-select: none; }
+.big-name .split-chars { display: block; white-space: nowrap; }
+.big-name .outline { color: transparent; -webkit-text-stroke: 1.5px rgba(244, 244, 245, 0.4); align-self: flex-end; }
+.big-name .c { display: inline-block; transition: color 0.3s; }
+.big-name .split-chars:not(.outline) .c:hover { color: var(--accent); }
+
+/* Back to top */
+.to-top { position: fixed; right: 22px; bottom: 22px; z-index: 95; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: rgba(16, 16, 19, 0.8); border: 1px solid var(--border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; transform: translateY(20px) scale(0.8); pointer-events: none; transition: opacity 0.4s, transform 0.5s var(--ease), border-color 0.3s; }
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--accent); }
+.to-top svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.to-top circle { fill: none; stroke-width: 2; }
+.tt-track { stroke: var(--border); }
+.tt-ring { stroke: url(#edgeGrad); stroke: var(--accent); stroke-dasharray: 132; stroke-dashoffset: 132; stroke-linecap: round; }
+.to-top span { font-size: 18px; }
+
+/* Shine sweep on primary buttons */
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(167, 139, 250, 0.45), transparent); transform: skewX(-20deg); transition: left 0.7s var(--ease); }
+.btn-primary:hover::after { left: 130%; }
+
+/* Animated gradient border on hovered cards */
+.service, .ach-card, .pcard, .case-step.is-active { --angle: 0deg; }
+@property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+.pcard::before, .service::before { content: none; }
+.glow-border { position: relative; }
+.glow-border::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; z-index: 4; pointer-events: none;
+  background: conic-gradient(from var(--angle), transparent 0 70%, var(--accent) 80%, var(--accent-2) 90%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity 0.4s; animation: spinAngle 3s linear infinite;
+}
+.glow-border:hover::before { opacity: 1; }
+@keyframes spinAngle { to { --angle: 360deg; } }
+
+@media (max-width: 860px) {
+  .spin-badge { width: 92px; height: 92px; left: calc(50% - clamp(180px, 52vw, 260px) / 2 - 36px); top: calc(22vh + clamp(180px, 52vw, 260px) * 0.95); }
+  .spin-badge text { font-size: 10px; }
+  .sb-core { width: 34px; height: 34px; font-size: 16px; }
+  .xp-list { padding-left: 30px; }
+  .xp-line { left: 6px; }
+  .neural { opacity: 0.35; }
+}
+@media (max-width: 560px) { .spin-badge { top: calc(120px + clamp(180px, 52vw, 260px) * 1.0); } .to-top { right: 14px; bottom: 14px; width: 46px; height: 46px; } }
+@media (prefers-reduced-motion: reduce) { .neural { display: none; } .xp-line i { transform: none; } }
+@media (max-width: 860px) {
+  .spin-badge { left: calc(50% + clamp(180px, 52vw, 260px) / 2 - 58px); top: calc(22vh + clamp(180px, 52vw, 260px) * 0.62); }
+  footer { padding-right: 64px; }
+}
+@media (max-width: 560px) { .spin-badge { top: calc(120px + clamp(180px, 52vw, 260px) * 0.66); } }
+
+/* Formula achievement card */
+.ach-num.formula { font-family: 'Times New Roman', Georgia, serif; font-style: normal; font-weight: 400; font-size: 34px; letter-spacing: 0; white-space: nowrap; display: flex; align-items: center; gap: 2px; }
+.ach-num.formula i { font-style: italic; }
+.ach-num.formula sup { font-size: 0.5em; align-self: flex-start; margin-top: -2px; }
+.formula .integral { position: relative; display: inline-flex; align-items: center; font-size: 1.5em; line-height: 1; margin: 0 10px 0 2px; }
+.formula .integral sub, .formula .integral sup { position: absolute; left: 0.6em; font-size: 0.32em; }
+.formula .integral sup { top: -0.2em; margin: 0; } .formula .integral sub { bottom: -0.15em; }
+.ach-num.formula { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--text); -webkit-text-fill-color: currentColor; padding: 6px 0; overflow: visible; }
+.ach-num.formula i { color: var(--accent); }
+.formula .integral { color: var(--accent-2); }
+.formula .integral sub, .formula .integral sup { color: var(--muted); font-style: italic; }
+.formula .integral { margin: 0 16px 0 8px; }
+.formula .integral sup { left: 0.62em; top: -0.42em; }
+.formula .integral sub { left: 0.3em; bottom: -0.3em; }
+.formula .integral sup { left: 0.78em; top: -0.38em; }
+.formula .integral sub { left: 0.5em; bottom: -0.38em; }

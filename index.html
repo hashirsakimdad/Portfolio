@@ -100,6 +100,7 @@
 <!-- HERO -->
 <section id="hero" class="hero">
   <div class="hero-orb o1" aria-hidden="true"></div><div class="hero-orb o2" aria-hidden="true"></div>
+  <canvas class="neural" id="neural" aria-hidden="true"></canvas>
   <div class="hero-name" aria-hidden="true">
     <div class="hn-row hn-1"><span class="split-chars">HASHIR</span></div>
     <div class="hn-row hn-2"><span class="split-chars">SAKIMDAD</span></div>
@@ -109,6 +110,11 @@
     <img src="assets/img/hero-photo.webp" alt="Hashir Sakimdad" width="432" height="386" loading="eager" fetchpriority="high" decoding="async">
     <div class="avatar-ring" aria-hidden="true"></div>
   </div>
+  <a href="#contact" class="spin-badge magnetic" aria-label="Contact me" data-cursor="Say hi">
+    <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="badgeCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+      <text><textPath href="#badgeCircle">AI ENGINEER · OPEN TO WORK · AI ENGINEER · OPEN TO WORK ·</textPath></text></svg>
+    <span class="sb-core">↗</span>
+  </a>
 
   <div class="hero-meta hero-meta-left">
     <h1 class="sr-only">Hashir Sakimdad, AI Engineer</h1>
@@ -152,12 +158,12 @@
       </div>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal-up"><span class="skill-cat">LLM / Agents</span><div class="tags"><span>LangChain</span><span>LangGraph</span><span>RAG</span></div></div>
-      <div class="skill-card reveal-up"><span class="skill-cat">Computer Vision</span><div class="tags"><span>YOLOv8</span><span>OpenCV</span><span>MediaPipe</span></div></div>
-      <div class="skill-card reveal-up"><span class="skill-cat">Backend &amp; APIs</span><div class="tags"><span>FastAPI</span><span>Flask</span><span>WebSockets</span></div></div>
-      <div class="skill-card reveal-up"><span class="skill-cat">Cloud &amp; DevOps</span><div class="tags"><span>GCP</span><span>HuggingFace</span><span>Docker</span></div></div>
-      <div class="skill-card reveal-up"><span class="skill-cat">Fine-tuning</span><div class="tags"><span>LoRA</span><span>QLoRA</span><span>PEFT</span></div></div>
-      <div class="skill-card reveal-up"><span class="skill-cat">Data &amp; Languages</span><div class="tags"><span>ChromaDB</span><span>FAISS</span><span>Python</span><span>SQL</span></div></div>
+      <div class="skill-card"><span class="skill-cat">LLM / Agents</span><div class="tags"><span>LangChain</span><span>LangGraph</span><span>RAG</span></div></div>
+      <div class="skill-card"><span class="skill-cat">Computer Vision</span><div class="tags"><span>YOLOv8</span><span>OpenCV</span><span>MediaPipe</span></div></div>
+      <div class="skill-card"><span class="skill-cat">Backend &amp; APIs</span><div class="tags"><span>FastAPI</span><span>Flask</span><span>WebSockets</span></div></div>
+      <div class="skill-card"><span class="skill-cat">Cloud &amp; DevOps</span><div class="tags"><span>GCP</span><span>HuggingFace</span><span>Docker</span></div></div>
+      <div class="skill-card"><span class="skill-cat">Fine-tuning</span><div class="tags"><span>LoRA</span><span>QLoRA</span><span>PEFT</span></div></div>
+      <div class="skill-card"><span class="skill-cat">Data &amp; Languages</span><div class="tags"><span>ChromaDB</span><span>FAISS</span><span>Python</span><span>SQL</span></div></div>
     </div>
   </div>
 </section>
@@ -167,25 +173,25 @@
   <div class="sec-label mono"><span>02</span>What I do</div>
   <h2 class="sec-title split-words">Services I can build for you</h2>
   <div class="services">
-    <article class="service reveal-up" data-cursor="Hire">
+    <article class="service" data-cursor="Hire">
       <span class="svc-num mono">01</span>
       <h3>AI Agents &amp; LLM Apps</h3>
       <p>Multi-agent systems in LangGraph and LangChain that plan, use tools, and hand off tasks to each other, built for production use.</p>
       <div class="tags"><span>LangGraph</span><span>Gemini</span><span>OpenAI</span></div>
     </article>
-    <article class="service reveal-up" data-cursor="Hire">
+    <article class="service" data-cursor="Hire">
       <span class="svc-num mono">02</span>
       <h3>RAG Chatbots</h3>
       <p>Chatbots that answer from your own documents, with vector search, citations, and guardrails, so they stay accurate.</p>
       <div class="tags"><span>ChromaDB</span><span>FAISS</span><span>Embeddings</span></div>
     </article>
-    <article class="service reveal-up" data-cursor="Hire">
+    <article class="service" data-cursor="Hire">
       <span class="svc-num mono">03</span>
       <h3>Computer Vision</h3>
       <p>Detection, tracking and real-time video analysis with YOLOv8, OpenCV and MediaPipe, delivered as clean APIs.</p>
       <div class="tags"><span>YOLOv8</span><span>OpenCV</span><span>MediaPipe</span></div>
     </article>
-    <article class="service reveal-up" data-cursor="Hire">
+    <article class="service" data-cursor="Hire">
       <span class="svc-num mono">04</span>
       <h3>AI Automation &amp; APIs</h3>
       <p>FastAPI microservices and automation pipelines, deployed on Cloud Run or Hugging Face with CI/CD.</p>
@@ -200,6 +206,7 @@
   <h2 class="sec-title split-words">Where I've worked</h2>
 
   <div class="xp-list">
+    <div class="xp-line" aria-hidden="true"><i id="xpLineFill"></i></div>
     <article class="xp-card morph-card">
       <div class="xp-blob" aria-hidden="true"></div>
       <div class="xp-content">
@@ -220,17 +227,15 @@
       <div class="xp-blob alt" aria-hidden="true"></div>
       <div class="xp-content">
         <div class="xp-head">
-          <span class="xp-year mono">2024</span>
+          <span class="xp-year mono">2025</span>
           <span class="badge">Internship</span>
         </div>
-        <h3>AI Engineering Intern</h3>
-        <div class="xp-co">UGOOD · AI E-learning &amp; Automation · Pakistan</div>
+        <h3>AI/ML Intern</h3>
+        <div class="xp-co">Prosensia</div>
         <ul>
-          <li>Designed LLM content generation modules that automated the platform's social media publishing, so the team no longer scheduled posts by hand.</li>
-          <li>Built and deployed AI microservices with FastAPI, so the platform could grow its content output without hiring more people.</li>
-          <li>Refined prompts to make generated educational content more consistent.</li>
+          <li>Worked as an AI/ML intern on machine learning and AI engineering tasks with the Prosensia team.</li>
         </ul>
-        <div class="tags"><span>Python</span><span>LangChain</span><span>FastAPI</span><span>Prompt Engineering</span></div>
+        <div class="tags"><span>Python</span><span>Machine Learning</span><span>AI</span></div>
       </div>
     </article>
     <article class="xp-card morph-card">
@@ -247,6 +252,23 @@
           <li>Advanced work covered music genre classification with neural networks, sales forecasting with ARIMA and LSTM, and CNN traffic sign recognition.</li>
         </ul>
         <div class="tags"><span>scikit-learn</span><span>XGBoost</span><span>TensorFlow</span><span>CNN</span><span>Time Series</span></div>
+      </div>
+    </article>
+    <article class="xp-card morph-card">
+      <div class="xp-blob alt" aria-hidden="true"></div>
+      <div class="xp-content">
+        <div class="xp-head">
+          <span class="xp-year mono">2024</span>
+          <span class="badge">Internship</span>
+        </div>
+        <h3>AI Engineering Intern</h3>
+        <div class="xp-co">UGOOD · AI E-learning &amp; Automation · Pakistan</div>
+        <ul>
+          <li>Designed LLM content generation modules that automated the platform's social media publishing, so the team no longer scheduled posts by hand.</li>
+          <li>Built and deployed AI microservices with FastAPI, so the platform could grow its content output without hiring more people.</li>
+          <li>Refined prompts to make generated educational content more consistent.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>LangChain</span><span>FastAPI</span><span>Prompt Engineering</span></div>
       </div>
     </article>
   </div>
@@ -604,7 +626,7 @@
     <div class="ach-card reveal-up"><b class="ach-num" data-count="6">6</b><h3>Live products</h3><p>Bharosa, Sukoon AI, Saath AI, School Safeguarding AI, VisionAI and a dental clinic site, all deployed and in use.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num" data-count="5" data-decimals="1">5.0</b><h3>Fiverr Level-1 Seller</h3><p>Reached through steady 5-star delivery in AI Development.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num">Lead</b><h3>Tech Fest Management</h3><p>Ran volunteers, vendors and on-site operations for PAF-IAST's annual tech fest.</p></div>
-    <div class="ach-card reveal-up"><b class="ach-num">AI</b><h3>Built with Claude Code</h3><p>I engineered this site with Claude, the way I use AI tools in my everyday work.</p></div>
+    <div class="ach-card reveal-up formula-card"><b class="ach-num formula" aria-label="P equals the integral from 0 to t of M times F, to the power E, d t"><i>P</i> = <span class="integral">∫<sub>0</sub><sup><i>t</i></sup></span>(<i>M</i>·<i>F</i>)<sup><i>E</i></sup> <i>dt</i></b><h3>Built with passion, chaos &amp; caffeine</h3><p>The formula behind every project I ship.</p></div>
   </div>
 </section>
 
@@ -629,9 +651,16 @@
 
 </main>
 
+<div class="big-name" aria-hidden="true"><span class="split-chars">HASHIR</span><span class="split-chars outline">SAKIMDAD</span></div>
+
+<a href="#hero" class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" class="tt-track"/><circle cx="24" cy="24" r="21" class="tt-ring" id="toTopRing"/></svg>
+  <span aria-hidden="true">↑</span>
+</a>
+
 <footer>
   <span>© 2026 Hashir Sakimdad</span>
-  <span class="mono">Islamabad, Pakistan · built with Claude Code</span>
+  <span class="mono">Islamabad, Pakistan · built with passion, chaos &amp; caffeine</span>
 </footer>
 
 <script src="assets/js/vendor/gsap.min.js"></script>
