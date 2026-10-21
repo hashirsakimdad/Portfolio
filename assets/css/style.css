@@ -634,3 +634,20 @@ footer { width: min(var(--max), calc(100% - 32px)); margin: 40px auto 0; padding
   footer { padding-right: 64px; }
 }
 @media (max-width: 560px) { .spin-badge { top: calc(120px + clamp(180px, 52vw, 260px) * 0.66); } }
+
+/* Formula achievement card */
+.ach-num.formula { font-family: 'Times New Roman', Georgia, serif; font-style: normal; font-weight: 400; font-size: 34px; letter-spacing: 0; white-space: nowrap; display: flex; align-items: center; gap: 2px; }
+.ach-num.formula i { font-style: italic; }
+.ach-num.formula sup { font-size: 0.5em; align-self: flex-start; margin-top: -2px; }
+.formula .integral { position: relative; display: inline-flex; align-items: center; font-size: 1.5em; line-height: 1; margin: 0 10px 0 2px; }
+.formula .integral sub, .formula .integral sup { position: absolute; left: 0.6em; font-size: 0.32em; }
+.formula .integral sup { top: -0.2em; margin: 0; } .formula .integral sub { bottom: -0.15em; }
+.ach-num.formula { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: var(--text); -webkit-text-fill-color: currentColor; padding: 6px 0; overflow: visible; }
+.ach-num.formula i { color: var(--accent); }
+.formula .integral { color: var(--accent-2); }
+.formula .integral sub, .formula .integral sup { color: var(--muted); font-style: italic; }
+.formula .integral { margin: 0 16px 0 8px; }
+.formula .integral sup { left: 0.62em; top: -0.42em; }
+.formula .integral sub { left: 0.3em; bottom: -0.3em; }
+.formula .integral sup { left: 0.78em; top: -0.38em; }
+.formula .integral sub { left: 0.5em; bottom: -0.38em; }
