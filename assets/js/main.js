@@ -94,7 +94,46 @@
     }));
   }
 
+  /* ---------- Case studies: steps drive the sticky stage ---------- */
+  function initCases() {
+    $$('[data-case]').forEach((section) => {
+      const steps = $$('.case-step', section);
+      const marks = $$('.pipeline [data-s]', section);
+      const counters = $$('.dro-stats b[data-count]', section);
+      let active = -1;
+      let counted = false;
+
+      const countUp = () => {
+        counted = true;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / 1400);
+          const e = 1 - Math.pow(1 - t, 3);
+          counters.forEach((el) => { el.textContent = Math.round(Number(el.dataset.count) * e); });
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const update = () => {
+        const line = window.innerHeight * (window.innerWidth <= 960 ? 0.72 : 0.55);
+        let next = 0;
+        steps.forEach((step, i) => { if (step.getBoundingClientRect().top < line) next = i; });
+        if (next === active) return;
+        active = next;
+        section.dataset.active = String(active);
+        steps.forEach((step, i) => step.classList.toggle('is-active', i === active));
+        marks.forEach((m) => m.classList.toggle('on', Number(m.dataset.s) <= active));
+        if (active === steps.length - 1 && counters.length && !counted) countUp();
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  }
+
   initNav();
+  initCases();
 
   // No animation library or reduced motion: show everything immediately.
   if (!hasGsap || reduceMotion) {
@@ -318,6 +357,12 @@
         { autoAlpha: 1, y: 0, rotateX: 0, duration: 1.2, stagger: 0.08, overwrite: true }),
     });
     gsap.from('.filter', { autoAlpha: 0, y: 20, stagger: 0.05, duration: 0.8, scrollTrigger: { trigger: '.filters', start: 'top 90%' } });
+
+    // Case-study stages: devices and pipeline enter, then the phone floats with the scroll.
+    gsap.from('.device-laptop', { autoAlpha: 0, y: 90, rotateX: 14, transformPerspective: 1200, duration: 1.4, scrollTrigger: { trigger: '#saath .case-body', start: 'top 80%' } });
+    gsap.from('.device-phone', { autoAlpha: 0, y: 140, rotate: 8, duration: 1.4, delay: 0.2, scrollTrigger: { trigger: '#saath .case-body', start: 'top 80%' } });
+    gsap.to('.device-phone', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#saath .case-body', start: 'top top', end: 'bottom bottom', scrub: 1 } });
+    gsap.from('.pipeline', { autoAlpha: 0, scale: 0.92, duration: 1.2, scrollTrigger: { trigger: '#research .case-body', start: 'top 80%' } });
 
     // Achievement counters.
     $$('.ach-num[data-count]').forEach((el) => {
