@@ -86,6 +86,7 @@
     <a href="#services">Services</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Work</a>
+    <a href="#more">Projects</a>
     <a href="#contact" class="nav-cta">Let's talk</a>
   </nav>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -97,6 +98,7 @@
 
 <!-- HERO -->
 <section id="hero" class="hero">
+  <div class="hero-orb o1" aria-hidden="true"></div><div class="hero-orb o2" aria-hidden="true"></div>
   <div class="hero-name" aria-hidden="true">
     <div class="hn-row hn-1"><span class="split-chars">HASHIR</span></div>
     <div class="hn-row hn-2"><span class="split-chars">SAKIMDAD</span></div>
@@ -115,7 +117,7 @@
 
   <div class="hero-meta hero-meta-right">
     <div class="hero-stats">
-      <div><b data-count="3">3</b><span>Live products</span></div>
+      <div><b data-count="20" data-suffix="+">20+</b><span>Projects built</span></div>
       <div><b data-count="5" data-decimals="1">5.0</b><span>Fiverr rating</span></div>
       <div><b data-count="9">9</b><span>Agent system</span></div>
     </div>
@@ -230,91 +232,237 @@
         <div class="tags"><span>Python</span><span>LangChain</span><span>FastAPI</span><span>Prompt Engineering</span></div>
       </div>
     </article>
+    <article class="xp-card morph-card">
+      <div class="xp-blob" aria-hidden="true"></div>
+      <div class="xp-content">
+        <div class="xp-head">
+          <span class="xp-year mono">2025</span>
+          <span class="badge">Internship</span>
+        </div>
+        <h3>Machine Learning Intern</h3>
+        <div class="xp-co">Elevvo Pathways · Remote</div>
+        <ul>
+          <li>Completed 8 ML projects across three levels: score prediction, customer segmentation, forest cover classification, loan approval with SMOTE, and movie recommendations.</li>
+          <li>Advanced work covered music genre classification with neural networks, sales forecasting with ARIMA and LSTM, and CNN traffic sign recognition.</li>
+        </ul>
+        <div class="tags"><span>scikit-learn</span><span>XGBoost</span><span>TensorFlow</span><span>CNN</span><span>Time Series</span></div>
+      </div>
+    </article>
   </div>
 </section>
 
 <!-- PROJECTS (stacking scroll) -->
 <section id="projects" class="section">
   <div class="sec-label mono"><span>04</span>Selected work</div>
-  <h2 class="sec-title split-words">Projects that are live</h2>
+  <h2 class="sec-title split-words">Featured projects</h2>
 
   <div class="stack">
     <article class="stack-card" style="--i:0">
-      <div class="sc-media" data-cursor="Open">
-        <img src="assets/img/project-sukoon-ai.webp" alt="Sukoon AI screenshot" width="1200" height="590" loading="lazy" decoding="async">
+      <div class="sc-media" data-cursor="View">
+        <img class="sc-bg" src="assets/img/project-bharosa.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>bharosa</span></div>
+          <img src="assets/img/project-bharosa.webp" alt="Bharosa: check before you pay, scam checker for WhatsApp sellers" width="1400" height="933" loading="lazy" decoding="async"></div>
       </div>
       <div class="sc-body">
-        <div class="sc-top"><span class="sc-num mono">01 / 04</span><span class="badge live"><i></i>Live · Cloud Run</span></div>
-        <h3>Sukoon AI</h3>
-        <p class="sc-tag">Pakistan's first Roman Urdu mental health chatbot</p>
-        <p>A multi-agent system with agents for crisis detection, empathetic dialogue and resource referral. It runs on Gemini 1.5 Flash with culturally aware prompts and is deployed on Cloud Run with CI/CD.</p>
-        <div class="tags"><span>Flask</span><span>Gemini 1.5</span><span>Multi-Agent</span><span>GCP</span></div>
+        <div class="sc-top"><span class="sc-num mono">01 / 06</span><span class="badge live"><i></i>Live · PayPal AI Hackathon</span></div>
+        <h3>Bharosa</h3>
+        <p class="sc-tag">Check before you pay: an AI scam checker for online sellers</p>
+        <p>Forward a seller's message, link, screenshot or voice note, on the web or WhatsApp. Bharosa gives a green, yellow or red verdict with evidence, in Urdu, Roman Urdu, Arabic or English. Safe deals get a PayPal checkout with buyer protection, and every check is recorded in a tamper-evident hash chain stamped on Bitcoin.</p>
+        <div class="tags"><span>Next.js</span><span>TypeScript</span><span>PayPal Orders API</span><span>Supabase</span><span>WhatsApp</span></div>
         <div class="sc-links">
-          <a href="https://sukoon-ai-130411295021.asia-south1.run.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
-          <a href="https://github.com/hashirsakimdad/sukoon-Ai" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
+          <a href="https://bharosa-two.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
+          <a href="https://github.com/hashirsakimdad/Bharosa" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
         </div>
       </div>
     </article>
 
     <article class="stack-card" style="--i:1">
-      <div class="sc-media" data-cursor="Open">
-        <img src="assets/img/project-saath-ai.webp" alt="Saath AI screenshot" width="1200" height="595" loading="lazy" decoding="async">
+      <div class="sc-media" data-cursor="View">
+        <img class="sc-bg" src="assets/img/project-sukoon-ai.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>sukoon-ai</span></div>
+          <img src="assets/img/project-sukoon-ai.webp" alt="Sukoon AI chat screen" width="1200" height="590" loading="lazy" decoding="async"></div>
       </div>
       <div class="sc-body">
-        <div class="sc-top"><span class="sc-num mono">02 / 04</span><span class="badge live"><i></i>Live · Cloud Run</span></div>
-        <h3>Saath AI</h3>
-        <p class="sc-tag">AI-powered labour marketplace for Pakistan</p>
-        <p>A 9-agent LangGraph system that matches informal-sector workers with employers, verifies skills and handles messaging. It has a Leaflet map and works as a low-bandwidth PWA.</p>
-        <div class="tags"><span>LangGraph</span><span>FastAPI</span><span>Supabase</span><span>PWA</span></div>
+        <div class="sc-top"><span class="sc-num mono">02 / 06</span><span class="badge live"><i></i>Live</span></div>
+        <h3>Sukoon AI</h3>
+        <p class="sc-tag">Pakistan's first Roman Urdu mental health companion</p>
+        <p>A culturally aware chatbot for stress and anxiety in Roman Urdu, Urdu and English. It detects emotions in real time, tracks mood, runs guided breathing and grounding exercises, and shares helpline details the moment it detects a crisis.</p>
+        <div class="tags"><span>Node.js</span><span>Express</span><span>Llama 3.3 70B</span><span>JWT</span><span>Docker</span></div>
         <div class="sc-links">
-          <a href="https://saath-ai-130411295021.asia-south1.run.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
-          <a href="https://github.com/hashirsakimdad" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
+          <a href="https://sukoon-ai-nine.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
+          <a href="https://github.com/hashirsakimdad/sukoon-Ai" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
         </div>
       </div>
     </article>
 
     <article class="stack-card" style="--i:2">
-      <div class="sc-media" data-cursor="Open">
-        <img src="assets/img/project-vision-ai.webp" alt="VisionAI screenshot" width="667" height="613" loading="lazy" decoding="async">
+      <div class="sc-media" data-cursor="View">
+        <img class="sc-bg" src="assets/img/project-saath-ai.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>saath-ai</span></div>
+          <img src="assets/img/project-saath-ai.webp" alt="Saath AI home page" width="1200" height="595" loading="lazy" decoding="async"></div>
       </div>
       <div class="sc-body">
-        <div class="sc-top"><span class="sc-num mono">03 / 04</span><span class="badge live"><i></i>Live · HF Spaces</span></div>
-        <h3>VisionAI</h3>
-        <p class="sc-tag">Real-time object detection REST API</p>
-        <p>YOLOv8x inference with adjustable confidence and IOU thresholds. It returns annotated images and structured JSON from an async FastAPI backend.</p>
-        <div class="tags"><span>YOLOv8x</span><span>FastAPI</span><span>OpenCV</span><span>HuggingFace</span></div>
+        <div class="sc-top"><span class="sc-num mono">03 / 06</span><span class="badge live"><i></i>Live · Cloud Run</span></div>
+        <h3>Saath AI</h3>
+        <p class="sc-tag">AI-powered labour marketplace for Pakistan</p>
+        <p>Customers describe a job in Roman Urdu, Urdu or English. An AI booking assistant matches nearby verified workers, quotes a fair price and tracks the job live. It includes a web app, a Flutter mobile app, an admin panel and escrow payments.</p>
+        <div class="tags"><span>LangGraph</span><span>FastAPI</span><span>WebSockets</span><span>Flutter</span><span>Supabase</span></div>
         <div class="sc-links">
-          <a href="https://github.com/hashirsakimdad/vision-ai" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
+          <a href="https://saath-ai-7o3horpxkq-el.a.run.app/app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
+          <span class="private-tag mono">Private repo</span>
         </div>
       </div>
     </article>
 
     <article class="stack-card" style="--i:3">
-      <div class="sc-media shots" data-cursor="Open">
+      <div class="sc-media" data-cursor="View">
+        <img class="sc-bg" src="assets/img/project-safeguarding.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>school-safeguarding-ai</span></div>
+          <img src="assets/img/project-safeguarding.webp" alt="School Safeguarding AI assistant" width="1040" height="620" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-top"><span class="sc-num mono">04 / 06</span><span class="badge live"><i></i>Live · Client project</span></div>
+        <h3>School Safeguarding AI</h3>
+        <p class="sc-tag">Bilingual multi-agent assistant for a training platform</p>
+        <p>An AI suite for a school safeguarding course platform. Intent, RAG and response agents answer in Urdu or English, alongside a course finder, smart quizzes, a blog generator, certificate verification and analytics.</p>
+        <div class="tags"><span>Multi-Agent</span><span>RAG</span><span>Memory</span><span>JavaScript</span></div>
+        <div class="sc-links">
+          <a href="https://school-safeguarding-ai-suite.vercel.app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm magnetic">Live app ↗</a>
+          <span class="private-tag mono">Private repo</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="stack-card" style="--i:4">
+      <div class="sc-media" data-cursor="View">
+        <img class="sc-bg" src="assets/img/project-vision-ai.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>vision-ai</span></div>
+          <img src="assets/img/project-vision-ai.webp" alt="VisionAI detection result" width="667" height="613" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-top"><span class="sc-num mono">05 / 06</span><span class="badge live"><i></i>Live · HF Spaces</span></div>
+        <h3>VisionAI</h3>
+        <p class="sc-tag">Real-time object detection REST API</p>
+        <p>YOLOv8x inference with adjustable confidence and IOU thresholds. It returns annotated images and structured JSON from an async FastAPI backend with job tracking.</p>
+        <div class="tags"><span>YOLOv8x</span><span>FastAPI</span><span>OpenCV</span><span>HuggingFace</span></div>
+        <div class="sc-links"><span class="private-tag mono">Private repo</span></div>
+      </div>
+    </article>
+
+    <article class="stack-card" style="--i:5">
+      <div class="sc-media shots" data-cursor="View">
         <img src="assets/img/project-proctor-ai-1.webp" alt="ProctorAI summary dashboard" width="942" height="512" loading="lazy" decoding="async">
         <img src="assets/img/project-proctor-ai-2.webp" alt="Gaze detection" width="636" height="503" loading="lazy" decoding="async">
         <img src="assets/img/project-proctor-ai-3.webp" alt="Device detection" width="629" height="505" loading="lazy" decoding="async">
         <img src="assets/img/project-proctor-ai-4.webp" alt="Focused state" width="627" height="500" loading="lazy" decoding="async">
       </div>
       <div class="sc-body">
-        <div class="sc-top"><span class="sc-num mono">04 / 04</span><span class="badge">Computer Vision</span></div>
+        <div class="sc-top"><span class="sc-num mono">06 / 06</span><span class="badge">Computer Vision</span></div>
         <h3>ProctorAI</h3>
-        <p class="sc-tag">AI-powered real-time exam proctoring</p>
+        <p class="sc-tag">Real-time AI exam proctoring</p>
         <p>It combines gaze tracking, YOLOv8 phone detection, face-spoof checks and head-turn analysis. An alert fires only when 10 of 10 frames agree, which cuts false positives, and a live dashboard logs every event.</p>
         <div class="tags"><span>OpenCV</span><span>YOLOv8</span><span>MediaPipe</span><span>Python</span></div>
-        <div class="sc-links">
-          <a href="https://github.com/hashirsakimdad" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm magnetic">GitHub ↗</a>
-        </div>
+        <div class="sc-links"><span class="private-tag mono">Private repo</span></div>
       </div>
+    </article>
+  </div>
+</section>
+
+<!-- MORE PROJECTS (filterable) -->
+<section id="more" class="section">
+  <div class="sec-label mono"><span>05</span>Everything else I've built</div>
+  <h2 class="sec-title split-words">More projects</h2>
+
+  <div class="filters" role="tablist" aria-label="Filter projects">
+    <button class="filter active" data-filter="all" role="tab" aria-selected="true">All <sup>14</sup></button>
+    <button class="filter" data-filter="agents" role="tab" aria-selected="false">AI Agents</button>
+    <button class="filter" data-filter="vision" role="tab" aria-selected="false">Computer Vision</button>
+    <button class="filter" data-filter="ml" role="tab" aria-selected="false">ML &amp; Finance</button>
+    <button class="filter" data-filter="web" role="tab" aria-selected="false">Web Apps</button>
+  </div>
+
+  <div class="pgrid" id="pgrid">
+    <article class="pcard" data-cat="agents" style="--h:265">
+      <div class="pc-cover"><span class="pc-mono">DR</span><code>planner → researchers ×3 → verifier → critic</code></div>
+      <div class="pc-body"><h3>Deep Research OS</h3><p>An autonomous multi-agent research system. It plans, researches in parallel, verifies evidence, detects contradictions and writes a cited report in which every claim traces back to its source URL.</p>
+      <div class="tags"><span>Rust · Axum</span><span>Grok</span><span>PostgreSQL</span><span>Next.js</span></div></div>
+    </article>
+    <article class="pcard" data-cat="agents" style="--h:200">
+      <div class="pc-cover"><span class="pc-mono">Ka</span><code>orchestrator ⇄ memory · task · time · context</code></div>
+      <div class="pc-body"><h3>Kairo</h3><p>A personal AI operating system: 7 specialized agents for memory, tasks, time and context, coordinated by an orchestration layer with an event bus and a conflict resolver.</p>
+      <div class="tags"><span>Python</span><span>Multi-Agent</span><span>Knowledge Graph</span><span>CI</span></div></div>
+    </article>
+    <article class="pcard" data-cat="agents" style="--h:185">
+      <div class="pc-cover"><span class="pc-mono">HH</span><code>wake word → whisper → langgraph → tts</code></div>
+      <div class="pc-body"><h3>HoloHome AI</h3><p>A 24/7 holographic home assistant that runs fully locally. A voice pipeline routes requests to specialist agents for IoT, schedule, security and education, with ChromaDB memory.</p>
+      <div class="tags"><span>LangGraph</span><span>Ollama</span><span>Whisper</span><span>MQTT</span></div></div>
+    </article>
+    <article class="pcard" data-cat="agents" style="--h:330">
+      <div class="pc-cover"><span class="pc-mono">Ve</span><code>reviews → real / fake / ai / spam → score</code></div>
+      <div class="pc-body"><h3>VerityAI</h3><p>A review-intelligence platform that labels a business's reviews as real, fake, AI-generated or spam and gives an overall Reality Score. It ships with a dashboard, PDF reports and a Chrome extension.</p>
+      <div class="tags"><span>FastAPI</span><span>Celery</span><span>React</span><span>Chrome Ext</span></div></div>
+    </article>
+    <article class="pcard" data-cat="agents" style="--h:150">
+      <div class="pc-cover"><span class="pc-mono">RA</span><code>resume → ocr → semantic score → rank</code></div>
+      <div class="pc-body"><h3>AI Recruitment Assistant</h3><p>A Flask hiring platform. Recruiters post jobs and review ranked candidates, and candidates upload resumes to get instant semantic scoring, feedback and application tracking.</p>
+      <div class="tags"><span>Flask</span><span>SentenceTransformers</span><span>OCR</span><span>pytest</span></div>
+      <a class="pc-link" href="https://github.com/hashirsakimdad/AI-Powered-Recruitment-Assistant" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+    </article>
+    <article class="pcard" data-cat="vision" style="--h:20">
+      <div class="pc-cover"><span class="pc-mono">MM</span><code>image + text → opencv → gemini → json</code></div>
+      <div class="pc-body"><h3>Multimodal AI Assistant</h3><p>Upload an image with a question. OpenCV denoises and enhances it, Gemini analyses both, and the app returns strict structured JSON in a minimal chat UI.</p>
+      <div class="tags"><span>FastAPI</span><span>OpenCV</span><span>Gemini</span></div></div>
+    </article>
+    <article class="pcard" data-cat="vision" style="--h:320">
+      <div class="pc-cover"><span class="pc-mono">FM</span><code>hash → embed → cluster → best shot</code></div>
+      <div class="pc-body"><h3>Family Memory AI</h3><p>A fully offline photo curation engine. It finds duplicates, groups bursts and picks the best shot, then lets you choose what to keep on a local review page.</p>
+      <div class="tags"><span>Python</span><span>Embeddings</span><span>BK-tree</span><span>Offline</span></div></div>
+    </article>
+    <article class="pcard" data-cat="vision" style="--h:40">
+      <div class="pc-cover"><span class="pc-mono">HDR</span><code>brackets → merge → style → export</code></div>
+      <div class="pc-body"><h3>RealEstate AutoHDR</h3><p>Offline real-estate photo editing for Apple Silicon. It detects exposure brackets, merges HDR, applies UK listing-style edits and optional sky replacement, and exports Rightmove-ready JPGs.</p>
+      <div class="tags"><span>OpenCV</span><span>NumPy</span><span>Pillow</span><span>CLI</span></div></div>
+    </article>
+    <article class="pcard" data-cat="vision" style="--h:160">
+      <div class="pc-cover"><span class="pc-mono">FR</span><code>camera → detect → recognise → csv</code></div>
+      <div class="pc-body"><h3>Face Recognition Attendance</h3><p>Real-time face recognition that marks attendance from a live camera feed, with confidence scores, FPS metrics and automatic timestamped CSV logs.</p>
+      <div class="tags"><span>OpenCV</span><span>face_recognition</span><span>Python</span></div>
+      <a class="pc-link" href="https://github.com/hashirsakimdad/Face-Recgonition" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+    </article>
+    <article class="pcard" data-cat="ml" style="--h:140">
+      <div class="pc-cover"><span class="pc-mono">Co</span><code>"OGDC kaisa hai aaj?" → live PSX → advice</code></div>
+      <div class="pc-body"><h3>Cortif</h3><p>A conversational PSX investment advisor. It scrapes live data from the Pakistan Stock Exchange portal and answers in Roman Urdu or English, with loss warnings.</p>
+      <div class="tags"><span>FastAPI</span><span>Groq LLM</span><span>Scraping</span></div></div>
+    </article>
+    <article class="pcard" data-cat="ml" style="--h:100">
+      <div class="pc-cover"><span class="pc-mono">PSX</span><code>rsi · macd · sma → ml signal → paper trade</code></div>
+      <div class="pc-body"><h3>PSX AI Trader</h3><p>A trading assistant for the Pakistan Stock Exchange. It blends technical indicators with a GradientBoosting model and includes backtesting, risk controls, paper trading and a React dashboard.</p>
+      <div class="tags"><span>FastAPI</span><span>scikit-learn</span><span>React</span></div></div>
+    </article>
+    <article class="pcard" data-cat="web" style="--h:290">
+      <div class="pc-cover"><span class="pc-mono">SP</span><code>10 career tracks · 141 modules · 547 lessons</code></div>
+      <div class="pc-body"><h3>Skillpath AI</h3><p>An AI learning platform for people without a tech background. Each career track teaches AI for one profession through short lessons, games and real tasks.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>JSON content</span></div></div>
+    </article>
+    <article class="pcard" data-cat="web" style="--h:45">
+      <div class="pc-cover"><span class="pc-mono">PE</span><code>listings · search · admin · realtime</code></div>
+      <div class="pc-body"><h3>Prime Estates</h3><p>A luxury real-estate marketing platform for a US client, with live listings, realtime updates, search and filters, and an admin dashboard with role checks.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Tailwind</span></div></div>
+    </article>
+    <article class="pcard" data-cat="web" style="--h:180">
+      <div class="pc-cover"><span class="pc-mono">Dc</span><code>services · doctors · booking · admin</code></div>
+      <div class="pc-body"><h3>Dental Clinic Website</h3><p>A client website for a dental clinic, with service and doctor pages, SEO sitemaps, and an admin dashboard with login for managing content.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>shadcn/ui</span></div>
+      <a class="pc-link" href="https://dentistcatagory.vercel.app" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
     </article>
   </div>
 </section>
 
 <!-- ACHIEVEMENTS -->
 <section id="achievements" class="section">
-  <div class="sec-label mono"><span>05</span>Recognition</div>
+  <div class="sec-label mono"><span>06</span>Recognition</div>
   <div class="ach-grid">
-    <div class="ach-card reveal-up"><b class="ach-num" data-count="3">3</b><h3>Live AI products</h3><p>Sukoon AI, Saath AI and VisionAI are public and serving real users.</p></div>
+    <div class="ach-card reveal-up"><b class="ach-num" data-count="6">6</b><h3>Live products</h3><p>Bharosa, Sukoon AI, Saath AI, School Safeguarding AI, VisionAI and a dental clinic site, all deployed and in use.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num" data-count="5" data-decimals="1">5.0</b><h3>Fiverr Level-1 Seller</h3><p>Reached through steady 5-star delivery in AI Development.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num">Lead</b><h3>Tech Fest Management</h3><p>Ran volunteers, vendors and on-site operations for PAF-IAST's annual tech fest.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num">AI</b><h3>Built with Claude Code</h3><p>I engineered this site with Claude, the way I use AI tools in my everyday work.</p></div>
@@ -349,6 +497,7 @@
 
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/Flip.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
