@@ -483,9 +483,12 @@
     gsap.from('.filter', { autoAlpha: 0, y: 20, stagger: 0.05, duration: 0.8, scrollTrigger: { trigger: '.filters', start: 'top 90%' } });
 
     // Case-study stages: devices and pipeline enter, then the phone floats with the scroll.
-    gsap.from('.device-laptop', { autoAlpha: 0, y: 90, rotateX: 14, transformPerspective: 1200, duration: 1.4, scrollTrigger: { trigger: '#saath .case-body', start: 'top 80%' } });
-    gsap.from('.device-phone', { autoAlpha: 0, y: 140, rotate: 8, duration: 1.4, delay: 0.2, scrollTrigger: { trigger: '#saath .case-body', start: 'top 80%' } });
-    gsap.to('.device-phone', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#saath .case-body', start: 'top top', end: 'bottom bottom', scrub: 1 } });
+    $$('.saath-stage').forEach((stage) => {
+      const body = stage.closest('.case-body');
+      gsap.from($('.device-laptop', stage), { autoAlpha: 0, y: 90, rotateX: 14, transformPerspective: 1200, duration: 1.4, scrollTrigger: { trigger: body, start: 'top 80%' } });
+      gsap.from($('.device-phone', stage), { autoAlpha: 0, y: 140, rotate: 8, duration: 1.4, delay: 0.2, scrollTrigger: { trigger: body, start: 'top 80%' } });
+      gsap.to($('.device-phone', stage), { yPercent: -12, ease: 'none', scrollTrigger: { trigger: body, start: 'top top', end: 'bottom bottom', scrub: 1 } });
+    });
     gsap.from('.pipeline', { autoAlpha: 0, scale: 0.92, duration: 1.2, scrollTrigger: { trigger: '#research .case-body', start: 'top 80%' } });
 
     // Experience line fills as you read down the timeline.
