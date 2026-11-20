@@ -341,7 +341,7 @@
       });
       root.classList.add('focusing');
       $$('.cm-label', root).forEach((l) => l.classList.toggle('hl', Number(l.dataset.i) === i || Number(l.dataset.j) === j));
-      tipK.textContent = i === j ? 'True positive · diagonal' : 'Confusion · off-diagonal';
+      tipK.textContent = i === j ? 'Skill' : 'Skills combined';
       tipT.textContent = i === j
         ? `${SKILLS[i].label}: ${list.length} project${list.length === 1 ? '' : 's'}`
         : `${SKILLS[i].label} × ${SKILLS[j].label}: ${list.length}`;
@@ -360,6 +360,7 @@
     root.addEventListener('mouseleave', clear);
 
     // Cells sweep in out from the diagonal, and their numbers count up.
+    if (!hasGsap || reduceMotion) show(cells[best[0] * n + best[1]]);
     if (hasGsap && !reduceMotion) {
       const { gsap } = window;
       gsap.set(cells, { scale: 0, autoAlpha: 0 });
