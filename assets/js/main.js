@@ -385,42 +385,66 @@
     }
   }
 
-  /* ---------- About terminal types itself out ---------- */
-  function initTerminal() {
-    const term = $('#aboutTerm');
-    if (!term || reduceMotion || !('IntersectionObserver' in window)) return;
-    const lines = $$('.term-body p', term);
-    const wait = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
-    term.classList.add('typing');
-    const run = async () => {
-      for (const line of lines) {
-        line.classList.add('shown');
-        if (line.hasAttribute('data-type')) {
-          const full = line.textContent;
-          line.textContent = '';
-          for (const ch of full) {
-            line.textContent += ch;
-            await wait(45);
-          }
-          await wait(220);
-        } else {
-          await wait(90);
-        }
-      }
+  /* ---------- About bento: live Islamabad clock + pointer spotlight ---------- */
+  function initBento() {
+    const bento = $('#bento');
+    if (!bento) return;
+    const h = $('#clkH');
+    const m = $('#clkM');
+    const sHand = $('#clkS');
+    const label = $('#clkTime');
+    let lastSec = -1;
+    let secTurns = 0;
+    const tick = () => {
+      // Pakistan Standard Time is UTC+5 all year (no daylight saving).
+      const now = new Date(Date.now() + 5 * 3600 * 1000);
+      const hh = now.getUTCHours();
+      const mm = now.getUTCMinutes();
+      const ss = now.getUTCSeconds();
+      if (ss < lastSec) secTurns += 1;
+      lastSec = ss;
+      h.style.transform = `rotate(${(hh % 12) * 30 + mm * 0.5}deg)`;
+      m.style.transform = `rotate(${mm * 6 + ss * 0.1}deg)`;
+      sHand.style.transform = `rotate(${(secTurns * 60 + ss) * 6}deg)`;
+      const h12 = hh % 12 || 12;
+      label.textContent = `${h12}:${String(mm).padStart(2, '0')} ${hh < 12 ? 'AM' : 'PM'}`;
     };
+    tick();
+    setInterval(tick, 1000);
+
+    $$('.bx', bento).forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        el.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+    const stats = $$('.bx-stats b[data-count]', bento);
     const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        io.disconnect();
-        run();
-      }
-    }, { threshold: 0.4 });
-    io.observe(term);
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      if (reduceMotion) return;
+      const start = performance.now();
+      const step = (now) => {
+        const t = Math.min(1, (now - start) / 1600);
+        const e = 1 - Math.pow(1 - t, 3);
+        stats.forEach((el) => {
+          const dec = Number(el.dataset.decimals || 0);
+          el.textContent = (Number(el.dataset.count) * e).toFixed(dec) + (el.dataset.suffix || '');
+        });
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.3 });
+    io.observe(bento);
   }
 
   initNav();
   initCases();
   initMatrix();
-  initTerminal();
+  initBento();
   initNeural();
   initScramble();
   initXpLine();
@@ -673,6 +697,56 @@
     // Services fan in from alternating sides.
     $$('.service').forEach((el, i) => {
       gsap.fromTo(el, { autoAlpha: 0, y: 80, rotate: i % 2 ? 3 : -3 }, { autoAlpha: 1, y: 0, rotate: 0, duration: 1.2, delay: i * 0.08, scrollTrigger: { trigger: '.services', start: 'top 85%' } });
+    });
+
+    // About bento: tiles fly in from scattered positions and settle into the grid.
+    $$('#bento .bx').forEach((el, i) => {
+      gsap.fromTo(el,
+        { autoAlpha: 0, y: 80 + (i % 3) * 30, x: (i % 2 ? 1 : -1) * 40, rotate: (i % 2 ? 4 : -4), scale: 0.9 },
+        { autoAlpha: 1, y: 0, x: 0, rotate: 0, scale: 1, duration: 1.2, delay: i * 0.07, ease: 'expo.out', scrollTrigger: { trigger: '#bento', start: 'top 85%' } });
+    });
+
+    // Projects: giant ghost numbers, letter-by-letter titles, popping tags, a scan line and 3D tilt.
+    $$('.stack-card').forEach((card, i) => {
+      const ghost = document.createElement('span');
+      ghost.className = 'sc-ghost';
+      ghost.setAttribute('aria-hidden', 'true');
+      ghost.textContent = String(i + 1).padStart(2, '0');
+      card.appendChild(ghost);
+      gsap.fromTo(ghost, { yPercent: 40, xPercent: 10 }, { yPercent: -30, xPercent: -6, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
+
+      const media = $('.sc-media', card);
+      const scan = document.createElement('span');
+      scan.className = 'sc-scan';
+      media.appendChild(scan);
+      gsap.to(scan, { yPercent: 200, duration: 1.6, ease: 'power2.inOut', scrollTrigger: { trigger: card, start: 'top 70%' } });
+
+      const title = $('h3', card);
+      const chars = splitChars(title);
+      gsap.from(chars, { yPercent: 100, autoAlpha: 0, rotateX: -80, stagger: 0.03, duration: 0.9, ease: 'back.out(1.7)', scrollTrigger: { trigger: card, start: 'top 65%' } });
+      gsap.from($$('.tags span', card), { scale: 0, autoAlpha: 0, stagger: 0.05, duration: 0.6, ease: 'back.out(2.5)', scrollTrigger: { trigger: card, start: 'top 55%' } });
+
+      const target = $('.browser', media) || media;
+      if (!isTouch) {
+        const rx = gsap.quickTo(target, 'rotationX', { duration: 0.8, ease: 'power3' });
+        const ry = gsap.quickTo(target, 'rotationY', { duration: 0.8, ease: 'power3' });
+        gsap.set(target, { transformPerspective: 1000 });
+        media.addEventListener('pointermove', (e) => {
+          const r = media.getBoundingClientRect();
+          ry(((e.clientX - r.left) / r.width - 0.5) * 12);
+          rx(((e.clientY - r.top) / r.height - 0.5) * -10);
+        });
+        media.addEventListener('pointerleave', () => { rx(0); ry(0); });
+      }
+    });
+
+    // More-projects cards get a hover arrow.
+    $$('.pcard').forEach((c) => {
+      const a = document.createElement('span');
+      a.className = 'pc-arrow';
+      a.setAttribute('aria-hidden', 'true');
+      a.textContent = '↗';
+      c.appendChild(a);
     });
 
     // Achievement counters.
