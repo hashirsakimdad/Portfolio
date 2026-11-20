@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=8178bcfd">
+<link rel="stylesheet" href="assets/css/style.css?v=c503be1d">
 
 <script type="application/ld+json">
 {
@@ -102,33 +102,24 @@
 <section id="hero" class="hero">
   <div class="hero-orb o1" aria-hidden="true"></div><div class="hero-orb o2" aria-hidden="true"></div>
   <canvas class="neural" id="neural" aria-hidden="true"></canvas>
+
+  <h1 class="sr-only">Hashir Sakimdad, AI Engineer</h1>
   <div class="hero-name" aria-hidden="true">
-    <div class="hn-row hn-1"><span class="split-chars">HASHIR</span></div>
+    <div class="hn-row hn-1"><span class="split-chars">HASHIR</span><span class="hero-avatar" id="heroAvatar"><img src="assets/img/hero-photo.webp" alt="" width="432" height="386" loading="eager" fetchpriority="high" decoding="async"></span></div>
     <div class="hn-row hn-2"><span class="split-chars">SAKIMDAD</span></div>
   </div>
 
-  <div class="hero-avatar" id="heroAvatar">
-    <img src="assets/img/hero-photo.webp" alt="Hashir Sakimdad" width="432" height="386" loading="eager" fetchpriority="high" decoding="async">
-    <div class="avatar-ring" aria-hidden="true"></div>
-  </div>
-  <a href="#contact" class="spin-badge magnetic" aria-label="Contact me" data-cursor="Say hi">
-    <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="badgeCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
-      <text><textPath href="#badgeCircle">AI ENGINEER · OPEN TO WORK · AI ENGINEER · OPEN TO WORK ·</textPath></text></svg>
-    <span class="sb-core">↗</span>
-  </a>
-
   <div class="hero-meta hero-meta-left">
-    <h1 class="sr-only">Hashir Sakimdad, AI Engineer</h1>
     <div class="pill"><span class="dot-pulse"></span>Available for AI/ML roles</div>
-    <p class="hero-line"><span class="line-mask"><span>AI engineer building</span></span><span class="line-mask"><span><em>agents, RAG &amp; vision</em></span></span><span class="line-mask"><span>that ship to real users.</span></span></p>
+    <p class="hero-line"><span class="line-mask"><span class="hero-role" id="heroRole">AI engineer</span></span></p>
   </div>
 
   <div class="hero-meta hero-meta-right">
-    <div class="hero-stats">
-      <div><b data-count="20" data-suffix="+">20+</b><span>Projects built</span></div>
-      <div><b data-count="5" data-decimals="1">5.0</b><span>Fiverr rating</span></div>
-      <div><b data-count="9">9</b><span>Agent system</span></div>
-    </div>
+    <a href="#contact" class="spin-badge magnetic" aria-label="Contact me" data-cursor="Say hi">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="badgeCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+        <text><textPath href="#badgeCircle">HASHIR SAKIMDAD · AI ENGINEER · </textPath></text></svg>
+      <span class="sb-core">↗</span>
+    </a>
     <a href="#projects" class="btn btn-primary magnetic" data-cursor="View">See my work <span aria-hidden="true">↓</span></a>
   </div>
 
@@ -181,13 +172,8 @@
       <p class="eq-words"><span>AI agents</span><span>RAG</span><span>Computer vision</span><span>FastAPI</span></p>
     </article>
 
-    <article class="bx bx-tools" aria-label="Tools I use">
-      <div class="tool-col"><div><span>LangGraph</span><span>LangChain</span><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span><span>Gemini</span><span>LangGraph</span><span>LangChain</span><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span><span>Gemini</span></div></div>
-      <div class="tool-col rev"><div><span>Docker</span><span>Supabase</span><span>Next.js</span><span>Flutter</span><span>ChromaDB</span><span>Groq</span><span>Docker</span><span>Supabase</span><span>Next.js</span><span>Flutter</span><span>ChromaDB</span><span>Groq</span></div></div>
-    </article>
-
     <a class="bx bx-cta magnetic" href="#contact" data-cursor="Hire">
-      <span class="bx-k mono">// open to work</span>
+      <span class="bx-k mono">// say hi</span>
       <h4>Let's build something that ships</h4>
       <span class="cta-arrow" aria-hidden="true">↗</span>
     </a>
@@ -728,8 +714,6 @@
 <section id="achievements" class="section">
   <div class="sec-label mono"><span>09</span>Recognition</div>
   <div class="ach-grid">
-    <div class="ach-card reveal-up"><b class="ach-num" data-count="6">6</b><h3>Live products</h3><p>Bharosa, Sukoon AI, Saath AI, School Safeguarding AI, VisionAI and a dental clinic site, all deployed and in use.</p></div>
-    <div class="ach-card reveal-up"><b class="ach-num" data-count="5" data-decimals="1">5.0</b><h3>Fiverr Level-1 Seller</h3><p>Reached through steady 5-star delivery in AI Development.</p></div>
     <div class="ach-card reveal-up"><b class="ach-num">Lead</b><h3>Tech Fest Management</h3><p>Ran volunteers, vendors and on-site operations for PAF-IAST's annual tech fest.</p></div>
     <div class="ach-card reveal-up formula-card"><b class="ach-num formula" aria-label="P equals the integral from 0 to t of M times F, to the power E, d t"><i>P</i> = <span class="integral">∫<sub>0</sub><sup><i>t</i></sup></span>(<i>M</i>·<i>F</i>)<sup><i>E</i></sup> <i>dt</i></b><h3>Built with passion, chaos &amp; caffeine</h3><p>The formula behind every project I ship.</p></div>
   </div>
@@ -772,6 +756,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js?v=ba1fa78e"></script>
 <script src="assets/js/vendor/Flip.min.js?v=92909526"></script>
 <script src="assets/js/vendor/lenis.min.js?v=79e3a064"></script>
-<script src="assets/js/main.js?v=93661239"></script>
+<script src="assets/js/main.js?v=01abba04"></script>
 </body>
 </html>

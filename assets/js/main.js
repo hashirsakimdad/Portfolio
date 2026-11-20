@@ -441,10 +441,51 @@
     io.observe(bento);
   }
 
+  /* ---------- Hero: letters react to the cursor, role types itself ---------- */
+  function initHeroFx() {
+    const hero = $('#hero');
+    const role = $('#heroRole');
+    if (!hero || reduceMotion) return;
+
+    // Letters near the pointer lift and light up.
+    if (!isTouch) {
+      hero.addEventListener('pointermove', (e) => {
+        $$('.hn-row .c', hero).forEach((c) => {
+          const r = c.getBoundingClientRect();
+          const d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+          const pull = Math.max(0, 1 - d / 260);
+          c.classList.toggle('near', pull > 0.45);
+          c.style.transform = pull ? `translateY(${-pull * 14}%) rotate(${(e.clientX < r.left + r.width / 2 ? -1 : 1) * pull * 4}deg)` : '';
+        });
+      });
+      hero.addEventListener('pointerleave', () => {
+        $$('.hn-row .c', hero).forEach((c) => { c.classList.remove('near'); c.style.transform = ''; });
+      });
+    }
+
+    // "AI engineer" types itself once the intro has played.
+    if (role) {
+      const full = role.textContent;
+      const type = () => {
+        role.textContent = '';
+        role.classList.add('typing');
+        let i = 0;
+        const step = () => {
+          role.textContent = full.slice(0, ++i);
+          if (i < full.length) setTimeout(step, 85);
+          else setTimeout(() => role.classList.remove('typing'), 2200);
+        };
+        step();
+      };
+      window.addEventListener('hero:ready', type, { once: true });
+    }
+  }
+
   initNav();
   initCases();
   initMatrix();
   initBento();
+  initHeroFx();
   initNeural();
   initScramble();
   initXpLine();
@@ -485,7 +526,7 @@
   const avatar = $('#heroAvatar');
   gsap.set(nameChars.flat(), { yPercent: 110 });
   gsap.set('.line-mask > span', { yPercent: 110 });
-  gsap.set(['.pill', '.hero-stats > div', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 0, y: 20 });
+  gsap.set(['.pill', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 0, y: 20 });
   gsap.set('.spin-badge', { autoAlpha: 0, scale: 0, rotate: -120 });
   gsap.set('#nav', { autoAlpha: 0, y: -20 });
 
@@ -538,15 +579,15 @@
     const tl = gsap.timeline();
     tl.fromTo(avatar,
       { scale: fill, borderRadius: 0, filter: 'brightness(0.6)' },
-      { scale: 1, borderRadius: '999px 999px 28px 28px', filter: 'brightness(1)', duration: 1.6, ease: 'expo.inOut', clearProps: 'borderRadius,filter' })
+      { scale: 1, borderRadius: '999px', filter: 'brightness(1)', duration: 1.6, ease: 'expo.inOut', clearProps: 'borderRadius,filter' })
       .fromTo('.hero-avatar img', { scale: 1.5 }, { scale: 1.1, duration: 1.8, ease: 'expo.out' }, 0.2)
       .to(nameChars[0], { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.045 }, 0.95)
       .to(nameChars[1], { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.04 }, 1.05)
       .to('.line-mask > span', { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.08 }, 1.3)
-      .to(['.pill', '.hero-stats > div', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06 }, 1.35)
+      .to(['.pill', '.hero-meta-right .btn', '.scroll-hint'], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06 }, 1.35)
       .to('#nav', { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out', clearProps: 'transform' }, 1.5)
       .to('.spin-badge', { autoAlpha: 1, scale: 1, rotate: 0, duration: 1.2, ease: 'back.out(1.6)' }, 1.45)
-      .add(() => countUp($$('.hero-stats b[data-count]')), 1.4);
+      .add(() => window.dispatchEvent(new Event('hero:ready')), 1.6);
     return tl;
   }
 
@@ -568,9 +609,9 @@
     gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 } })
       .to('.hn-1', { xPercent: -18 }, 0)
       .to('.hn-2', { xPercent: 18 }, 0)
-      .to(avatar, { yPercent: 30, rotate: -6, scale: 0.85 }, 0)
+      .to(avatar, { rotate: -8, scale: 0.9 }, 0)
       .to('.hero-meta', { autoAlpha: 0, y: -40 }, 0)
-      .to('.spin-badge', { y: -120, rotate: 90 }, 0)
+      .to('.spin-badge', { rotate: 120 }, 0)
       .to('.hero-orb', { scale: 1.4, opacity: 0.12 }, 0);
 
     // Aurora orbs drift slowly on their own.
