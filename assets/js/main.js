@@ -782,6 +782,62 @@
     });
     gsap.from('.pipeline', { autoAlpha: 0, scale: 0.92, duration: 1.2, scrollTrigger: { trigger: '#research .case-body', start: 'top 80%' } });
 
+    // Experience: a comet rides the timeline, ghost years drift, titles flip in,
+    // bullets slide in, tags pop, and each card tilts and glows under the cursor.
+    const xpLine = $('.xp-line');
+    if (xpLine) {
+      const comet = document.createElement('span');
+      comet.className = 'xp-comet';
+      comet.setAttribute('aria-hidden', 'true');
+      xpLine.appendChild(comet);
+      ScrollTrigger.create({
+        trigger: '.xp-list', start: 'top 60%', end: 'bottom 60%', scrub: 0.6,
+        onUpdate: (self) => {
+          comet.style.transform = `translateY(${self.progress * xpLine.clientHeight}px)`;
+          comet.classList.toggle('on', self.progress > 0.001 && self.progress < 0.999);
+        },
+      });
+    }
+
+    $$('.xp-card').forEach((card, i) => {
+      const year = ($('.xp-year', card)?.textContent || '').match(/\d{4}/);
+      if (year) {
+        const ghost = document.createElement('span');
+        ghost.className = 'xp-ghost';
+        ghost.setAttribute('aria-hidden', 'true');
+        ghost.textContent = year[0];
+        card.appendChild(ghost);
+        gsap.fromTo(ghost, { yPercent: 30, xPercent: i % 2 ? -8 : 8 }, { yPercent: -30, xPercent: 0, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
+      }
+
+      const title = $('h3', card);
+      const chars = splitChars(title);
+      gsap.from(chars, { yPercent: 110, rotateX: -90, autoAlpha: 0, stagger: 0.025, duration: 0.8, ease: 'back.out(1.8)', scrollTrigger: { trigger: card, start: 'top 70%' } });
+
+      gsap.from($$('li', card), { x: -40, autoAlpha: 0, stagger: 0.12, duration: 0.9, ease: 'expo.out', scrollTrigger: { trigger: card, start: 'top 62%' } });
+      gsap.from($$('.tags span', card), { scale: 0, autoAlpha: 0, stagger: 0.05, duration: 0.6, ease: 'back.out(2.5)', scrollTrigger: { trigger: card, start: 'top 55%' } });
+      gsap.from($$('.xp-head > *', card), { y: -20, autoAlpha: 0, stagger: 0.1, duration: 0.7, scrollTrigger: { trigger: card, start: 'top 72%' } });
+
+      if (!isTouch) {
+        const blob = $('.xp-blob', card);
+        const bx = blob ? gsap.quickTo(blob, 'x', { duration: 1.2, ease: 'power3' }) : null;
+        const by = blob ? gsap.quickTo(blob, 'y', { duration: 1.2, ease: 'power3' }) : null;
+        const rx = gsap.quickTo(card, 'rotationX', { duration: 0.8, ease: 'power3' });
+        const ry = gsap.quickTo(card, 'rotationY', { duration: 0.8, ease: 'power3' });
+        card.addEventListener('pointermove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          card.style.setProperty('--my', `${e.clientY - r.top}px`);
+          rx(py * -5);
+          ry(px * 6);
+          if (bx) { bx(px * 160); by(py * 120); }
+        });
+        card.addEventListener('pointerleave', () => { rx(0); ry(0); if (bx) { bx(0); by(0); } });
+      }
+    });
+
     // Experience line fills as you read down the timeline.
     gsap.to('#xpLineFill', { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.xp-list', start: 'top 60%', end: 'bottom 60%', scrub: 0.6 } });
 
