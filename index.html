@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=c110761b">
+<link rel="stylesheet" href="assets/css/style.css?v=8178bcfd">
 
 <script type="application/ld+json">
 {
@@ -147,20 +147,50 @@
   <div class="sec-label mono"><span>01</span>About me</div>
   <p class="about-big" id="aboutBig">I'm a 3rd-year AI student at PAF-IAST Islamabad who turns AI demos into real products. I build multi-agent LLM systems, RAG pipelines and computer vision APIs, and I ship them to the cloud where real people use them.</p>
 
-  <div class="term reveal-up" id="aboutTerm">
-    <div class="term-bar"><i></i><i></i><i></i><span>hashir@islamabad: ~</span></div>
-    <div class="term-body" aria-label="About Hashir">
-      <p class="t-cmd" data-type>whoami</p>
-      <p class="t-out">AI engineer · B.S. Artificial Intelligence, PAF-IAST</p>
-      <p class="t-cmd" data-type>cat location.txt</p>
-      <p class="t-out">Islamabad, Pakistan 🇵🇰</p>
-      <p class="t-cmd" data-type>cat status.txt</p>
-      <p class="t-out">Freelance AI Developer · Fiverr Level-1 · <em>open to AI/ML roles</em></p>
-      <p class="t-cmd" data-type>ls ~/skills</p>
-      <p class="t-out t-dim">LLM-Agents/ &nbsp;Computer-Vision/ &nbsp;Classic-ML/ &nbsp;Backend-APIs/ &nbsp;Web-Mobile/ &nbsp;Cloud-DevOps/</p>
-      <p class="t-out t-hint">↓ scroll for how they fit together</p>
-      <p class="t-cmd t-last"><span class="t-caret"></span></p>
-    </div>
+  <div class="bento" id="bento">
+    <article class="bx bx-hello">
+      <span class="bx-k mono">// hello</span>
+      <h3>Assalam o Alaikum, I'm <span class="grad-text">Hashir</span>.</h3>
+      <p>3rd-year AI student at PAF-IAST, and a freelance AI developer who ships.</p>
+      <div class="bx-blob" aria-hidden="true"></div>
+    </article>
+
+    <article class="bx bx-clock">
+      <span class="bx-k mono">// local time</span>
+      <div class="clock-face" aria-hidden="true"><i class="h" id="clkH"></i><i class="m" id="clkM"></i><i class="s" id="clkS"></i><b></b></div>
+      <div class="clock-meta"><b id="clkTime">--:--</b><span>Islamabad, Pakistan · PKT</span></div>
+    </article>
+
+    <article class="bx bx-stats">
+      <div><b data-count="20" data-suffix="+">20+</b><span>projects built</span></div>
+      <div><b data-count="6">6</b><span>live in production</span></div>
+      <div><b data-count="4">4</b><span>roles &amp; internships</span></div>
+      <div><b data-count="5" data-decimals="1">5.0</b><span>Fiverr rating</span></div>
+    </article>
+
+    <article class="bx bx-study">
+      <span class="bx-k mono">// studying</span>
+      <h4>B.S. Artificial Intelligence</h4>
+      <p>PAF-IAST · 3rd year</p>
+      <div class="orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+    </article>
+
+    <article class="bx bx-eq">
+      <span class="bx-k mono">// currently shipping</span>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="eq-words"><span>AI agents</span><span>RAG</span><span>Computer vision</span><span>FastAPI</span></p>
+    </article>
+
+    <article class="bx bx-tools" aria-label="Tools I use">
+      <div class="tool-col"><div><span>LangGraph</span><span>LangChain</span><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span><span>Gemini</span><span>LangGraph</span><span>LangChain</span><span>YOLOv8</span><span>OpenCV</span><span>FastAPI</span><span>Gemini</span></div></div>
+      <div class="tool-col rev"><div><span>Docker</span><span>Supabase</span><span>Next.js</span><span>Flutter</span><span>ChromaDB</span><span>Groq</span><span>Docker</span><span>Supabase</span><span>Next.js</span><span>Flutter</span><span>ChromaDB</span><span>Groq</span></div></div>
+    </article>
+
+    <a class="bx bx-cta magnetic" href="#contact" data-cursor="Hire">
+      <span class="bx-k mono">// open to work</span>
+      <h4>Let's build something that ships</h4>
+      <span class="cta-arrow" aria-hidden="true">↗</span>
+    </a>
   </div>
 </section>
 
@@ -742,6 +772,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js?v=ba1fa78e"></script>
 <script src="assets/js/vendor/Flip.min.js?v=92909526"></script>
 <script src="assets/js/vendor/lenis.min.js?v=79e3a064"></script>
-<script src="assets/js/main.js?v=d6aeefdb"></script>
+<script src="assets/js/main.js?v=93661239"></script>
 </body>
 </html>
