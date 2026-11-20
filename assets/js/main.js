@@ -252,12 +252,12 @@
   /* ---------- Skill confusion matrix (built from the real project list) ---------- */
   // Each project lists the skill areas it uses. Edit this list to update the matrix.
   const SKILLS = [
-    { key: 'llm', label: 'LLM & Agents', short: 'LLM' },
-    { key: 'cv', label: 'Computer Vision', short: 'CV' },
-    { key: 'ml', label: 'Classic ML', short: 'ML' },
-    { key: 'api', label: 'Backend & APIs', short: 'API' },
-    { key: 'web', label: 'Web & Mobile', short: 'Web' },
-    { key: 'ops', label: 'Cloud & DevOps', short: 'Ops' },
+    { key: 'llm', label: 'LLM & Agents', short: 'LLM', tools: ['LangChain', 'LangGraph', 'RAG', 'ChromaDB', 'FAISS', 'Gemini', 'Groq'] },
+    { key: 'cv', label: 'Computer Vision', short: 'CV', tools: ['YOLOv8', 'OpenCV', 'MediaPipe', 'face_recognition'] },
+    { key: 'ml', label: 'Classic ML', short: 'ML', tools: ['scikit-learn', 'XGBoost', 'TensorFlow', 'LoRA', 'QLoRA', 'PEFT'] },
+    { key: 'api', label: 'Backend & APIs', short: 'API', tools: ['Python', 'FastAPI', 'Flask', 'Express', 'WebSockets', 'SQL'] },
+    { key: 'web', label: 'Web & Mobile', short: 'Web', tools: ['React', 'Next.js', 'TypeScript', 'Flutter', 'Tailwind'] },
+    { key: 'ops', label: 'Cloud & DevOps', short: 'Ops', tools: ['GCP Cloud Run', 'Docker', 'HuggingFace', 'Vercel', 'Supabase'] },
   ];
   const PROJECTS = [
     ['Bharosa', 'llm api web ops'],
@@ -346,6 +346,8 @@
         ? `${SKILLS[i].label}: ${list.length} project${list.length === 1 ? '' : 's'}`
         : `${SKILLS[i].label} × ${SKILLS[j].label}: ${list.length}`;
       tipL.innerHTML = list.length ? list.map((p) => `<span>${p}</span>`).join('') : 'No project combines these yet.';
+      const kit = i === j ? SKILLS[i].tools : [...SKILLS[i].tools.slice(0, 4), ...SKILLS[j].tools.slice(0, 4)];
+      $('#cmTools').innerHTML = kit.map((t, k) => `<span style="animation-delay:${k * 0.04}s">${t}</span>`).join('');
     };
     const clear = () => {
       root.classList.remove('focusing');
@@ -383,9 +385,42 @@
     }
   }
 
+  /* ---------- About terminal types itself out ---------- */
+  function initTerminal() {
+    const term = $('#aboutTerm');
+    if (!term || reduceMotion || !('IntersectionObserver' in window)) return;
+    const lines = $$('.term-body p', term);
+    const wait = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
+    term.classList.add('typing');
+    const run = async () => {
+      for (const line of lines) {
+        line.classList.add('shown');
+        if (line.hasAttribute('data-type')) {
+          const full = line.textContent;
+          line.textContent = '';
+          for (const ch of full) {
+            line.textContent += ch;
+            await wait(45);
+          }
+          await wait(220);
+        } else {
+          await wait(90);
+        }
+      }
+    };
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        io.disconnect();
+        run();
+      }
+    }, { threshold: 0.4 });
+    io.observe(term);
+  }
+
   initNav();
   initCases();
   initMatrix();
+  initTerminal();
   initNeural();
   initScramble();
   initXpLine();
@@ -634,8 +669,6 @@
     gsap.from(bigChars.flat(), { yPercent: 110, rotate: 8, duration: 1.2, stagger: 0.035, scrollTrigger: { trigger: '.big-name', start: 'top 85%' } });
     gsap.fromTo('.big-name .outline', { xPercent: 8 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '.big-name', start: 'top bottom', end: 'bottom bottom', scrub: 1 } });
 
-    // Skill cards pop in one by one.
-    gsap.from('.skill-card', { autoAlpha: 0, y: 30, scale: 0.92, stagger: 0.06, duration: 0.9, scrollTrigger: { trigger: '.skills-grid', start: 'top 85%' } });
 
     // Services fan in from alternating sides.
     $$('.service').forEach((el, i) => {
@@ -685,7 +718,7 @@
     });
 
     // Spotlight glow follows the mouse inside cards.
-    $$('.pcard, .service, .ach-card, .skill-card').forEach((el) => {
+    $$('.pcard, .service, .ach-card').forEach((el) => {
       el.classList.add('spot');
       el.addEventListener('pointermove', (e) => {
         const r = el.getBoundingClientRect();
