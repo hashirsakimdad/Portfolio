@@ -481,11 +481,67 @@
     }
   }
 
+  /* ---------- Contact: copy email, live time, mailto form ---------- */
+  function initContact() {
+    const copy = $('#copyMail');
+    if (!copy) return;
+    const email = copy.dataset.email;
+    const chip = $('#copyChip');
+    copy.addEventListener('click', async () => {
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(email);
+        ok = true;
+      } catch (err) {
+        ok = false;
+      }
+      if (!ok) {
+        window.location.href = `mailto:${email}`;
+        return;
+      }
+      copy.classList.add('copied');
+      chip.textContent = 'Copied ✓';
+      setTimeout(() => { copy.classList.remove('copied'); chip.textContent = 'Copy'; }, 2000);
+    });
+
+    const time = $('#ctTime');
+    const tick = () => {
+      const now = new Date(Date.now() + 5 * 3600 * 1000);
+      const hh = now.getUTCHours();
+      time.textContent = `${hh % 12 || 12}:${String(now.getUTCMinutes()).padStart(2, '0')} ${hh < 12 ? 'AM' : 'PM'}`;
+    };
+    tick();
+    setInterval(tick, 15000);
+
+    const form = $('#ctForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.elements.name;
+      const msg = form.elements.message;
+      let bad = false;
+      [name, msg].forEach((el) => {
+        const field = el.closest('.ctf-field');
+        const empty = !el.value.trim();
+        field.classList.toggle('invalid', empty);
+        if (empty) bad = true;
+      });
+      if (bad) return;
+      const type = form.elements.type.value;
+      const subject = `${type}: hello from ${name.value.trim()}`;
+      const body = `Hi Hashir,\n\n${msg.value.trim()}\n\n— ${name.value.trim()}`;
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+    $$('.ctf-field input, .ctf-field textarea', form).forEach((el) => {
+      el.addEventListener('input', () => el.closest('.ctf-field').classList.remove('invalid'));
+    });
+  }
+
   initNav();
   initCases();
   initMatrix();
   initBento();
   initHeroFx();
+  initContact();
   initNeural();
   initScramble();
   initXpLine();
@@ -795,11 +851,11 @@
       ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => countUp([el]) });
     });
 
-    // Contact orb pops in.
-    gsap.from('.contact-orb', {
-      scale: 0, rotate: -90, duration: 1.2, ease: 'elastic.out(1, 0.6)',
-      scrollTrigger: { trigger: '.contact-orb', start: 'top 90%' },
-    });
+    // Contact: email card and form rise in, link rows slide in from the side.
+    gsap.from(['.ct-intro', '.copy-mail', '.ct-time'], { autoAlpha: 0, y: 40, stagger: 0.1, duration: 1, scrollTrigger: { trigger: '.ct-wrap', start: 'top 80%' } });
+    gsap.from('.ct-form', { autoAlpha: 0, y: 80, rotate: 2, duration: 1.2, scrollTrigger: { trigger: '.ct-wrap', start: 'top 80%' } });
+    gsap.from('.ct-links a', { autoAlpha: 0, x: -80, stagger: 0.12, duration: 1.1, scrollTrigger: { trigger: '.ct-links', start: 'top 88%' } });
+
   }
 
   /* ---------- Cursor + magnetic buttons ---------- */

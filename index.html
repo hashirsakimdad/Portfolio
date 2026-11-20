@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=c503be1d">
+<link rel="stylesheet" href="assets/css/style.css?v=3633a160">
 
 <script type="application/ld+json">
 {
@@ -724,18 +724,42 @@
   <div class="contact-marquee" aria-hidden="true">
     <div class="cm-track" id="cmTrack"><span>Let's work together ✦ </span><span>Let's work together ✦ </span><span>Let's work together ✦ </span><span>Let's work together ✦ </span></div>
   </div>
-  <div class="contact-inner">
-    <p class="reveal-up">I'm looking for AI/ML internships and junior engineer roles, and I take freelance AI projects. Have an idea? Let's build it.</p>
-    <a href="mailto:hashirsakimdad@gmail.com" class="contact-orb magnetic" data-cursor="Email">
-      <span>Get in<br>touch</span>
-    </a>
-    <a href="mailto:hashirsakimdad@gmail.com" class="contact-mail">hashirsakimdad@gmail.com</a>
-    <div class="socials">
-      <a href="https://linkedin.com/in/hashir-sakimdad-8bbb22299" target="_blank" rel="noopener noreferrer" class="magnetic">LinkedIn ↗</a>
-      <a href="https://github.com/hashirsakimdad" target="_blank" rel="noopener noreferrer" class="magnetic">GitHub ↗</a>
-      <a href="https://fiverr.com/hashirsakimdad" target="_blank" rel="noopener noreferrer" class="magnetic">Fiverr ↗</a>
+
+  <div class="ct-wrap">
+    <div class="ct-left">
+      <div class="sec-label mono"><span>✉</span>Contact</div>
+      <h2 class="ct-title split-words">Have an idea? Let's build it.</h2>
+      <p class="ct-intro">I'm looking for AI/ML internships and junior engineer roles, and I take freelance AI projects.</p>
+
+      <button type="button" class="copy-mail magnetic" id="copyMail" data-email="hashirsakimdad@gmail.com" data-cursor="Copy">
+        <span class="cpm-label mono">Email</span>
+        <span class="cpm-addr">hashirsakimdad@gmail.com</span>
+        <span class="cpm-chip" id="copyChip">Copy</span>
+      </button>
+
+      <div class="ct-time"><span class="dot-pulse"></span>It's <b id="ctTime">--:--</b> in Islamabad right now</div>
     </div>
+
+    <form class="ct-form" id="ctForm" novalidate>
+      <span class="ctf-k mono">// quick message</span>
+      <div class="ctf-types" role="radiogroup" aria-label="What is it about?">
+        <label><input type="radio" name="type" value="Internship" checked><span>Internship</span></label>
+        <label><input type="radio" name="type" value="Full-time role"><span>Full-time role</span></label>
+        <label><input type="radio" name="type" value="Freelance project"><span>Freelance project</span></label>
+        <label><input type="radio" name="type" value="Just saying hi"><span>Just saying hi</span></label>
+      </div>
+      <label class="ctf-field"><input type="text" name="name" placeholder=" " autocomplete="name" required><span>Your name</span></label>
+      <label class="ctf-field"><textarea name="message" rows="4" placeholder=" " required></textarea><span>What are you building?</span></label>
+      <button type="submit" class="btn btn-primary ctf-send magnetic">Send via email <span aria-hidden="true">↗</span></button>
+      <p class="ctf-note">Opens your email app with the message ready to send.</p>
+    </form>
   </div>
+
+  <nav class="ct-links" aria-label="Elsewhere">
+    <a href="https://linkedin.com/in/hashir-sakimdad-8bbb22299" target="_blank" rel="noopener noreferrer"><span class="ctl-n mono">01</span><span class="ctl-name">LinkedIn</span><span class="ctl-sub">Experience &amp; network</span><span class="ctl-arrow" aria-hidden="true">↗</span></a>
+    <a href="https://github.com/hashirsakimdad" target="_blank" rel="noopener noreferrer"><span class="ctl-n mono">02</span><span class="ctl-name">GitHub</span><span class="ctl-sub">Code &amp; open source</span><span class="ctl-arrow" aria-hidden="true">↗</span></a>
+    <a href="https://fiverr.com/hashirsakimdad" target="_blank" rel="noopener noreferrer"><span class="ctl-n mono">03</span><span class="ctl-name">Fiverr</span><span class="ctl-sub">Hire me for a project</span><span class="ctl-arrow" aria-hidden="true">↗</span></a>
+  </nav>
 </section>
 
 </main>
@@ -756,6 +780,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js?v=ba1fa78e"></script>
 <script src="assets/js/vendor/Flip.min.js?v=92909526"></script>
 <script src="assets/js/vendor/lenis.min.js?v=79e3a064"></script>
-<script src="assets/js/main.js?v=01abba04"></script>
+<script src="assets/js/main.js?v=041e3cd4"></script>
 </body>
 </html>
