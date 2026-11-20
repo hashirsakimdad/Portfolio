@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=65937cb8">
+<link rel="stylesheet" href="assets/css/style.css?v=c110761b">
 
 <script type="application/ld+json">
 {
@@ -147,24 +147,19 @@
   <div class="sec-label mono"><span>01</span>About me</div>
   <p class="about-big" id="aboutBig">I'm a 3rd-year AI student at PAF-IAST Islamabad who turns AI demos into real products. I build multi-agent LLM systems, RAG pipelines and computer vision APIs, and I ship them to the cloud where real people use them.</p>
 
-  <div class="about-cols">
-    <div class="about-photo-card reveal-up">
-      <div class="apc-inner">
-        <span class="mono">Based in</span>
-        <b>Islamabad, Pakistan</b>
-        <span class="mono">Studying</span>
-        <b>B.S. Artificial Intelligence</b>
-        <span class="mono">Currently</span>
-        <b>Freelance AI Developer · Fiverr Level-1</b>
-      </div>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card"><span class="skill-cat">LLM / Agents</span><div class="tags"><span>LangChain</span><span>LangGraph</span><span>RAG</span></div></div>
-      <div class="skill-card"><span class="skill-cat">Computer Vision</span><div class="tags"><span>YOLOv8</span><span>OpenCV</span><span>MediaPipe</span></div></div>
-      <div class="skill-card"><span class="skill-cat">Backend &amp; APIs</span><div class="tags"><span>FastAPI</span><span>Flask</span><span>WebSockets</span></div></div>
-      <div class="skill-card"><span class="skill-cat">Cloud &amp; DevOps</span><div class="tags"><span>GCP</span><span>HuggingFace</span><span>Docker</span></div></div>
-      <div class="skill-card"><span class="skill-cat">Fine-tuning</span><div class="tags"><span>LoRA</span><span>QLoRA</span><span>PEFT</span></div></div>
-      <div class="skill-card"><span class="skill-cat">Data &amp; Languages</span><div class="tags"><span>ChromaDB</span><span>FAISS</span><span>Python</span><span>SQL</span></div></div>
+  <div class="term reveal-up" id="aboutTerm">
+    <div class="term-bar"><i></i><i></i><i></i><span>hashir@islamabad: ~</span></div>
+    <div class="term-body" aria-label="About Hashir">
+      <p class="t-cmd" data-type>whoami</p>
+      <p class="t-out">AI engineer · B.S. Artificial Intelligence, PAF-IAST</p>
+      <p class="t-cmd" data-type>cat location.txt</p>
+      <p class="t-out">Islamabad, Pakistan 🇵🇰</p>
+      <p class="t-cmd" data-type>cat status.txt</p>
+      <p class="t-out">Freelance AI Developer · Fiverr Level-1 · <em>open to AI/ML roles</em></p>
+      <p class="t-cmd" data-type>ls ~/skills</p>
+      <p class="t-out t-dim">LLM-Agents/ &nbsp;Computer-Vision/ &nbsp;Classic-ML/ &nbsp;Backend-APIs/ &nbsp;Web-Mobile/ &nbsp;Cloud-DevOps/</p>
+      <p class="t-out t-hint">↓ scroll for how they fit together</p>
+      <p class="t-cmd t-last"><span class="t-caret"></span></p>
     </div>
   </div>
 </section>
@@ -180,6 +175,8 @@
         <span class="mono cm-tip-k">Skill</span>
         <b class="cm-tip-title">Hover a cell</b>
         <p class="cm-tip-list"></p>
+        <span class="mono cm-tip-k cm-tool-k">Toolkit</span>
+        <div class="cm-tools" id="cmTools"></div>
       </div>
       <div class="cm-legend"><span>0</span><i></i><span id="cmMax">max</span></div>
       <div class="cm-stats">
@@ -745,6 +742,6 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js?v=ba1fa78e"></script>
 <script src="assets/js/vendor/Flip.min.js?v=92909526"></script>
 <script src="assets/js/vendor/lenis.min.js?v=79e3a064"></script>
-<script src="assets/js/main.js?v=e9f568ed"></script>
+<script src="assets/js/main.js?v=d6aeefdb"></script>
 </body>
 </html>
