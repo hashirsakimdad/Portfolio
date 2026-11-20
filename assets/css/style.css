@@ -819,3 +819,64 @@ footer { width: min(var(--max), calc(100% - 32px)); margin: 40px auto 0; padding
 .eq-words { height: 28px; }
 .bx-study h4 { padding-right: 64px; }
 @media (max-width: 560px) { .orbit { width: 34px; height: 34px; right: 12px; top: 12px; } .bx-study h4 { padding-right: 0; margin-top: 18px; } }
+
+/* ======================================================
+   Hero v2: photo pill inside the name, nothing overlaps
+   ====================================================== */
+.hero .hero-name { position: relative; inset: auto; z-index: 2; pointer-events: auto; gap: 0.02em; }
+.hn-row { overflow: visible; display: flex; align-items: center; justify-content: center; }
+.hn-row .split-chars { display: inline-block; overflow: hidden; padding: 0.04em 0.02em; line-height: 0.86; }
+.hn-row .c { display: inline-block; transition: color 0.35s, transform 0.5s var(--ease); will-change: transform; }
+.hn-1 .c.near { color: var(--accent); }
+.hn-2 .c.near { -webkit-text-stroke-color: var(--accent-2); }
+
+.hn-row .hero-avatar {
+  position: relative; z-index: 3; display: inline-block; flex: none;
+  width: 1.2em; height: 0.72em; margin-left: 0.12em; aspect-ratio: auto;
+  border-radius: 999px; overflow: hidden;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 20px 60px -20px rgba(0,0,0,0.9), 0 0 60px -10px rgba(167,139,250,0.45);
+  transition: width 0.7s var(--ease), box-shadow 0.5s;
+}
+.hn-row .hero-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 32%; transform: none; filter: grayscale(1) contrast(1.05); transition: filter 0.6s; }
+.hn-row .hero-avatar:hover { width: 1.6em; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.9), 0 0 80px -6px rgba(34,211,238,0.6); }
+.hn-row .hero-avatar:hover img { filter: none; }
+
+/* Outline row: a light sweep runs across the stroke */
+.hn-2 .split-chars {
+  background: linear-gradient(100deg, transparent 35%, rgba(167,139,250,0.55) 48%, rgba(34,211,238,0.55) 52%, transparent 65%) 0 0 / 250% 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+  animation: strokeSweep 5s ease-in-out infinite 3s;
+}
+@keyframes strokeSweep { 0% { background-position: 120% 0; } 60%, 100% { background-position: -120% 0; } }
+
+.hero-line { font-size: clamp(26px, 2.6vw, 38px); }
+.hero-role { display: inline-block; font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; background: linear-gradient(100deg, var(--text) 30%, var(--accent) 60%, var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-role.typing::after { content: ''; display: inline-block; width: 3px; height: 0.9em; margin-left: 4px; vertical-align: -0.08em; background: var(--accent-2); animation: blink 0.9s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-meta-right { flex-direction: row; align-items: center; gap: 18px; }
+.hero-meta-right .spin-badge { position: relative; left: auto; top: auto; width: 104px; height: 104px; }
+.hero-meta-right .spin-badge text { font-size: 10.5px; letter-spacing: 0.16em; }
+
+@media (max-width: 860px) {
+  .hero { place-items: center; padding-top: 0; }
+  .hn-row { font-size: 16.5vw; }
+  .hero-meta-left { bottom: 120px; }
+  .hero-meta-right { left: auto; right: 16px; bottom: 24px; }
+  .hero-meta-right .spin-badge { left: auto; top: auto; width: 84px; height: 84px; }
+}
+@media (max-width: 560px) {
+  .hero { min-height: 640px; padding-top: 0; }
+  .hn-row { font-size: 16.5vw; }
+  .hero-meta-left { bottom: 110px; }
+  .hero-meta-right .spin-badge { top: auto; }
+}
+
+/* Achievements: two cards now */
+.ach-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 560px) { .ach-grid { grid-template-columns: 1fr; } }
+/* Bento: CTA takes the tools slot */
+.bx-cta { grid-column: span 2; }
+@media (max-width: 1024px) { .bx-cta { grid-column: span 2; } }
+@media (max-width: 560px) { .hn-row { font-size: 18.5vw; } }
