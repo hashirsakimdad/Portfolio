@@ -249,8 +249,142 @@
     if (!hasGsap || reduceMotion) $('#xpLineFill').style.transform = 'none';
   }
 
+  /* ---------- Skill confusion matrix (built from the real project list) ---------- */
+  // Each project lists the skill areas it uses. Edit this list to update the matrix.
+  const SKILLS = [
+    { key: 'llm', label: 'LLM & Agents', short: 'LLM' },
+    { key: 'cv', label: 'Computer Vision', short: 'CV' },
+    { key: 'ml', label: 'Classic ML', short: 'ML' },
+    { key: 'api', label: 'Backend & APIs', short: 'API' },
+    { key: 'web', label: 'Web & Mobile', short: 'Web' },
+    { key: 'ops', label: 'Cloud & DevOps', short: 'Ops' },
+  ];
+  const PROJECTS = [
+    ['Bharosa', 'llm api web ops'],
+    ['Sukoon AI', 'llm api web ops'],
+    ['Saath AI', 'llm api web ops'],
+    ['School Safeguarding AI', 'llm web'],
+    ['Deep Research OS', 'llm api web'],
+    ['VisionAI', 'cv api ops'],
+    ['ProctorAI', 'cv'],
+    ['Kairo', 'llm'],
+    ['HoloHome AI', 'llm api'],
+    ['VerityAI', 'llm ml api web'],
+    ['AI Recruitment Assistant', 'ml api web'],
+    ['Multimodal AI Assistant', 'llm cv api'],
+    ['Family Memory AI', 'cv ml'],
+    ['RealEstate AutoHDR', 'cv'],
+    ['Face Recognition Attendance', 'cv'],
+    ['Cortif', 'llm api'],
+    ['PSX AI Trader', 'ml api web'],
+    ['Skillpath AI', 'web'],
+    ['Prime Estates', 'web'],
+    ['Dental Clinic Website', 'web'],
+  ];
+
+  function initMatrix() {
+    const root = $('#confusionMatrix');
+    if (!root) return;
+    const n = SKILLS.length;
+    const uses = PROJECTS.map(([, tags]) => tags.split(' '));
+    const lists = SKILLS.map((a) => SKILLS.map((b) =>
+      PROJECTS.filter((_, p) => uses[p].includes(a.key) && uses[p].includes(b.key)).map(([name]) => name)));
+    const max = Math.max(...lists.flat().map((l) => l.length));
+    const small = window.matchMedia('(max-width: 560px)').matches;
+    const name = (sk) => (small ? sk.short : sk.label);
+
+    root.style.setProperty('--n', n);
+    root.insertAdjacentHTML('beforeend', '<span class="cm-axis x">combined with →</span><span></span>');
+    SKILLS.forEach((sk, j) => root.insertAdjacentHTML('beforeend', `<span class="cm-label col" data-j="${j}">${name(sk)}</span>`));
+    const cells = [];
+    SKILLS.forEach((rowSk, i) => {
+      root.insertAdjacentHTML('beforeend', `<span class="cm-label row" data-i="${i}">${name(rowSk)}</span>`);
+      SKILLS.forEach((colSk, j) => {
+        const count = lists[i][j].length;
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = `cm-cell${i === j ? ' diag' : ''}${count ? '' : ' zero'}`;
+        cell.style.setProperty('--v', (count / max).toFixed(3));
+        cell.dataset.i = i;
+        cell.dataset.j = j;
+        cell.dataset.count = count;
+        cell.textContent = count;
+        cell.setAttribute('aria-label', i === j
+          ? `${rowSk.label}: used in ${count} projects`
+          : `${rowSk.label} with ${colSk.label}: ${count} projects`);
+        root.appendChild(cell);
+        cells.push(cell);
+      });
+    });
+
+    // Side panel: totals and the most common pair.
+    let best = [0, 1];
+    for (let i = 0; i < n; i++) {
+      for (let j = i + 1; j < n; j++) {
+        if (lists[i][j].length > lists[best[0]][best[1]].length) best = [i, j];
+      }
+    }
+    $('#cmProjects').textContent = PROJECTS.length;
+    $('#cmTop').textContent = `${SKILLS[best[0]].short} × ${SKILLS[best[1]].short}`;
+    $('#cmMax').textContent = max;
+
+    const tipK = $('.cm-tip-k');
+    const tipT = $('.cm-tip-title');
+    const tipL = $('.cm-tip-list');
+    const show = (cell) => {
+      const i = Number(cell.dataset.i);
+      const j = Number(cell.dataset.j);
+      const list = lists[i][j];
+      cells.forEach((c) => {
+        c.classList.toggle('lane', Number(c.dataset.i) === i || Number(c.dataset.j) === j);
+        c.classList.toggle('active', c === cell);
+      });
+      root.classList.add('focusing');
+      $$('.cm-label', root).forEach((l) => l.classList.toggle('hl', Number(l.dataset.i) === i || Number(l.dataset.j) === j));
+      tipK.textContent = i === j ? 'True positive · diagonal' : 'Confusion · off-diagonal';
+      tipT.textContent = i === j
+        ? `${SKILLS[i].label}: ${list.length} project${list.length === 1 ? '' : 's'}`
+        : `${SKILLS[i].label} × ${SKILLS[j].label}: ${list.length}`;
+      tipL.innerHTML = list.length ? list.map((p) => `<span>${p}</span>`).join('') : 'No project combines these yet.';
+    };
+    const clear = () => {
+      root.classList.remove('focusing');
+      cells.forEach((c) => c.classList.remove('lane', 'active'));
+      $$('.cm-label', root).forEach((l) => l.classList.remove('hl'));
+    };
+    cells.forEach((c) => {
+      c.addEventListener('mouseenter', () => show(c));
+      c.addEventListener('focus', () => show(c));
+      c.addEventListener('click', () => show(c));
+    });
+    root.addEventListener('mouseleave', clear);
+
+    // Cells sweep in out from the diagonal, and their numbers count up.
+    if (hasGsap && !reduceMotion) {
+      const { gsap } = window;
+      gsap.set(cells, { scale: 0, autoAlpha: 0 });
+      window.ScrollTrigger.create({
+        trigger: root,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          cells.forEach((c) => {
+            const i = Number(c.dataset.i);
+            const j = Number(c.dataset.j);
+            const d = Math.abs(i - j) * 0.09 + (i + j) * 0.025;
+            const o = { v: 0 };
+            gsap.to(c, { scale: 1, autoAlpha: 1, duration: 0.8, ease: 'back.out(1.7)', delay: d });
+            gsap.to(o, { v: Number(c.dataset.count), duration: 1, delay: d, ease: 'power2.out', onUpdate: () => { c.textContent = Math.round(o.v); } });
+          });
+          setTimeout(() => show(cells[best[0] * n + best[1]]), 1600);
+        },
+      });
+    }
+  }
+
   initNav();
   initCases();
+  initMatrix();
   initNeural();
   initScramble();
   initXpLine();
