@@ -952,3 +952,20 @@ footer { width: min(var(--max), calc(100% - 32px)); margin: 40px auto 0; padding
   .ctl-sub { display: none; }
   .ctl-arrow { width: 40px; height: 40px; }
 }
+
+/* ======================================================
+   Experience: extra motion
+   ====================================================== */
+.xp-list { perspective: 1400px; }
+.xp-card { --mx: 50%; --my: 50%; transform-style: preserve-3d; }
+.xp-card::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; background: radial-gradient(420px circle at var(--mx) var(--my), rgba(167,139,250,0.14), transparent 45%); opacity: 0; transition: opacity 0.4s; }
+.xp-card:hover::before { opacity: 1; }
+.xp-ghost { position: absolute; z-index: 0; right: 24px; bottom: -28px; font-family: var(--font-display); font-weight: 700; font-size: clamp(110px, 14vw, 200px); line-height: 1; letter-spacing: -0.06em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.07); pointer-events: none; }
+.xp-card h3 .c { display: inline-block; transform-origin: 50% 100%; }
+.xp-card li::before { transition: transform 0.4s var(--ease); }
+.xp-card li:hover::before { transform: translateX(5px); }
+
+.xp-comet { position: absolute; left: 50%; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px 4px rgba(34,211,238,0.9), 0 0 30px 10px rgba(167,139,250,0.6); opacity: 0; transition: opacity 0.3s; z-index: 2; }
+.xp-comet::after { content: ''; position: absolute; left: 50%; bottom: 100%; width: 2px; height: 70px; margin-left: -1px; background: linear-gradient(transparent, rgba(34,211,238,0.9)); border-radius: 2px; }
+.xp-comet.on { opacity: 1; }
+@media (max-width: 860px) { .xp-ghost { right: 12px; bottom: -18px; } }
