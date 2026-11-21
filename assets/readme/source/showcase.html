@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1200px; background: transparent; font-family: 'Space Grotesk', Inter, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  .board { width: 1200px; padding: 40px 40px 44px; border-radius: 28px; background: radial-gradient(70% 60% at 0% 0%, rgba(167,139,250,0.18), transparent 60%), radial-gradient(60% 60% at 100% 100%, rgba(34,211,238,0.12), transparent 60%), #0b0b0e; border: 1px solid rgba(255,255,255,0.1); }
+  .k { font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 18px; letter-spacing: 3px; color: #a78bfa; margin-bottom: 26px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .card { border-radius: 20px; overflow: hidden; background: #15151b; border: 1px solid rgba(255,255,255,0.12); }
+  .shot { height: 190px; position: relative; overflow: hidden; background: #101014; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .shot .bar { position: absolute; left: 0; right: 0; top: 0; height: 22px; background: rgba(11,11,14,0.85); display: flex; gap: 6px; align-items: center; padding-left: 10px; }
+  .bar i { width: 8px; height: 8px; border-radius: 50%; background: #ff5f57; } .bar i:nth-child(2) { background: #febc2e; } .bar i:nth-child(3) { background: #28c840; }
+  .body { padding: 18px 20px 20px; }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  h3 { font-size: 26px; color: #f4f4f5; letter-spacing: -0.5px; }
+  .live { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #4ade80; border: 1px solid rgba(74,222,128,0.35); border-radius: 999px; padding: 3px 9px; }
+  .cv { color: #a78bfa; border-color: rgba(167,139,250,0.4); }
+  p { font-size: 18px; line-height: 1.35; color: #a1a1aa; min-height: 49px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .tags span { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #d4d4d8; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; padding: 3px 9px; }
+</style></head><body>
+<div class="board">
+  <div class="k">SELECTED WORK · REAL SCREENSHOTS</div>
+  <div class="grid">
+    <div class="card"><div class="shot"><img src="../../img/project-bharosa.webp"></div><div class="body"><div class="top"><h3>Bharosa</h3><span class="live">LIVE</span></div><p>AI scam checker for online sellers: web + WhatsApp</p><div class="tags"><span>Next.js</span><span>PayPal API</span><span>Supabase</span></div></div></div>
+    <div class="card"><div class="shot"><img src="../../img/sukoon-web-home.webp"><div class="bar"><i></i><i></i><i></i></div></div><div class="body"><div class="top"><h3>Sukoon AI</h3><span class="live">LIVE</span></div><p>Roman Urdu mental health companion</p><div class="tags"><span>Llama 3.3</span><span>Express</span><span>JWT</span></div></div></div>
+    <div class="card"><div class="shot"><img src="../../img/saath-web-home.webp"><div class="bar"><i></i><i></i><i></i></div></div><div class="body"><div class="top"><h3>Saath AI</h3><span class="live">LIVE</span></div><p>AI labour marketplace: web + Flutter app</p><div class="tags"><span>LangGraph</span><span>FastAPI</span><span>Flutter</span></div></div></div>
+    <div class="card"><div class="shot"><img src="../../img/project-safeguarding.webp"><div class="bar"><i></i><i></i><i></i></div></div><div class="body"><div class="top"><h3>Safeguarding AI</h3><span class="live">LIVE</span></div><p>Bilingual multi-agent assistant for a client</p><div class="tags"><span>Multi-Agent</span><span>RAG</span></div></div></div>
+    <div class="card"><div class="shot"><img src="../../img/project-vision-ai.webp"></div><div class="body"><div class="top"><h3>VisionAI</h3><span class="live">LIVE</span></div><p>Real-time object detection REST API</p><div class="tags"><span>YOLOv8x</span><span>FastAPI</span><span>OpenCV</span></div></div></div>
+    <div class="card"><div class="shot"><img src="../../img/project-proctor-ai-2.webp"></div><div class="body"><div class="top"><h3>ProctorAI</h3><span class="live cv">CV</span></div><p>Real-time AI exam proctoring</p><div class="tags"><span>YOLOv8</span><span>MediaPipe</span><span>OpenCV</span></div></div></div>
+  </div>
+</div>
+</body></html>

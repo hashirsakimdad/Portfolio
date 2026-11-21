@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="t d">
+  <title id="t">Hashir Sakimdad, AI engineer. Portfolio source code.</title>
+  <desc id="d">Dark banner with the name Hashir Sakimdad, the role AI engineer, and a glowing neural network of connected nodes on the right.</desc>
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <radialGradient id="glowV" cx="0.2" cy="0" r="0.8"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowC" cx="0.85" cy="1" r="0.7"><stop offset="0" stop-color="#22d3ee" stop-opacity="0.22"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <clipPath id="frame"><rect width="1200" height="420" rx="28"/></clipPath>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/></pattern>
+    <style>
+      .sans { font-family: 'Space Grotesk', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .edge { stroke: #a78bfa; stroke-opacity: 0.28; stroke-width: 1.4; fill: none; }
+      .node { fill: #f4f4f5; }
+      .pulse { fill: #22d3ee; }
+      @keyframes travel { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes glow { 0%, 100% { r: 5; opacity: 0.85; } 50% { r: 8; opacity: 1; } }
+      @keyframes caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+      .sig { animation: travel 2.4s ease-in-out infinite; }
+      .hub { animation: glow 2.4s ease-in-out infinite; }
+      #caret { animation: caret 1.2s steps(1) infinite; }
+    </style>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="420" fill="#0b0b0e"/>
+    <rect width="1200" height="420" fill="url(#grid)"/>
+    <rect width="1200" height="420" fill="url(#glowV)"/>
+    <rect width="1200" height="420" fill="url(#glowC)"/>
+
+    <!-- neural network motif (the same one that sits behind the site's hero) -->
+    <g id="network" transform="translate(700 40)">
+      <path class="edge" d="M60 80 L190 40 M60 80 L190 170 M60 80 L190 290 M60 210 L190 40 M60 210 L190 170 M60 210 L190 290 M60 330 L190 170 M60 330 L190 290"/>
+      <path class="edge" d="M190 40 L330 105 M190 40 L330 235 M190 170 L330 105 M190 170 L330 235 M190 290 L330 105 M190 290 L330 235"/>
+      <path class="edge" d="M330 105 L450 170 M330 235 L450 170"/>
+      <g class="node"><circle cx="60" cy="80" r="7"/><circle cx="60" cy="210" r="7"/><circle cx="60" cy="330" r="7"/>
+        <circle cx="190" cy="40" r="7"/><circle cx="190" cy="170" r="7"/><circle cx="190" cy="290" r="7"/>
+        <circle cx="330" cy="105" r="7"/><circle cx="330" cy="235" r="7"/></g>
+      <circle class="hub" cx="450" cy="170" r="6" fill="#22d3ee"/>
+      <circle cx="450" cy="170" r="22" fill="none" stroke="#22d3ee" stroke-opacity="0.35" stroke-width="1.5"/>
+      <g class="mono" fill="#a1a1aa" font-size="18">
+        <text x="-58" y="216">input</text><text x="400" y="225">output</text>
+      </g>
+      <!-- signals travelling along the network -->
+      <circle class="pulse sig" r="5" style="offset-path: path('M60 80 L190 170 L330 105 L450 170'); animation-delay: 0s"/>
+      <circle class="pulse sig" r="5" style="offset-path: path('M60 210 L190 40 L330 235 L450 170'); animation-delay: -0.8s"/>
+      <circle class="pulse sig" r="5" style="offset-path: path('M60 330 L190 290 L330 105 L450 170'); animation-delay: -1.6s"/>
+    </g>
+
+    <!-- identity -->
+    <g class="mono" font-size="20" fill="#a78bfa" letter-spacing="3"><text x="72" y="112">PORTFOLIO · SOURCE</text></g>
+    <g class="sans" font-weight="700" fill="#f4f4f5" letter-spacing="-2">
+      <text x="68" y="196" font-size="84">Hashir</text>
+      <text x="68" y="280" font-size="84" fill="none" stroke="#f4f4f5" stroke-opacity="0.7" stroke-width="1.6">Sakimdad</text>
+    </g>
+    <g class="sans" font-size="34" font-weight="600"><text x="72" y="344" fill="url(#grad)">AI engineer</text></g>
+    <rect id="caret" x="262" y="318" width="3" height="32" fill="#22d3ee"/>
+    <g class="mono" font-size="18" fill="#71717a"><text x="72" y="384">hashirsakimdad.vercel.app</text></g>
+  </g>
+  <rect width="1199" height="419" x="0.5" y="0.5" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
+</svg>

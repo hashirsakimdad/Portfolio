@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-labelledby="t d">
+<title id="t">Skills matrix</title>
+<desc id="d">A 6 by 6 grid counting how many of 20 projects use each pair of skills. The diagonal is how many projects use each skill: LLM &amp; Agents 10, Computer Vision 6, Classic ML 4, Backend &amp; APIs 11, Web &amp; Mobile 11, Cloud &amp; DevOps 4.</desc>
+<defs><clipPath id="frame"><rect width="1200" height="560" rx="28"/></clipPath><style>.sans{font-family:"Space Grotesk",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}</style><linearGradient id="lg"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.08"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0.85"/></linearGradient></defs>
+<g clip-path="url(#frame)"><rect width="1200" height="560" fill="#0b0b0e"/>
+<text class="mono" x="48" y="56" font-size="18" fill="#a78bfa" letter-spacing="3">SKILLS · HOW THEY COMBINE ACROSS 20 PROJECTS</text>
+<text class="mono" x="331.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">LLM</text>
+<text class="mono" x="401.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">CV</text>
+<text class="mono" x="471.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">ML</text>
+<text class="mono" x="541.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">API</text>
+<text class="mono" x="611.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">Web</text>
+<text class="mono" x="681.0" y="106" font-size="18" fill="#a1a1aa" text-anchor="middle">Ops</text>
+<text class="sans" x="282" y="158.0" font-size="20" fill="#d4d4d8" text-anchor="end">LLM &amp; Agents</text>
+<rect x="300" y="120" width="62" height="62" rx="12" fill="rgba(34,211,238,0.752)" stroke="rgba(255,255,255,0.159)"/>
+<text class="sans" x="331.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.95)" text-anchor="middle">10</text>
+<rect x="370" y="120" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="401.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="440" y="120" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="471.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="510" y="120" width="62" height="62" rx="12" fill="rgba(167,139,250,0.615)" stroke="rgba(255,255,255,0.137)"/>
+<text class="sans" x="541.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.84)" text-anchor="middle">8</text>
+<rect x="580" y="120" width="62" height="62" rx="12" fill="rgba(167,139,250,0.479)" stroke="rgba(255,255,255,0.115)"/>
+<text class="sans" x="611.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.73)" text-anchor="middle">6</text>
+<rect x="650" y="120" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="681.0" y="159.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<text class="sans" x="282" y="228.0" font-size="20" fill="#d4d4d8" text-anchor="end">Computer Vision</text>
+<rect x="300" y="190" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="331.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="370" y="190" width="62" height="62" rx="12" fill="rgba(34,211,238,0.479)" stroke="rgba(255,255,255,0.115)"/>
+<text class="sans" x="401.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.73)" text-anchor="middle">6</text>
+<rect x="440" y="190" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="471.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="510" y="190" width="62" height="62" rx="12" fill="rgba(167,139,250,0.206)" stroke="rgba(255,255,255,0.072)"/>
+<text class="sans" x="541.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.51)" text-anchor="middle">2</text>
+<rect x="580" y="190" width="62" height="62" rx="12" fill="rgba(167,139,250,0.070)" stroke="rgba(255,255,255,0.050)"/>
+<text class="sans" x="611.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.40)" text-anchor="middle">0</text>
+<rect x="650" y="190" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="681.0" y="229.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<text class="sans" x="282" y="298.0" font-size="20" fill="#d4d4d8" text-anchor="end">Classic ML</text>
+<rect x="300" y="260" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="331.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="370" y="260" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="401.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="440" y="260" width="62" height="62" rx="12" fill="rgba(34,211,238,0.343)" stroke="rgba(255,255,255,0.094)"/>
+<text class="sans" x="471.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.62)" text-anchor="middle">4</text>
+<rect x="510" y="260" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="541.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="580" y="260" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="611.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="650" y="260" width="62" height="62" rx="12" fill="rgba(167,139,250,0.070)" stroke="rgba(255,255,255,0.050)"/>
+<text class="sans" x="681.0" y="299.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.40)" text-anchor="middle">0</text>
+<text class="sans" x="282" y="368.0" font-size="20" fill="#d4d4d8" text-anchor="end">Backend &amp; APIs</text>
+<rect x="300" y="330" width="62" height="62" rx="12" fill="rgba(167,139,250,0.615)" stroke="rgba(255,255,255,0.137)"/>
+<text class="sans" x="331.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.84)" text-anchor="middle">8</text>
+<rect x="370" y="330" width="62" height="62" rx="12" fill="rgba(167,139,250,0.206)" stroke="rgba(255,255,255,0.072)"/>
+<text class="sans" x="401.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.51)" text-anchor="middle">2</text>
+<rect x="440" y="330" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="471.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="510" y="330" width="62" height="62" rx="12" fill="rgba(34,211,238,0.820)" stroke="rgba(255,255,255,0.170)"/>
+<text class="sans" x="541.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,1.00)" text-anchor="middle">11</text>
+<rect x="580" y="330" width="62" height="62" rx="12" fill="rgba(167,139,250,0.547)" stroke="rgba(255,255,255,0.126)"/>
+<text class="sans" x="611.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.78)" text-anchor="middle">7</text>
+<rect x="650" y="330" width="62" height="62" rx="12" fill="rgba(167,139,250,0.343)" stroke="rgba(255,255,255,0.094)"/>
+<text class="sans" x="681.0" y="369.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.62)" text-anchor="middle">4</text>
+<text class="sans" x="282" y="438.0" font-size="20" fill="#d4d4d8" text-anchor="end">Web &amp; Mobile</text>
+<rect x="300" y="400" width="62" height="62" rx="12" fill="rgba(167,139,250,0.479)" stroke="rgba(255,255,255,0.115)"/>
+<text class="sans" x="331.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.73)" text-anchor="middle">6</text>
+<rect x="370" y="400" width="62" height="62" rx="12" fill="rgba(167,139,250,0.070)" stroke="rgba(255,255,255,0.050)"/>
+<text class="sans" x="401.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.40)" text-anchor="middle">0</text>
+<rect x="440" y="400" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="471.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="510" y="400" width="62" height="62" rx="12" fill="rgba(167,139,250,0.547)" stroke="rgba(255,255,255,0.126)"/>
+<text class="sans" x="541.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.78)" text-anchor="middle">7</text>
+<rect x="580" y="400" width="62" height="62" rx="12" fill="rgba(34,211,238,0.820)" stroke="rgba(255,255,255,0.170)"/>
+<text class="sans" x="611.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,1.00)" text-anchor="middle">11</text>
+<rect x="650" y="400" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="681.0" y="439.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<text class="sans" x="282" y="508.0" font-size="20" fill="#d4d4d8" text-anchor="end">Cloud &amp; DevOps</text>
+<rect x="300" y="470" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="331.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="370" y="470" width="62" height="62" rx="12" fill="rgba(167,139,250,0.138)" stroke="rgba(255,255,255,0.061)"/>
+<text class="sans" x="401.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.45)" text-anchor="middle">1</text>
+<rect x="440" y="470" width="62" height="62" rx="12" fill="rgba(167,139,250,0.070)" stroke="rgba(255,255,255,0.050)"/>
+<text class="sans" x="471.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.40)" text-anchor="middle">0</text>
+<rect x="510" y="470" width="62" height="62" rx="12" fill="rgba(167,139,250,0.343)" stroke="rgba(255,255,255,0.094)"/>
+<text class="sans" x="541.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.62)" text-anchor="middle">4</text>
+<rect x="580" y="470" width="62" height="62" rx="12" fill="rgba(167,139,250,0.275)" stroke="rgba(255,255,255,0.083)"/>
+<text class="sans" x="611.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.56)" text-anchor="middle">3</text>
+<rect x="650" y="470" width="62" height="62" rx="12" fill="rgba(34,211,238,0.343)" stroke="rgba(255,255,255,0.094)"/>
+<text class="sans" x="681.0" y="509.0" font-size="22" font-weight="600" fill="rgba(244,244,245,0.62)" text-anchor="middle">4</text>
+<rect x="800" y="116" width="352" height="74" rx="16" fill="#15151b" stroke="rgba(255,255,255,0.1)"/>
+<text class="mono" x="820" y="144" font-size="17" fill="#22d3ee">Diagonal</text>
+<text class="sans" x="820" y="174" font-size="20" fill="#f4f4f5">projects using a skill</text>
+<rect x="800" y="208" width="352" height="74" rx="16" fill="#15151b" stroke="rgba(255,255,255,0.1)"/>
+<text class="mono" x="820" y="236" font-size="17" fill="#a78bfa">Off-diagonal</text>
+<text class="sans" x="820" y="266" font-size="20" fill="#f4f4f5">projects combining two skills</text>
+<rect x="800" y="300" width="352" height="74" rx="16" fill="#15151b" stroke="rgba(255,255,255,0.1)"/>
+<text class="mono" x="820" y="328" font-size="17" fill="#a78bfa">Most common pair</text>
+<text class="sans" x="820" y="358" font-size="20" fill="#f4f4f5">LLM × API (8 projects)</text>
+<text class="mono" x="800" y="452" font-size="17" fill="#71717a">fewer ←</text><rect x="884" y="440" width="190" height="12" rx="6" fill="url(#lg)"/><text class="mono" x="1084" y="452" font-size="17" fill="#71717a">→ more</text>
+</g><rect width="1199" height="559" x="0.5" y="0.5" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/></svg>
