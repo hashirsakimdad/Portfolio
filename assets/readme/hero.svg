@@ -1,24 +1,66 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="t d">
   <title id="t">Hashir Sakimdad, AI engineer. Portfolio source code.</title>
-  <desc id="d">Dark banner with the name Hashir Sakimdad, the role AI engineer, and a glowing neural network of connected nodes on the right.</desc>
+  <desc id="d">Banner with the name Hashir Sakimdad and the role AI engineer. On the right, a neural network takes idea, data and caffeine as inputs; an activation wave flows through its layers, the output bars show ship it at about 95 percent, and the output card names a shipped product: Bharosa, Sukoon AI, then Saath AI.</desc>
   <defs>
     <linearGradient id="grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
-    <radialGradient id="glowV" cx="0.2" cy="0" r="0.8"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
-    <radialGradient id="glowC" cx="0.85" cy="1" r="0.7"><stop offset="0" stop-color="#22d3ee" stop-opacity="0.22"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <linearGradient id="dim" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#52525b"/><stop offset="1" stop-color="#71717a"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <radialGradient id="glowV" cx="0.15" cy="0" r="0.8"><stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowC" cx="0.85" cy="0.6" r="0.55"><stop offset="0" stop-color="#22d3ee" stop-opacity="0.16"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
     <clipPath id="frame"><rect width="1200" height="420" rx="28"/></clipPath>
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/></pattern>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035"/></pattern>
     <style>
       .sans { font-family: 'Space Grotesk', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
       .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-      .edge { stroke: #a78bfa; stroke-opacity: 0.28; stroke-width: 1.4; fill: none; }
-      .node { fill: #f4f4f5; }
-      .pulse { fill: #22d3ee; }
-      @keyframes travel { 0% { offset-distance: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
-      @keyframes glow { 0%, 100% { r: 5; opacity: 0.85; } 50% { r: 8; opacity: 1; } }
+      .e { fill: none; stroke: #a78bfa; stroke-opacity: 0.13; stroke-width: 1.2; }
+      .eh { fill: none; stroke: url(#edge); stroke-opacity: 0.75; stroke-width: 1.6; opacity: 0; }
+      .nd { fill: #1b1b24; stroke: #e4e4e7; stroke-opacity: 0.55; stroke-width: 1.5; }
+      .spark { fill: #ffffff; }
+      .lab { font-size: 18px; fill: #a1a1aa; }
+      .pv { font-size: 18px; fill: #f4f4f5; }
+      .outk { font-size: 17px; fill: #22d3ee; }
+      .outv { font-size: 19px; }
       @keyframes caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-      .sig { animation: travel 2.4s ease-in-out infinite; }
-      .hub { animation: glow 2.4s ease-in-out infinite; }
-      #caret { animation: caret 1.2s steps(1) infinite; }
+      #caret { animation: caret 1.5s steps(1) infinite; }
+            @keyframes eh0 { 0% { opacity: 0; } 2.778% { opacity: 0; } 5.556% { opacity: 1; } 11.111% { opacity: 0; } 36.111% { opacity: 0; } 38.889% { opacity: 1; } 44.444% { opacity: 0; } 69.444% { opacity: 0; } 72.222% { opacity: 1; } 77.778% { opacity: 0; } 100% { opacity: 0; } }
+      .eh0 { animation: eh0 9.0s linear infinite; }
+      @keyframes eh1 { 0% { opacity: 0; } 7.778% { opacity: 0; } 10.556% { opacity: 1; } 16.111% { opacity: 0; } 41.111% { opacity: 0; } 43.889% { opacity: 1; } 49.444% { opacity: 0; } 74.444% { opacity: 0; } 77.222% { opacity: 1; } 82.778% { opacity: 0; } 100% { opacity: 0; } }
+      .eh1 { animation: eh1 9.0s linear infinite; }
+      @keyframes eh2 { 0% { opacity: 0; } 12.778% { opacity: 0; } 15.556% { opacity: 1; } 21.111% { opacity: 0; } 46.111% { opacity: 0; } 48.889% { opacity: 1; } 54.444% { opacity: 0; } 79.444% { opacity: 0; } 82.222% { opacity: 1; } 87.778% { opacity: 0; } 100% { opacity: 0; } }
+      .eh2 { animation: eh2 9.0s linear infinite; }
+      @keyframes sp0 { 0%, 2.778% { offset-distance: 0%; opacity: 0; } 3.333% { opacity: 1; } 8.333% { offset-distance: 100%; opacity: 1; } 8.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp1 { 0%, 2.778% { offset-distance: 0%; opacity: 0; } 3.333% { opacity: 1; } 8.333% { offset-distance: 100%; opacity: 1; } 8.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp2 { 0%, 7.778% { offset-distance: 0%; opacity: 0; } 8.333% { opacity: 1; } 13.333% { offset-distance: 100%; opacity: 1; } 13.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp3 { 0%, 7.778% { offset-distance: 0%; opacity: 0; } 8.333% { opacity: 1; } 13.333% { offset-distance: 100%; opacity: 1; } 13.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp4 { 0%, 12.778% { offset-distance: 0%; opacity: 0; } 13.333% { opacity: 1; } 18.333% { offset-distance: 100%; opacity: 1; } 18.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp5 { 0%, 12.778% { offset-distance: 0%; opacity: 0; } 13.333% { opacity: 1; } 18.333% { offset-distance: 100%; opacity: 1; } 18.889%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp6 { 0%, 36.111% { offset-distance: 0%; opacity: 0; } 36.667% { opacity: 1; } 41.667% { offset-distance: 100%; opacity: 1; } 42.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp7 { 0%, 36.111% { offset-distance: 0%; opacity: 0; } 36.667% { opacity: 1; } 41.667% { offset-distance: 100%; opacity: 1; } 42.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp8 { 0%, 41.111% { offset-distance: 0%; opacity: 0; } 41.667% { opacity: 1; } 46.667% { offset-distance: 100%; opacity: 1; } 47.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp9 { 0%, 41.111% { offset-distance: 0%; opacity: 0; } 41.667% { opacity: 1; } 46.667% { offset-distance: 100%; opacity: 1; } 47.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp10 { 0%, 46.111% { offset-distance: 0%; opacity: 0; } 46.667% { opacity: 1; } 51.667% { offset-distance: 100%; opacity: 1; } 52.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp11 { 0%, 46.111% { offset-distance: 0%; opacity: 0; } 46.667% { opacity: 1; } 51.667% { offset-distance: 100%; opacity: 1; } 52.222%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp12 { 0%, 69.444% { offset-distance: 0%; opacity: 0; } 70.000% { opacity: 1; } 75.000% { offset-distance: 100%; opacity: 1; } 75.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp13 { 0%, 69.444% { offset-distance: 0%; opacity: 0; } 70.000% { opacity: 1; } 75.000% { offset-distance: 100%; opacity: 1; } 75.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp14 { 0%, 74.444% { offset-distance: 0%; opacity: 0; } 75.000% { opacity: 1; } 80.000% { offset-distance: 100%; opacity: 1; } 80.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp15 { 0%, 74.444% { offset-distance: 0%; opacity: 0; } 75.000% { opacity: 1; } 80.000% { offset-distance: 100%; opacity: 1; } 80.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp16 { 0%, 79.444% { offset-distance: 0%; opacity: 0; } 80.000% { opacity: 1; } 85.000% { offset-distance: 100%; opacity: 1; } 85.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes sp17 { 0%, 79.444% { offset-distance: 0%; opacity: 0; } 80.000% { opacity: 1; } 85.000% { offset-distance: 100%; opacity: 1; } 85.556%, 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes n0 { 0% { fill: #1b1b24; r: 9px; } 2.222% { fill: #1b1b24; r: 9px; } 4.444% { fill: #c4b5fd; r: 11px; } 12.222% { fill: #1b1b24; r: 9px; } 35.556% { fill: #1b1b24; r: 9px; } 37.778% { fill: #c4b5fd; r: 11px; } 45.556% { fill: #1b1b24; r: 9px; } 68.889% { fill: #1b1b24; r: 9px; } 71.111% { fill: #c4b5fd; r: 11px; } 78.889% { fill: #1b1b24; r: 9px; } 100% { fill: #1b1b24; r: 9px; } }
+      @keyframes n1 { 0% { fill: #1b1b24; r: 9px; } 7.222% { fill: #1b1b24; r: 9px; } 9.444% { fill: #c4b5fd; r: 11px; } 17.222% { fill: #1b1b24; r: 9px; } 40.556% { fill: #1b1b24; r: 9px; } 42.778% { fill: #c4b5fd; r: 11px; } 50.556% { fill: #1b1b24; r: 9px; } 73.889% { fill: #1b1b24; r: 9px; } 76.111% { fill: #c4b5fd; r: 11px; } 83.889% { fill: #1b1b24; r: 9px; } 100% { fill: #1b1b24; r: 9px; } }
+      @keyframes n2 { 0% { fill: #1b1b24; r: 9px; } 12.222% { fill: #1b1b24; r: 9px; } 14.444% { fill: #c4b5fd; r: 11px; } 22.222% { fill: #1b1b24; r: 9px; } 45.556% { fill: #1b1b24; r: 9px; } 47.778% { fill: #c4b5fd; r: 11px; } 55.556% { fill: #1b1b24; r: 9px; } 78.889% { fill: #1b1b24; r: 9px; } 81.111% { fill: #c4b5fd; r: 11px; } 88.889% { fill: #1b1b24; r: 9px; } 100% { fill: #1b1b24; r: 9px; } }
+      @keyframes n3 { 0% { fill: #1b1b24; r: 9px; } 17.222% { fill: #1b1b24; r: 9px; } 19.444% { fill: #22d3ee; r: 11px; } 27.222% { fill: #1b1b24; r: 9px; } 50.556% { fill: #1b1b24; r: 9px; } 52.778% { fill: #22d3ee; r: 11px; } 60.556% { fill: #1b1b24; r: 9px; } 83.889% { fill: #1b1b24; r: 9px; } 86.111% { fill: #22d3ee; r: 11px; } 93.889% { fill: #1b1b24; r: 9px; } 100% { fill: #1b1b24; r: 9px; } }
+      @keyframes bar0 { 0% { width: 0px; } 0.111% { width: 0px; } 17.222% { width: 0px; } 22.778% { width: 116.4px; } 31.667% { width: 116.4px; } 33.444% { width: 0px; } 50.556% { width: 0px; } 56.111% { width: 112.8px; } 65.000% { width: 112.8px; } 66.778% { width: 0px; } 83.889% { width: 0px; } 89.444% { width: 115.2px; } 98.333% { width: 115.2px; } 100% { width: 0px; } }
+      @keyframes pv00 { 0%, 18.889% { opacity: 0; } 21.111%, 31.667% { opacity: 1; } 32.778%, 100% { opacity: 0; } }
+      @keyframes pv01 { 0%, 52.222% { opacity: 0; } 54.444%, 65.000% { opacity: 1; } 66.111%, 100% { opacity: 0; } }
+      @keyframes pv02 { 0%, 85.556% { opacity: 0; } 87.778%, 98.333% { opacity: 1; } 99.444%, 100% { opacity: 0; } }
+      @keyframes bar1 { 0% { width: 0px; } 0.111% { width: 0px; } 17.222% { width: 0px; } 22.778% { width: 3.6px; } 31.667% { width: 3.6px; } 33.444% { width: 0px; } 50.556% { width: 0px; } 56.111% { width: 7.2px; } 65.000% { width: 7.2px; } 66.778% { width: 0px; } 83.889% { width: 0px; } 89.444% { width: 4.8px; } 98.333% { width: 4.8px; } 100% { width: 0px; } }
+      @keyframes pv10 { 0%, 18.889% { opacity: 0; } 21.111%, 31.667% { opacity: 1; } 32.778%, 100% { opacity: 0; } }
+      @keyframes pv11 { 0%, 52.222% { opacity: 0; } 54.444%, 65.000% { opacity: 1; } 66.111%, 100% { opacity: 0; } }
+      @keyframes pv12 { 0%, 85.556% { opacity: 0; } 87.778%, 98.333% { opacity: 1; } 99.444%, 100% { opacity: 0; } }
+      @keyframes op0 { 0%, 21.111% { opacity: 0; transform: translateY(6px); } 23.889%, 31.667% { opacity: 1; transform: none; } 33.111%, 100% { opacity: 0; transform: translateY(-6px); } }
+      @keyframes op1 { 0%, 54.444% { opacity: 0; transform: translateY(6px); } 57.222%, 65.000% { opacity: 1; transform: none; } 66.444%, 100% { opacity: 0; transform: translateY(-6px); } }
+      @keyframes op2 { 0%, 87.778% { opacity: 0; transform: translateY(6px); } 90.556%, 98.333% { opacity: 1; transform: none; } 99.778%, 100% { opacity: 0; transform: translateY(-6px); } }
     </style>
   </defs>
 
@@ -28,34 +70,98 @@
     <rect width="1200" height="420" fill="url(#glowV)"/>
     <rect width="1200" height="420" fill="url(#glowC)"/>
 
-    <!-- neural network motif (the same one that sits behind the site's hero) -->
-    <g id="network" transform="translate(700 40)">
-      <path class="edge" d="M60 80 L190 40 M60 80 L190 170 M60 80 L190 290 M60 210 L190 40 M60 210 L190 170 M60 210 L190 290 M60 330 L190 170 M60 330 L190 290"/>
-      <path class="edge" d="M190 40 L330 105 M190 40 L330 235 M190 170 L330 105 M190 170 L330 235 M190 290 L330 105 M190 290 L330 235"/>
-      <path class="edge" d="M330 105 L450 170 M330 235 L450 170"/>
-      <g class="node"><circle cx="60" cy="80" r="7"/><circle cx="60" cy="210" r="7"/><circle cx="60" cy="330" r="7"/>
-        <circle cx="190" cy="40" r="7"/><circle cx="190" cy="170" r="7"/><circle cx="190" cy="290" r="7"/>
-        <circle cx="330" cy="105" r="7"/><circle cx="330" cy="235" r="7"/></g>
-      <circle class="hub" cx="450" cy="170" r="6" fill="#22d3ee"/>
-      <circle cx="450" cy="170" r="22" fill="none" stroke="#22d3ee" stroke-opacity="0.35" stroke-width="1.5"/>
-      <g class="mono" fill="#a1a1aa" font-size="18">
-        <text x="-58" y="216">input</text><text x="400" y="225">output</text>
-      </g>
-      <!-- signals travelling along the network -->
-      <circle class="pulse sig" r="5" style="offset-path: path('M60 80 L190 170 L330 105 L450 170'); animation-delay: 0s"/>
-      <circle class="pulse sig" r="5" style="offset-path: path('M60 210 L190 40 L330 235 L450 170'); animation-delay: -0.8s"/>
-      <circle class="pulse sig" r="5" style="offset-path: path('M60 330 L190 290 L330 105 L450 170'); animation-delay: -1.6s"/>
-    </g>
-
     <!-- identity -->
-    <g class="mono" font-size="20" fill="#a78bfa" letter-spacing="3"><text x="72" y="112">PORTFOLIO · SOURCE</text></g>
+    <text class="mono" x="72" y="106" font-size="20" fill="#a78bfa" letter-spacing="3">PORTFOLIO · SOURCE</text>
     <g class="sans" font-weight="700" fill="#f4f4f5" letter-spacing="-2">
-      <text x="68" y="196" font-size="84">Hashir</text>
-      <text x="68" y="280" font-size="84" fill="none" stroke="#f4f4f5" stroke-opacity="0.7" stroke-width="1.6">Sakimdad</text>
+      <text x="68" y="190" font-size="84">Hashir</text>
+      <text x="68" y="274" font-size="84" fill="none" stroke="#f4f4f5" stroke-opacity="0.7" stroke-width="1.6">Sakimdad</text>
     </g>
-    <g class="sans" font-size="34" font-weight="600"><text x="72" y="344" fill="url(#grad)">AI engineer</text></g>
-    <rect id="caret" x="262" y="318" width="3" height="32" fill="#22d3ee"/>
-    <g class="mono" font-size="18" fill="#71717a"><text x="72" y="384">hashirsakimdad.vercel.app</text></g>
+    <text class="sans" x="72" y="336" font-size="34" font-weight="600" fill="url(#grad)">AI engineer</text>
+    <rect id="caret" x="262" y="310" width="3" height="32" fill="#22d3ee"/>
+    <text class="mono" x="72" y="378" font-size="18" fill="#71717a">hashirsakimdad.vercel.app</text>
+
+    <!-- network: idea + data + caffeine in, a shipped product out -->
+    <text class="mono" x="612" y="58" font-size="17" fill="#71717a">forward pass · P = ∫ (M·F)ᴱ dt</text>
+        <path class="e" d="M660 150 C720.0 150 720.0 105 780 105 M660 150 C720.0 150 720.0 165 780 165 M660 150 C720.0 150 720.0 225 780 225 M660 150 C720.0 150 720.0 285 780 285 M660 150 C720.0 150 720.0 345 780 345 M660 225 C720.0 225 720.0 105 780 105 M660 225 C720.0 225 720.0 165 780 165 M660 225 C720.0 225 720.0 225 780 225 M660 225 C720.0 225 720.0 285 780 285 M660 225 C720.0 225 720.0 345 780 345 M660 300 C720.0 300 720.0 105 780 105 M660 300 C720.0 300 720.0 165 780 165 M660 300 C720.0 300 720.0 225 780 225 M660 300 C720.0 300 720.0 285 780 285 M660 300 C720.0 300 720.0 345 780 345"/>
+    <path class="eh eh0" d="M660 150 C720.0 150 720.0 105 780 105 M660 150 C720.0 150 720.0 165 780 165 M660 150 C720.0 150 720.0 225 780 225 M660 150 C720.0 150 720.0 285 780 285 M660 150 C720.0 150 720.0 345 780 345 M660 225 C720.0 225 720.0 105 780 105 M660 225 C720.0 225 720.0 165 780 165 M660 225 C720.0 225 720.0 225 780 225 M660 225 C720.0 225 720.0 285 780 285 M660 225 C720.0 225 720.0 345 780 345 M660 300 C720.0 300 720.0 105 780 105 M660 300 C720.0 300 720.0 165 780 165 M660 300 C720.0 300 720.0 225 780 225 M660 300 C720.0 300 720.0 285 780 285 M660 300 C720.0 300 720.0 345 780 345"/>
+    <path class="e" d="M780 105 C840.0 105 840.0 105 900 105 M780 105 C840.0 105 840.0 165 900 165 M780 105 C840.0 105 840.0 225 900 225 M780 105 C840.0 105 840.0 285 900 285 M780 105 C840.0 105 840.0 345 900 345 M780 165 C840.0 165 840.0 105 900 105 M780 165 C840.0 165 840.0 165 900 165 M780 165 C840.0 165 840.0 225 900 225 M780 165 C840.0 165 840.0 285 900 285 M780 165 C840.0 165 840.0 345 900 345 M780 225 C840.0 225 840.0 105 900 105 M780 225 C840.0 225 840.0 165 900 165 M780 225 C840.0 225 840.0 225 900 225 M780 225 C840.0 225 840.0 285 900 285 M780 225 C840.0 225 840.0 345 900 345 M780 285 C840.0 285 840.0 105 900 105 M780 285 C840.0 285 840.0 165 900 165 M780 285 C840.0 285 840.0 225 900 225 M780 285 C840.0 285 840.0 285 900 285 M780 285 C840.0 285 840.0 345 900 345 M780 345 C840.0 345 840.0 105 900 105 M780 345 C840.0 345 840.0 165 900 165 M780 345 C840.0 345 840.0 225 900 225 M780 345 C840.0 345 840.0 285 900 285 M780 345 C840.0 345 840.0 345 900 345"/>
+    <path class="eh eh1" d="M780 105 C840.0 105 840.0 105 900 105 M780 105 C840.0 105 840.0 165 900 165 M780 105 C840.0 105 840.0 225 900 225 M780 105 C840.0 105 840.0 285 900 285 M780 105 C840.0 105 840.0 345 900 345 M780 165 C840.0 165 840.0 105 900 105 M780 165 C840.0 165 840.0 165 900 165 M780 165 C840.0 165 840.0 225 900 225 M780 165 C840.0 165 840.0 285 900 285 M780 165 C840.0 165 840.0 345 900 345 M780 225 C840.0 225 840.0 105 900 105 M780 225 C840.0 225 840.0 165 900 165 M780 225 C840.0 225 840.0 225 900 225 M780 225 C840.0 225 840.0 285 900 285 M780 225 C840.0 225 840.0 345 900 345 M780 285 C840.0 285 840.0 105 900 105 M780 285 C840.0 285 840.0 165 900 165 M780 285 C840.0 285 840.0 225 900 225 M780 285 C840.0 285 840.0 285 900 285 M780 285 C840.0 285 840.0 345 900 345 M780 345 C840.0 345 840.0 105 900 105 M780 345 C840.0 345 840.0 165 900 165 M780 345 C840.0 345 840.0 225 900 225 M780 345 C840.0 345 840.0 285 900 285 M780 345 C840.0 345 840.0 345 900 345"/>
+    <path class="e" d="M900 105 C955.0 105 955.0 190 1010 190 M900 105 C955.0 105 955.0 260 1010 260 M900 165 C955.0 165 955.0 190 1010 190 M900 165 C955.0 165 955.0 260 1010 260 M900 225 C955.0 225 955.0 190 1010 190 M900 225 C955.0 225 955.0 260 1010 260 M900 285 C955.0 285 955.0 190 1010 190 M900 285 C955.0 285 955.0 260 1010 260 M900 345 C955.0 345 955.0 190 1010 190 M900 345 C955.0 345 955.0 260 1010 260"/>
+    <path class="eh eh2" d="M900 105 C955.0 105 955.0 190 1010 190 M900 105 C955.0 105 955.0 260 1010 260 M900 165 C955.0 165 955.0 190 1010 190 M900 165 C955.0 165 955.0 260 1010 260 M900 225 C955.0 225 955.0 190 1010 190 M900 225 C955.0 225 955.0 260 1010 260 M900 285 C955.0 285 955.0 190 1010 190 M900 285 C955.0 285 955.0 260 1010 260 M900 345 C955.0 345 955.0 190 1010 190 M900 345 C955.0 345 955.0 260 1010 260"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 150 C720.0 150 720.0 105 780 105'); animation: sp0 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 300 C720.0 300 720.0 165 780 165'); animation: sp1 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 165 C840.0 165 840.0 165 900 165'); animation: sp2 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 285 C840.0 285 840.0 225 900 225'); animation: sp3 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 225 C955.0 225 955.0 190 1010 190'); animation: sp4 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 345 C955.0 345 955.0 260 1010 260'); animation: sp5 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 225 C720.0 225 720.0 225 780 225'); animation: sp6 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 150 C720.0 150 720.0 285 780 285'); animation: sp7 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 225 C840.0 225 840.0 285 900 285'); animation: sp8 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 345 C840.0 345 840.0 345 900 345'); animation: sp9 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 285 C955.0 285 955.0 190 1010 190'); animation: sp10 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 105 C955.0 105 955.0 260 1010 260'); animation: sp11 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 300 C720.0 300 720.0 345 780 345'); animation: sp12 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M660 225 C720.0 225 720.0 105 780 105'); animation: sp13 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 285 C840.0 285 840.0 105 900 105'); animation: sp14 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M780 105 C840.0 105 840.0 165 900 165'); animation: sp15 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 345 C955.0 345 955.0 190 1010 190'); animation: sp16 9.0s linear infinite;"/>
+    <circle class="spark" r="4" style="offset-path: path('M900 165 C955.0 165 955.0 260 1010 260'); animation: sp17 9.0s linear infinite;"/>
+    <circle cx="660" cy="150" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="660" cy="150" r="9" style="animation: n0 9.0s linear infinite; animation-delay: 0.00s"/>
+    <circle cx="660" cy="225" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="660" cy="225" r="9" style="animation: n0 9.0s linear infinite; animation-delay: 0.04s"/>
+    <circle cx="660" cy="300" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="660" cy="300" r="9" style="animation: n0 9.0s linear infinite; animation-delay: 0.08s"/>
+    <circle cx="780" cy="105" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="780" cy="105" r="9" style="animation: n1 9.0s linear infinite; animation-delay: 0.00s"/>
+    <circle cx="780" cy="165" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="780" cy="165" r="9" style="animation: n1 9.0s linear infinite; animation-delay: 0.04s"/>
+    <circle cx="780" cy="225" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="780" cy="225" r="9" style="animation: n1 9.0s linear infinite; animation-delay: 0.08s"/>
+    <circle cx="780" cy="285" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="780" cy="285" r="9" style="animation: n1 9.0s linear infinite; animation-delay: 0.12s"/>
+    <circle cx="780" cy="345" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="780" cy="345" r="9" style="animation: n1 9.0s linear infinite; animation-delay: 0.16s"/>
+    <circle cx="900" cy="105" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="900" cy="105" r="9" style="animation: n2 9.0s linear infinite; animation-delay: 0.00s"/>
+    <circle cx="900" cy="165" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="900" cy="165" r="9" style="animation: n2 9.0s linear infinite; animation-delay: 0.04s"/>
+    <circle cx="900" cy="225" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="900" cy="225" r="9" style="animation: n2 9.0s linear infinite; animation-delay: 0.08s"/>
+    <circle cx="900" cy="285" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="900" cy="285" r="9" style="animation: n2 9.0s linear infinite; animation-delay: 0.12s"/>
+    <circle cx="900" cy="345" r="16" fill="none" stroke="#a78bfa" stroke-opacity="0.22"/>
+    <circle class="nd" cx="900" cy="345" r="9" style="animation: n2 9.0s linear infinite; animation-delay: 0.16s"/>
+    <circle cx="1010" cy="190" r="16" fill="none" stroke="#22d3ee" stroke-opacity="0.22"/>
+    <circle class="nd" cx="1010" cy="190" r="9" style="animation: n3 9.0s linear infinite; animation-delay: 0.00s"/>
+    <circle cx="1010" cy="260" r="16" fill="none" stroke="#22d3ee" stroke-opacity="0.22"/>
+    <circle class="nd" cx="1010" cy="260" r="9" style="animation: n3 9.0s linear infinite; animation-delay: 0.04s"/>
+    <text class="mono lab" x="634" y="156" text-anchor="end">idea</text>
+    <text class="mono lab" x="634" y="231" text-anchor="end">data</text>
+    <text class="mono lab" x="634" y="306" text-anchor="end">caffeine</text>
+    <text class="mono lab" x="1036" y="178">ship it</text>
+    <rect x="1036" y="186" width="120" height="8" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+    <rect class="bar0" x="1036" y="186" width="0" height="8" rx="4" fill="url(#grad)" style="animation: bar0 9.0s linear infinite;"/>
+    <text class="mono pv" x="1156" y="178" text-anchor="end" style="opacity: 0; animation: pv00 9.0s linear infinite;">97%</text>
+    <text class="mono pv" x="1156" y="178" text-anchor="end" style="opacity: 0; animation: pv01 9.0s linear infinite;">94%</text>
+    <text class="mono pv" x="1156" y="178" text-anchor="end" style="opacity: 0; animation: pv02 9.0s linear infinite;">96%</text>
+    <text class="mono lab" x="1036" y="248">rewrite</text>
+    <rect x="1036" y="256" width="120" height="8" rx="4" fill="#ffffff" fill-opacity="0.08"/>
+    <rect class="bar1" x="1036" y="256" width="0" height="8" rx="4" fill="url(#dim)" style="animation: bar1 9.0s linear infinite;"/>
+    <text class="mono pv" x="1156" y="248" text-anchor="end" style="opacity: 0; animation: pv10 9.0s linear infinite;">3%</text>
+    <text class="mono pv" x="1156" y="248" text-anchor="end" style="opacity: 0; animation: pv11 9.0s linear infinite;">6%</text>
+    <text class="mono pv" x="1156" y="248" text-anchor="end" style="opacity: 0; animation: pv12 9.0s linear infinite;">4%</text>
+    <rect x="690" y="370" width="460" height="36" rx="17" fill="#0f2a30" stroke="#22d3ee" stroke-opacity="0.6"/>
+    <text class="mono outk" x="708" y="393">output →</text>
+    <text class="sans outv" x="808" y="393" style="opacity: 0; animation: op0 9.0s linear infinite;"><tspan font-weight="700" fill="#f4f4f5">Bharosa</tspan><tspan fill="#a1a1aa"> · scam checker</tspan></text>
+    <text class="sans outv" x="808" y="393" style="opacity: 0; animation: op1 9.0s linear infinite;"><tspan font-weight="700" fill="#f4f4f5">Sukoon AI</tspan><tspan fill="#a1a1aa"> · mental health AI</tspan></text>
+    <text class="sans outv" x="808" y="393" style="opacity: 0; animation: op2 9.0s linear infinite;"><tspan font-weight="700" fill="#f4f4f5">Saath AI</tspan><tspan fill="#a1a1aa"> · labour marketplace</tspan></text>
+
+    <!-- crafted signature -->
+    <g transform="translate(972 40)">
+      <rect width="186" height="30" rx="15" fill="none" stroke="#a78bfa" stroke-opacity="0.45" stroke-dasharray="4 4"/>
+      <text class="mono" x="93" y="20" font-size="15" fill="#c4b5fd" text-anchor="middle">crafted by Hashir</text>
+    </g>
   </g>
   <rect width="1199" height="419" x="0.5" y="0.5" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
 </svg>

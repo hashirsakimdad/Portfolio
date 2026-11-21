@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://hashirsakimdad.vercel.app">
-    <img src="./assets/readme/hero.gif" width="100%" alt="Hashir Sakimdad, AI engineer. A neural network animates beside the name.">
+    <img src="./assets/readme/hero.gif" width="100%" alt="Hashir Sakimdad, AI engineer. Beside the name, a neural network takes idea, data and caffeine as inputs, a signal flows through its layers, and it outputs ship it at about 95 percent along with a shipped product: Bharosa, Sukoon AI, then Saath AI.">
   </a>
 </p>
 
