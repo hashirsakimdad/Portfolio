@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Experience timeline</title>
+  <desc id="d">2024: AI Engineering Intern at UGOOD. 2024 to present: freelance AI developer, Fiverr Level-1. 2025: Machine Learning Intern at Elevvo Pathways. 2025: AI/ML Intern at Prosensia.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <clipPath id="frame"><rect width="1200" height="360" rx="28"/></clipPath>
+    <style>
+      .sans { font-family: 'Space Grotesk', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .card { fill: #15151b; stroke: #ffffff; stroke-opacity: 0.12; }
+      .yr { font-size: 18px; fill: #a78bfa; }
+      .role { font-size: 23px; font-weight: 600; fill: #f4f4f5; }
+      .org { font-size: 19px; fill: #a1a1aa; }
+    </style>
+  </defs>
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="360" fill="#0b0b0e"/>
+    <text class="mono" x="48" y="56" font-size="18" fill="#a78bfa" letter-spacing="3">EXPERIENCE</text>
+
+    <!-- the line -->
+    <rect x="60" y="132" width="1080" height="4" rx="2" fill="url(#g)" opacity="0.85"/>
+    <g fill="#0b0b0e" stroke-width="3">
+      <circle cx="165" cy="134" r="11" stroke="#a78bfa"/>
+      <circle cx="455" cy="134" r="11" stroke="#a78bfa"/>
+      <circle cx="745" cy="134" r="11" stroke="#7dd3fc"/>
+      <circle cx="1035" cy="134" r="11" stroke="#22d3ee"/>
+    </g>
+    <circle cx="455" cy="134" r="5" fill="#4ade80"/>
+
+    <!-- cards -->
+    <rect class="card" x="40" y="168" width="250" height="150" rx="18"/>
+    <text class="mono yr" x="62" y="204">2024</text>
+    <text class="sans role" x="62" y="244">AI Engineering</text><text class="sans role" x="62" y="272">Intern</text>
+    <text class="sans org" x="62" y="302">UGOOD</text>
+
+    <rect class="card" x="330" y="168" width="250" height="150" rx="18"/>
+    <text class="mono yr" x="352" y="204">2024 → now</text>
+    <text class="sans role" x="352" y="244">AI Developer,</text><text class="sans role" x="352" y="272">Freelance</text>
+    <text class="sans org" x="352" y="302">Fiverr · Level-1 · 5.0★</text>
+
+    <rect class="card" x="620" y="168" width="250" height="150" rx="18"/>
+    <text class="mono yr" x="642" y="204">2025</text>
+    <text class="sans role" x="642" y="244">Machine Learning</text><text class="sans role" x="642" y="272">Intern</text>
+    <text class="sans org" x="642" y="302">Elevvo Pathways</text>
+
+    <rect class="card" x="910" y="168" width="250" height="150" rx="18"/>
+    <text class="mono yr" x="932" y="204">2025</text>
+    <text class="sans role" x="932" y="244">AI/ML Intern</text>
+    <text class="sans org" x="932" y="302">Prosensia</text>
+
+    <text class="mono" x="1152" y="56" font-size="17" fill="#71717a" text-anchor="end">ongoing</text>
+    <circle cx="1064" cy="50" r="5" fill="#4ade80"/>
+  </g>
+  <rect width="1199" height="359" x="0.5" y="0.5" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
+</svg>

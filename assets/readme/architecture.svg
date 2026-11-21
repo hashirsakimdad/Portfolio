@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" width="1200" height="450" role="img" aria-labelledby="t d">
+  <title id="t">How Deep Research OS works</title>
+  <desc id="d">A question goes to a planner, three researchers work in parallel, a verifier checks every claim, a contradiction detector flags disagreements, a synthesizer writes the report and a critic sends it back for more research when there are gaps, before the final cited report.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+    <clipPath id="frame"><rect width="1200" height="450" rx="28"/></clipPath>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a78bfa"/></marker>
+    <style>
+      .sans { font-family: 'Space Grotesk', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .box { fill: #15151b; stroke: #ffffff; stroke-opacity: 0.16; stroke-width: 1.2; }
+      .hot { fill: #1c1630; stroke: #a78bfa; stroke-opacity: 0.9; }
+      .end { fill: #0f2a30; stroke: #22d3ee; stroke-opacity: 0.9; }
+      .lbl { font-size: 21px; font-weight: 600; fill: #f4f4f5; text-anchor: middle; }
+      .sub { font-size: 17px; fill: #a1a1aa; text-anchor: middle; }
+      .wire { fill: none; stroke: #a78bfa; stroke-opacity: 0.55; stroke-width: 2; }
+      .loop { fill: none; stroke: #22d3ee; stroke-opacity: 0.7; stroke-width: 2; stroke-dasharray: 7 7; }
+      @keyframes run { 0% { offset-distance: 0%; opacity: 0; } 4% { opacity: 1; } 96% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+      @keyframes dash { to { stroke-dashoffset: -28; } }
+      .packet { animation: run 6s linear infinite; }
+      .loop { animation: dash 1.5s linear infinite; }
+    </style>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="1200" height="450" fill="#0b0b0e"/>
+    <text class="mono" x="48" y="48" font-size="18" fill="#a78bfa" letter-spacing="3">DEEP RESEARCH OS · AGENT PIPELINE</text>
+
+    <!-- wires (row 1 left→right, down, row 2 right→left) -->
+    <path class="wire" marker-end="url(#arr)" d="M218 170 H268"/>
+    <path class="wire" marker-end="url(#arr)" d="M428 170 C458 170 458 108 490 108"/>
+    <path class="wire" marker-end="url(#arr)" d="M428 170 H490"/>
+    <path class="wire" marker-end="url(#arr)" d="M428 170 C458 170 458 232 490 232"/>
+    <path class="wire" marker-end="url(#arr)" d="M690 108 C722 108 722 170 760 170"/>
+    <path class="wire" marker-end="url(#arr)" d="M690 170 H760"/>
+    <path class="wire" marker-end="url(#arr)" d="M690 232 C722 232 722 170 760 170"/>
+    <path class="wire" marker-end="url(#arr)" d="M1060 205 V330"/>
+    <path class="wire" marker-end="url(#arr)" d="M940 380 H880"/>
+    <path class="wire" marker-end="url(#arr)" d="M640 380 H580"/>
+    <path class="wire" marker-end="url(#arr)" d="M380 380 H320"/>
+    <!-- critic sends gaps back to research -->
+    <path class="loop" marker-end="url(#arr)" d="M470 345 C470 300 560 305 560 264"/>
+    <text class="mono" x="270" y="300" font-size="17" fill="#22d3ee" text-anchor="middle">gaps → research again (max 2×)</text>
+
+    <!-- row 1 -->
+    <rect class="box" x="48" y="135" width="170" height="70" rx="35"/><text class="sans lbl" x="133" y="178">Question</text>
+    <rect class="box hot" x="268" y="135" width="160" height="70" rx="16"/><text class="sans lbl" x="348" y="168">Planner</text><text class="sans sub" x="348" y="193">sub-questions</text>
+    <rect class="box hot" x="490" y="82" width="200" height="52" rx="14"/><text class="sans lbl" x="590" y="115">Researcher</text>
+    <rect class="box hot" x="490" y="144" width="200" height="52" rx="14"/><text class="sans lbl" x="590" y="177">Researcher</text>
+    <rect class="box hot" x="490" y="206" width="200" height="52" rx="14"/><text class="sans lbl" x="590" y="239">Researcher</text>
+    <text class="mono" x="590" y="72" font-size="17" fill="#71717a" text-anchor="middle">in parallel</text>
+    <rect class="box hot" x="760" y="135" width="380" height="70" rx="16"/><text class="sans lbl" x="950" y="168">Verifier</text><text class="sans sub" x="950" y="193">every claim needs a verbatim quote</text>
+
+    <!-- row 2 (right to left) -->
+    <rect class="box hot" x="940" y="345" width="220" height="70" rx="16"/><text class="sans lbl" x="1050" y="378">Contradiction</text><text class="sans sub" x="1050" y="401">detector</text>
+    <rect class="box hot" x="640" y="345" width="240" height="70" rx="16"/><text class="sans lbl" x="760" y="387">Synthesizer</text>
+    <rect class="box hot" x="380" y="345" width="200" height="70" rx="16"/><text class="sans lbl" x="480" y="387">Critic</text>
+    <rect class="box end" x="80" y="345" width="240" height="70" rx="35"/><text class="sans lbl" x="200" y="378">Cited report</text><text class="sans sub" x="200" y="401">claim → source → URL</text>
+
+    <!-- a packet walks the main path -->
+    <circle class="packet" r="7" fill="#22d3ee" style="offset-path: path('M133 170 H348 H590 H950 H1050 V380 H760 H480 H200');"/>
+  </g>
+  <rect width="1199" height="449" x="0.5" y="0.5" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
+</svg>
